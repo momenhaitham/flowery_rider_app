@@ -32,5 +32,8 @@
   "userNameRequired": "اسم المستخدم مطلوب",
   "phoneNumberRequired": "رقم الهاتف مطلوب",
   "firstNameRequired": "الاسم الأول مطلوب",
-  "lastNameRequired": "اسم العائلة مطلوب"
+  "lastNameRequired": "اسم العائلة مطلوب",
+  "Welcometo":"مرحبًا بك في",
+  "Floweryriderapp":"تطبيق توصيل النباتات",
+  "Applynow":"تقدم الان"
 }

@@ -4,6 +4,8 @@ const String svgPath = "assets/svg";
 const String filesPath="assets/files";
 abstract class AssetsImage {
   static const String flower='$imagePath/Flower.png';
+  static const String onBoaedingLogo ='$imagePath/onBoarding.png';
+
 }
 
 abstract class AssetsIcons {
@@ -12,7 +14,7 @@ abstract class AssetsIcons {
 }
 
 abstract class AssetsSvg {
-  static const String logoSvg = '$svgPath/flower_logo.svg';
+  static const String logoSvg = '$svgPath/FloweryRiderSplash.svg';
 }
 abstract class AssetsFiles{
   static const String aboutAppFile='$filesPath/Flowery About Section JSON with Expanded Content.json';

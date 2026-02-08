@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flowery_rider_app/app/config/di/di.dart';
-import 'package:flowery_rider_app/app/core/routes/app_page.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/core/routes/route_generator.dart';
 import 'package:flowery_rider_app/app/core/theme/app_theme.dart';
 import 'package:flowery_rider_app/app_provider.dart';
 import 'package:flowery_rider_app/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -19,12 +20,12 @@ void main() async {
   AppProvider appProvider = getIt<AppProvider>();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => appProvider,
+      create: (context) => appProvider..getCurrentLocale(context),
       child: EasyLocalization(
-      supportedLocales: [Locale('en'),Locale('ar')],
-      path: 'assets/translations', // <-- change the path of the translation files
+      supportedLocales: [Locale('ar'),Locale('en')],
+      path: 'assets/translations',
       child: MainApp()
-        ),
+      ),
     )
  );
 }
@@ -38,25 +39,29 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   late AppProvider appProvider;
+
+  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async{
-      appProvider.getCurrentLocale();
+      //appProvider.getCurrentLocale();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    appProvider = Provider.of<AppProvider>(context);
-    return MaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      onGenerateRoute: RouteGenerator.getRoutes,
-      locale: Locale(appProvider.currentLocale!),
-      initialRoute: Routes.splash,
+    AppProvider appProvider = Provider.of<AppProvider>(context);
+    return ScreenUtilInit(
+      builder:(context, child) =>  MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        onGenerateRoute: RouteGenerator.getRoutes,
+        home: child,
+        locale: context.locale,
+        initialRoute: Routes.splash,
+      ),
     );
   }
 }

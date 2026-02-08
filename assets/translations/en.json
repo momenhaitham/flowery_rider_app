@@ -32,5 +32,8 @@
   "userNameRequired": "Username is required",
   "phoneNumberRequired": "Phone number is required",
   "firstNameRequired": "First name is required",
-  "lastNameRequired": "Last name is required"
+  "lastNameRequired": "Last name is required",
+  "Welcometo":"Welcome to",
+  "Floweryriderapp":"Flowery Rider App",
+  "Applynow":"Apply Now"
 }

@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       switch (event) {
         case NavigateToLoginEvent():
           if (mounted) {
-            Navigator.pushReplacementNamed(context, Routes.login);
+            Navigator.pushReplacementNamed(context, Routes.onboarding);
           }
           break;
         case NavigateToMainFlowEvent():
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
               .scale(
                 delay: Duration(milliseconds: 700),
                 duration: Duration(milliseconds: 300),
-                curve: Curves.fastOutSlowIn,
+                
               ),
         ),
       ),
