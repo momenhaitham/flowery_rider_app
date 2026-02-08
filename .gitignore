@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+pubspec.lock
 
 # Symbolication related
 app.*.symbols
@@ -47,5 +48,6 @@ app.*.map.json
 lib/app/config/di/di.config.dart
 *.g.dart
 *.mocks.dart
+*generated_
 lib/app/config/di/di.config.dart
-pubspec.lock
+
