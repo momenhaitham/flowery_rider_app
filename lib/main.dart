@@ -50,7 +50,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    AppProvider appProvider = Provider.of<AppProvider>(context);
     return ScreenUtilInit(
       builder:(context, child) =>  MaterialApp(
         localizationsDelegates: context.localizationDelegates,
