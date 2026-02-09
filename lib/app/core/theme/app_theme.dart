@@ -41,31 +41,27 @@ class AppTheme {
 
     // textStyle
     textTheme: TextTheme(
-      labelMedium: TextStyle(
-        fontFamily: FontsFamily.inter,
+      labelMedium: GoogleFonts.inter(
         fontSize: FontSize.s13,
         fontWeight: FontWeights.regular,
         color: AppColors.grayColor,
       ),
       headlineLarge: GoogleFonts.inter(
-        fontSize: FontSize.s18,
+        fontSize: FontSize.s20,
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor
       ),
-      headlineMedium: TextStyle(
-        fontFamily: FontsFamily.roboto,
+      headlineMedium: GoogleFonts.roboto(
         fontSize: FontSize.s16,
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor,
       ),
-      headlineSmall: TextStyle(
-        fontFamily: FontsFamily.roboto,
+      headlineSmall: GoogleFonts.roboto(
         fontSize: FontSize.s2,
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor,
       ),
-      titleMedium: TextStyle(
-        fontFamily: FontsFamily.roboto,
+      titleMedium: GoogleFonts.roboto(
         fontSize: FontSize.s16,
         fontWeight: FontWeights.medium,
         color: AppColors.whiteColor,
@@ -75,8 +71,7 @@ class AppTheme {
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor
       ),
-        bodyLarge: TextStyle(
-            fontFamily: FontsFamily.inter,
+        bodyLarge: GoogleFonts.inter(
             fontSize: FontSize.s16,
             fontWeight: FontWeight.normal,
             color: AppColors.blackColor
