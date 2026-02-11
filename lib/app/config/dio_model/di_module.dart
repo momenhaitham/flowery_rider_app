@@ -2,12 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/dio_model/token_interceptors.dart';
 import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
-import 'package:flowery_rider_app/app/feature/apply/api/apply_api_client.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../feature/vehicles/api/vehicle_api_client.dart';
 import '../local_storage_processes/domain/storage_data_source_contract.dart';
 
 @module
@@ -15,7 +16,9 @@ abstract class DiModule {
   @lazySingleton
   ApplyApiClient provideApplyApiClient(Dio dio) =>
       ApplyApiClient(dio,baseUrl: AppEndPoint.baseUrl);
-
+  @lazySingleton
+  VehicleApiClient provideVehicleApiClient(Dio dio) =>
+      VehicleApiClient(dio,baseUrl: AppEndPoint.baseUrl);
   @lazySingleton
   Dio provideDio(
     BaseOptions baseOptions,

@@ -1,4 +1,4 @@
-import 'package:flowery_rider_app/app/feature/apply/domain/apply_driver_repo_contract.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/domain/apply_driver_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/base_response/base_response.dart';

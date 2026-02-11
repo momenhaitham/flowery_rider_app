@@ -1,7 +1,7 @@
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
-import 'package:flowery_rider_app/app/feature/apply/data/apply_data_source_contract.dart';
-import 'package:flowery_rider_app/app/feature/apply/domain/apply_driver_repo_contract.dart';
-import 'package:flowery_rider_app/app/feature/apply/domain/request/apply_driver_request.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/data/apply_data_source_contract.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/domain/apply_driver_repo_contract.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:injectable/injectable.dart';
 @Injectable(as: ApplyDriverRepoContract)
 class ApplyDriverRepoImpl  extends ApplyDriverRepoContract{

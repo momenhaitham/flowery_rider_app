@@ -5,9 +5,10 @@ import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 
 import 'package:flowery_rider_app/app/feature/countries/domain/country_local_data_source_contract.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 
 import 'model/country_dto.dart';
-
+@Injectable(as: CountryLocalDataSourceContract)
 class CountryLocalDataSourceImpl extends CountryLocalDataSourceContract{
   @override
   Future<BaseResponse<List<CountryDto>>> getAllCountries() =>executeApi(()async {

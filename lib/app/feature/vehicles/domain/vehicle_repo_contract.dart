@@ -4,6 +4,6 @@ import '../../../config/base_response/base_response.dart';
 
 
 abstract class VehicleRepoContract {
-  Future<BaseResponse<List<VehicleEntity?>>> getAllVehicles();
+  Future<BaseResponse<List<VehicleEntity>>> getAllVehicles();
 
 }

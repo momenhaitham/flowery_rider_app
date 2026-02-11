@@ -22,8 +22,8 @@ class VehiclesResponse {
     return _$VehiclesResponseToJson(this);
   }
 
-  List<VehicleEntity?> toVehicleEntity() {
-    return vehicles!.map((e) => VehicleEntity(vehicleType: e.type)).toList();
+  List<VehicleEntity>? toVehicleEntity() {
+    return vehicles?.map((e) => VehicleEntity(vehicleType: e.type)).toList();
   }
 }
 

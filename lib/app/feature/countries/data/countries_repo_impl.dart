@@ -3,7 +3,8 @@ import 'package:flowery_rider_app/app/feature/countries/data/model/country_dto.d
 import 'package:flowery_rider_app/app/feature/countries/domain/country_local_data_source_contract.dart';
 import 'package:flowery_rider_app/app/feature/countries/domain/country_repo_contract.dart';
 import 'package:flowery_rider_app/app/feature/countries/domain/model/country_entity.dart';
-
+import 'package:injectable/injectable.dart';
+@Injectable(as: CountryRepoContract)
 class CountriesRepoImpl extends CountryRepoContract{
   final CountryLocalDataSourceContract _localDataSourceContract;
   CountriesRepoImpl(this._localDataSourceContract);
