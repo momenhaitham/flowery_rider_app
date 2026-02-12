@@ -65,6 +65,7 @@ flutter:
     - assets/translations/
     - assets/icons/
     - assets/svg/
+    - assets/files/
 scripts:
   locale: dart run tools\generate_locale.dart
   routes: dart run tools\generate_routes.dart

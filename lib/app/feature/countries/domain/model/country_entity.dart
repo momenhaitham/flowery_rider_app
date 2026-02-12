@@ -1,9 +1,14 @@
-class CountryEntity {
-  String? name;
-  String? flag;
+import 'package:equatable/equatable.dart';
 
-  CountryEntity({
+class CountryEntity extends Equatable{
+  final String? name;
+  final String? flag;
+
+  const CountryEntity({
     this.name,
     this.flag,
   });
+
+  @override
+  List<Object?> get props => [name,flag];
 }

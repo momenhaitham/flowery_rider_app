@@ -5,9 +5,9 @@ import 'package:flowery_rider_app/app/feature/apply_driver/data/model/apply_driv
 import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:injectable/injectable.dart';
 
-import '../data/apply_data_source_contract.dart';
-@Injectable(as: ApplyDataSourceContract)
-class ApplyDriverOnlineDataSourceImpl implements ApplyDataSourceContract {
+import '../data/apply_driver_data_source_contract.dart';
+@Injectable(as: ApplyDriverDataSourceContract)
+class ApplyDriverOnlineDataSourceImpl implements ApplyDriverDataSourceContract {
   final ApplyApiClient applyApiClient;
 
   ApplyDriverOnlineDataSourceImpl(this.applyApiClient);

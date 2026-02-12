@@ -6,11 +6,11 @@ import 'package:flowery_rider_app/app/feature/vehicles/domain/vehicle_repo_contr
 import 'package:injectable/injectable.dart';
 @Injectable(as: VehicleRepoContract)
 class VehicleRepoImpl  extends VehicleRepoContract{
-  final VehicleDataSourceContract remoteDataSource;
-  VehicleRepoImpl({required this.remoteDataSource});
+  final VehicleDataSourceContract _remoteDataSource;
+  VehicleRepoImpl(this._remoteDataSource);
   @override
   Future<BaseResponse<List<VehicleEntity>>> getAllVehicles()async {
-final response = await remoteDataSource.getAllVehicles();
+final response = await _remoteDataSource.getAllVehicles();
 switch (response) {
   case SuccessResponse<VehiclesResponse>():
    return SuccessResponse(data: response.data.toVehicleEntity()??[]);
