@@ -52,13 +52,7 @@ void main() {
       });
   test('getAllCountries should return correct error when json is invalid',
           () async {
-        // Arrange
-        final jsonString = jsonEncode([
-          {"id": 1, "name": "Egypt"},
-          {"id": 2, "name": "USA"}
-        ]);
-
-        when(mockAssetLoader.loadString(AssetsFiles.countriesFile))
+    when(mockAssetLoader.loadString(AssetsFiles.countriesFile))
             .thenThrow(IOException);
 
         // Act

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flowery_rider_app/app/config/api_utils/api_utils.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
