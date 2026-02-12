@@ -25,12 +25,12 @@ class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverStat
     switch(result) {
       case SuccessResponse<List<VehicleEntity>>():
         emit(state.copyWith(
-            vehiclesState: BaseState(isLoading: true,data: result.data)
+            vehiclesState: BaseState(isLoading:false,data: result.data)
         ));
         break;
       case ErrorResponse<List<VehicleEntity>>():
         emit(state.copyWith(
-            vehiclesState: BaseState(isLoading: true,error: result.error)
+            vehiclesState: BaseState(isLoading:false,error: result.error)
         ));
         break;
     }
@@ -43,12 +43,12 @@ class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverStat
     switch(result) {
       case SuccessResponse<List<CountryEntity>>():
         emit(state.copyWith(
-            countriesState: BaseState(isLoading: true,data: result.data)
+            countriesState: BaseState(isLoading:false,data: result.data)
         ));
         break;
       case ErrorResponse<List<CountryEntity>>():
         emit(state.copyWith(
-            countriesState: BaseState(isLoading: true,error: result.error)
+            countriesState: BaseState(isLoading:false,error: result.error)
         ));
         break;
     }
