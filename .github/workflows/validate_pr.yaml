@@ -1,0 +1,62 @@
+name: Validate PR Title & Branch
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR Title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          echo "PR Title: $PR_TITLE"
+
+          # Allowed types: fix|release|feat|hotfix|build|test
+          # Allowed scopes: JIRA-\d+ OR [A-Z]+-\d+
+          # Full format: type(scope): TICKET-task name
+          PR_TITLE_REGEX='^(fix|release|feat|hotfix|build|test)\((JIRA-[0-9]+|[A-Z]+-[0-9]+)\): ([A-Z]+-[0-9]+)-.+$'
+
+          if [[ ! "$PR_TITLE" =~ $PR_TITLE_REGEX ]]; then
+            echo "❌ Invalid PR title format!"
+            echo ""
+            echo "Expected:"
+            echo "type(scope): TICKET-task name"
+            echo ""
+            echo "Allowed types: fix, release, feat, hotfix, build, test"
+            echo "Allowed scopes: JIRA-123 OR ECOM-27 (any [A-Z]+-[0-9]+)"
+            echo ""
+            echo "Example:"
+            echo "feat(ECOM-27): ECOM-27-initialize project"
+            exit 1
+          fi
+
+          echo "✅ PR title is valid."
+
+      - name: Validate Branch Name
+        run: |
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+
+          echo "Branch Name: $BRANCH_NAME"
+
+          # Example: feature/ECOM-27-Initialize Project
+          # Allowed prefixes: feature|bugfix|hotfix|release|chore
+          # Allowed ticket: JIRA-123 or ECOM-27
+          BRANCH_REGEX='^(feature|bugfix|hotfix|release|chore)\/(JIRA-[0-9]+|[A-Z]+-[0-9]+)[-_ ].+$'
+
+          if [[ ! "$BRANCH_NAME" =~ $BRANCH_REGEX ]]; then
+            echo "❌ Invalid branch name format!"
+            echo ""
+            echo "Expected:"
+            echo "feature/ECOM-27-Initialize Project"
+            echo ""
+            echo "Examples:"
+            echo "feature/ECOM-27-initialize-project"
+            echo "hotfix/JIRA-99-fix-crash"
+            exit 1
+          fi
+
+          echo "✅ Branch name is valid."
