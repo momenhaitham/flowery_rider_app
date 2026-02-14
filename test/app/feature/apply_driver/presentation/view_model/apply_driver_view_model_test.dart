@@ -218,7 +218,7 @@ void main() {
     );
   },);
 group('apply driver', () {
-  test('when calling do intent with apply driver action with success it must emir correct event', ()async {
+  test('when calling do intent with apply driver action with success it must emit correct event', ()async {
     // Arrange
     final request = ApplyDriverRequest(firstName: "Sayed");
 provideDummy<BaseResponse<String>>(SuccessResponse(data: 'success'));
@@ -236,7 +236,7 @@ provideDummy<BaseResponse<String>>(SuccessResponse(data: 'success'));
     expect(emittedEvents[1], isA<NavigateToLoginEvent>());
     verify(driverUseCase.invoke(request)).called(1);
   },);
-  test('when calling do intent with apply driver action with error it must emir correct event', ()async {
+  test('when calling do intent with apply driver action with error it must emit correct event', ()async {
     // Arrange
     final request = ApplyDriverRequest(firstName: "Sayed");
     provideDummy<BaseResponse<String>>(ErrorResponse(error: UnexpectedError()));

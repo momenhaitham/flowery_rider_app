@@ -28,13 +28,13 @@ void main() {
 
   });
 
-  test('when calling apply driver with success it must return data', ()async {
+  test('when calling get all vehicles with success it must return data', ()async {
     when(apiClient.getAllVehicles()).thenAnswer((_) async => vehiclesResponse);
     final response = await dataSource.getAllVehicles() as SuccessResponse<VehiclesResponse>;
     expect(response.data, vehiclesResponse);
   },
   );
-  test('when calling apply driver with error it must return error', ()async {
+  test('when calling get all vehicles with error it must return error', ()async {
     when(apiClient.getAllVehicles()).thenThrow(IOException);
     final response = await dataSource.getAllVehicles() as ErrorResponse<VehiclesResponse>;
     expect(response.error, UnexpectedError());

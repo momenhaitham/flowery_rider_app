@@ -21,4 +21,4 @@ abstract class AssetsFiles{
   static const String termsFile='$filesPath/Flowery Terms and Conditions JSON with Arabic and English.json';
   static const String countriesFile='$filesPath/country.json';
 }
-//
+

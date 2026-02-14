@@ -9,7 +9,7 @@ import 'package:mockito/mockito.dart';
 import 'get_all_countries_use_case_test.mocks.dart';
 @GenerateMocks([CountryRepoContract])
 void main() {
-  test('when calling get all vehicles use case it must call repo', () async{
+  test('when calling get all countries use case it must call repo', () async{
     CountryRepoContract repo = MockCountryRepoContract();
     GetAllCountriesUseCase useCase = GetAllCountriesUseCase(repo);
     CountryEntity entity=CountryEntity(flag: 'flag',name: 'egypt');
