@@ -35,5 +35,21 @@
   "lastNameRequired": "Last name is required",
   "Welcometo":"Welcome to",
   "Floweryriderapp":"Flowery Rider App",
-  "Applynow":"Apply Now"
+  "Applynow":"Apply Now",
+  "emailVerification": "Email verification",
+  "enterOtp": "Please enter your code that was sent to your email address",
+  "receiveCodeQuestion": "Didn't receive code?",
+  "resend": "Resend",
+  "forgetPassword": "Forgot Password",
+  "forgetPasswordQuote": "Please enter your email associated with your account",
+  "continueTxt": "Continue",
+  "enterYourEmail": "Enter your email",
+  "resetPassword": "Reset password",
+  "resetPasswordQuote": "Password must not be empty and must contain at least 6 characters including one uppercase letter and one number",
+  "enterYourPassword": "Enter your password",
+  "confirmPassword": "Confirm password",
+  "cancel": "cancel",
+  "ok": "ok",
+  "confirm": "confirm",
+  "invalidOtp": "invalid code"
 }
