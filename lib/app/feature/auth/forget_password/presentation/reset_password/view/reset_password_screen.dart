@@ -53,6 +53,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           );
         }
         if (state.resetPasswordState.data != null) {
+          Navigator.pop(context);
           if (mounted) {
             Navigator.pushNamedAndRemoveUntil(context,
                 Routes.login,
