@@ -5,31 +5,25 @@ import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-// TODO: Uncomment imports when screens are ready:
-// import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
-// import 'package:flowery_rider_app/app/feature/login/presentation/views/login_screen.dart';
-// import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
-// import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splash:
-        // TODO: Uncomment when SplashScreen is ready
         return MaterialPageRoute(builder: (_) => const SplashScreen());
-        
+
       case Routes.login:
-        // TODO: Uncomment when LoginScreen is ready
-        // return MaterialPageRoute(builder: (_) => const LoginScreen());
-        return unDefinedRoute();
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case Routes.home:
-        // TODO: Uncomment when HomeScreen is ready
+        // TODO: HomeScreen
         // return MaterialPageRoute(builder: (_) => const HomeScreen());
         return unDefinedRoute();
       case Routes.onboarding:
-         return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
-        
+        return MaterialPageRoute(builder: (_) => OnboardingScreen());
+      case Routes.forgetPassword:
+      case Routes.register:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       default:
         return unDefinedRoute();
     }
