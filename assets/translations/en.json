@@ -51,5 +51,8 @@
   "cancel": "cancel",
   "ok": "ok",
   "confirm": "confirm",
-  "invalidOtp": "invalid code"
+  "invalidOtp": "invalid code",
+  "home":"Home",
+  "orders":"Orders",
+  "profile":"Profile"
 }
