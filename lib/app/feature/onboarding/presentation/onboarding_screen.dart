@@ -15,8 +15,8 @@ class OnboardingScreen extends StatelessWidget{
         children: [
           
           Image.asset(AssetsImage.onBoaedingLogo),
-          Text(AppLocale.Welcometo.tr()),
-          Text(AppLocale.Floweryriderapp.tr()),
+          Text(AppLocale.welcometo.tr()),
+          Text(AppLocale.floweryriderapp.tr()),
           ElevatedButton(onPressed: () {
             appProvider.changeLocale(context,"en");
           }, child: Text("change lang"))
