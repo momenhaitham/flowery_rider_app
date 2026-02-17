@@ -56,7 +56,8 @@ class AppTheme {
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor,
       ),
-      headlineSmall: GoogleFonts.roboto(
+      headlineSmall: TextStyle(
+        fontFamily: FontsFamily.roboto,
         fontSize: FontSize.s2,
         fontWeight: FontWeights.medium,
         color: AppColors.blackColor,
