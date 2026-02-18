@@ -35,5 +35,21 @@
   "lastNameRequired": "اسم العائلة مطلوب",
   "Welcometo":"مرحبًا بك في",
   "Floweryriderapp":"تطبيق توصيل النباتات",
-  "Applynow":"تقدم الان"
+  "Applynow":"تقدم الان",
+  "emailVerification": "تأكيد البريد الإلكتروني",
+  "enterOtp": "من فضلك أدخل الرمز المرسل إلى عنوان بريدك الإلكتروني",
+  "receiveCodeQuestion": "لم تستلم الرمز؟",
+  "resend": "إعادة الإرسال",
+  "forgetPassword": "نسيت كلمة المرور",
+  "forgetPasswordQuote": "يرجى إدخال البريد الإلكتروني المرتبط بحسابك",
+  "continueTxt": "متابعة",
+  "enterYourEmail": "أدخل بريدك الإلكتروني",
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "resetPasswordQuote": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل، تتضمن حرفًا كبيرًا ورقمًا واحدًا على الأقل",
+  "enterYourPassword": "أدخل كلمة المرور الخاصة بك",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "cancel": "إلغاء",
+  "ok": "موافق",
+  "confirm": "تأكيد",
+  "invalidOtp": "كود غير صحيح"
 }

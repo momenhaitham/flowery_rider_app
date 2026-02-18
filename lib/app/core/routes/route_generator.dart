@@ -1,35 +1,33 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// Generated at: 2026-02-09 00:37:18.672613
-
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/forget_password/view/forget_password_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/login/presentation/view/screens/login_screen.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
-import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-// TODO: Uncomment imports when screens are ready:
-// import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
-// import 'package:flowery_rider_app/app/feature/login/presentation/views/login_screen.dart';
+import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 // import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
-// import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splash:
-        // TODO: Uncomment when SplashScreen is ready
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
-        
+         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.login:
-        // TODO: Uncomment when LoginScreen is ready
-        // return MaterialPageRoute(builder: (_) => const LoginScreen());
-        return unDefinedRoute();
+         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case Routes.home:
-        // TODO: Uncomment when HomeScreen is ready
         // return MaterialPageRoute(builder: (_) => const HomeScreen());
         return unDefinedRoute();
       case Routes.onboarding:
-         return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
-        
+         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+      case Routes.forgetPasswordScreen:
+         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+      case Routes.verifyOtpScreen:
+         String email = settings.arguments as String;
+         return MaterialPageRoute(builder: (_) =>  VerifyOtpScreen(email));
+      case Routes.resetPasswordScreen:
+        String email = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) =>  ResetPasswordScreen(email));
       default:
         return unDefinedRoute();
     }
