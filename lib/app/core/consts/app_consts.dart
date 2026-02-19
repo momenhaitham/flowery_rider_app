@@ -5,4 +5,6 @@ class AppConsts {
   static const String tokenKey = 'token';
   static const String rememberMeKey = 'remember_me';
   static const String languageKey = 'language';
+  static const String currPageKey="currentPage";
+  static const String limitKey="limit";
 }
