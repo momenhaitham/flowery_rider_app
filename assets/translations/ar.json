@@ -35,5 +35,8 @@
   "lastNameRequired": "اسم العائلة مطلوب",
   "Welcometo":"مرحبًا بك في",
   "Floweryriderapp":"تطبيق توصيل النباتات",
-  "Applynow":"تقدم الان"
+  "Applynow":"تقدم الان",
+  "language":"اللغة",
+  "english":"الانجليزية",
+  "arabic":"العربية"
 }
