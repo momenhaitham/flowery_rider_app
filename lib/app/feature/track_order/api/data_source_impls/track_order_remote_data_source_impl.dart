@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flowery_rider_app/app/config/api_utils/api_utils.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
-import 'package:flowery_rider_app/app/feature/order_details/api/api_client/api_client.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/data_sources/track_order_remote_data_source_contract.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/models/update_order_state_dto.dart';
+import 'package:flowery_rider_app/app/feature/track_order/api/api_client/api_client.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/data_sources/track_order_remote_data_source_contract.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/models/update_order_state_dto.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: TrackOrderRemoteDataSourceContract)

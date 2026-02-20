@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/models/update_order_state_dto.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/models/update_order_state_dto.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 

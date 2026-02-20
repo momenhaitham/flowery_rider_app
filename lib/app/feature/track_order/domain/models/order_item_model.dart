@@ -1,4 +1,4 @@
-import 'package:flowery_rider_app/app/feature/order_details/domain/models/product_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/product_model.dart';
 
 class OrderItemModel {
   ProductModel? product;

@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/models/update_order_state_model.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/use_cases/add_order_document_to_firebase_usecase.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/use_cases/update_order_state_on_firebase_usecase.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/use_cases/update_order_state_usecase.dart';
-import 'package:flowery_rider_app/app/feature/order_details/presentation/view_model/track_order_events.dart';
-import 'package:flowery_rider_app/app/feature/order_details/presentation/view_model/track_order_states.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/update_order_state_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_on_firebase_usecase.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_usecase.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

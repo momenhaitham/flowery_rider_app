@@ -1,8 +1,8 @@
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/data_sources/track_order_remote_data_source_contract.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/models/update_order_state_dto.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/models/update_order_state_model.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/repo/track_order_repo_contract.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/data_sources/track_order_remote_data_source_contract.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/models/update_order_state_dto.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/update_order_state_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/repo/track_order_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
 

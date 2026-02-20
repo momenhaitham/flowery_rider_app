@@ -1,4 +1,4 @@
-import 'package:flowery_rider_app/app/feature/order_details/domain/models/update_order_state_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/update_order_state_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'update_order_state_dto.g.dart';

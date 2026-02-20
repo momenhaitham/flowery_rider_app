@@ -1,6 +1,6 @@
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
-import 'package:flowery_rider_app/app/feature/order_details/data/repo/track_order_repo_impl.dart';
-import 'package:flowery_rider_app/app/feature/order_details/domain/models/update_order_state_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/data/repo/track_order_repo_impl.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/update_order_state_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
