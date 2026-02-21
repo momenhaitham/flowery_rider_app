@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/dio_model/token_interceptors.dart';
-import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
 import 'package:flutter/foundation.dart';
@@ -16,33 +15,22 @@ import '../local_storage_processes/domain/storage_data_source_contract.dart';
 abstract class DiModule {
   @lazySingleton
   ApplyApiClient provideApplyApiClient(Dio dio) =>
-      ApplyApiClient(dio,baseUrl: AppEndPoint.baseUrl);
+      ApplyApiClient(dio, baseUrl: AppEndPoint.baseUrl);
   @lazySingleton
   VehicleApiClient provideVehicleApiClient(Dio dio) =>
-      VehicleApiClient(dio,baseUrl: AppEndPoint.baseUrl);
+      VehicleApiClient(dio, baseUrl: AppEndPoint.baseUrl);
   @lazySingleton
   ProfileApiClient provideProfileApiClient(Dio dio) =>
-      ProfileApiClient(dio,baseUrl: AppEndPoint.baseUrl);
+      ProfileApiClient(dio, baseUrl: AppEndPoint.baseUrl);
   @lazySingleton
   Dio provideDio(
     BaseOptions baseOptions,
     PrettyDioLogger logger,
     TokenInterceptor tokenInterceptor,
-   // ReadAndWriteTokinUsecase readAndWriteTokinUsecase,
   ) {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
     dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(logger);
-
-    // InterceptorsWrapper(
-    //   onRequest: (options, handler) async {
-    //     String? token = await readAndWriteTokinUsecase.invokeGetToken();
-    //     if (token != null && token.isNotEmpty) {
-    //       options.headers["Authorization"] = "Bearer $token";
-    //     }
-    //     return handler.next(options);
-    //   },
-    // );
 
     return dio;
   }
