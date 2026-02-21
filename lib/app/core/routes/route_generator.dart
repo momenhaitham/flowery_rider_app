@@ -2,6 +2,8 @@
 // Generated at: 2026-02-09 00:37:18.672613
 
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/application_success_screen.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/apply_driver_screen.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ class RouteGenerator {
       case Routes.splash:
         // TODO: Uncomment when SplashScreen is ready
         return MaterialPageRoute(builder: (_) => const SplashScreen());
-        
+
       case Routes.login:
         // TODO: Uncomment when LoginScreen is ready
         // return MaterialPageRoute(builder: (_) => const LoginScreen());
@@ -28,8 +30,11 @@ class RouteGenerator {
         // return MaterialPageRoute(builder: (_) => const HomeScreen());
         return unDefinedRoute();
       case Routes.onboarding:
-         return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
-        
+        return MaterialPageRoute(builder: (_) => OnboardingScreen());
+      case Routes.applicationSuccess:
+        return MaterialPageRoute(builder: (_) => ApplicationSuccessScreen());
+      case Routes.applyDriver:
+        return MaterialPageRoute(builder: (_) => ApplyDriverScreen());
       default:
         return unDefinedRoute();
     }

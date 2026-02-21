@@ -51,3 +51,4 @@ lib/app/config/di/di.config.dart
 *generated_
 lib/app/config/di/di.config.dart
 
+devtools_options.yaml

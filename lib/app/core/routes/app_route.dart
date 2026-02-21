@@ -3,5 +3,6 @@ abstract class Routes {
   static const String login = "loginScreen";
   static const String home = "homewScreen";
   static const String onboarding = "onboardingScreen";
-
+  static const String applicationSuccess = "applicationSuccessScreen";
+  static const String applyDriver = "applyDriverScreen";
 }
