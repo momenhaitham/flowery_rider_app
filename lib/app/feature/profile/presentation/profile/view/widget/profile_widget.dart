@@ -38,7 +38,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      NotificationWidget(),
+                      Row(
+                        children: [
+                          Icon(Icons.arrow_back_ios),
+                          Text(AppLocale.profile),
+                         const Spacer(),
+                          NotificationWidget(),
+                        ],
+                      ),
                       const SizedBox(height: 20),
                       widget.profileState.profileState.isLoading == true
                           ? Center(child: CircularProgressIndicator())
