@@ -1,9 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'apply_driver_response.g.dart';
+import '../../../profile/domain/model/driver_entity.dart';
+
+part 'driver_auth_response.g.dart';
 
 @JsonSerializable()
-class ApplyDriverResponse {
+class DriverAuthResponse {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "driver")
@@ -11,14 +13,25 @@ class ApplyDriverResponse {
   @JsonKey(name: "token")
   final String? token;
 
-  ApplyDriverResponse({this.message, this.driver, this.token});
+  DriverAuthResponse({this.message, this.driver, this.token});
 
-  factory ApplyDriverResponse.fromJson(Map<String, dynamic> json) {
-    return _$ApplyDriverResponseFromJson(json);
+  factory DriverAuthResponse.fromJson(Map<String, dynamic> json) {
+    return _$DriverAuthResponseFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$ApplyDriverResponseToJson(this);
+    return _$DriverAuthResponseToJson(this);
+  }
+  DriverEntity toDriverEntity() {
+    return DriverEntity(
+      firstName: driver?.firstName,
+      email: driver?.email,
+      photo: driver?.photo,
+      phone: driver?.phone,
+      lastName: driver?.lastName,
+      vehicleType: driver?.vehicleType,
+      vehicleNumber: driver?.vehicleNumber,
+    );
   }
 }
 

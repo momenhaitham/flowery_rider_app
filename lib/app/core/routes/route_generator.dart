@@ -1,24 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// Generated at: 2026-02-09 00:37:18.672613
+// Generated at: 2026-02-19 14:10:02.285737
 
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
-import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
-import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../../feature/profile/presentation/profile/view/profile_screen.dart';
 
 // TODO: Uncomment imports when screens are ready:
 // import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 // import 'package:flowery_rider_app/app/feature/login/presentation/views/login_screen.dart';
 // import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
 // import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
+// import 'package:flowery_rider_app/app/feature/profile_screen/presentation/views/profile_screen_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splash:
         // TODO: Uncomment when SplashScreen is ready
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
-        
+        // return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return unDefinedRoute();
       case Routes.login:
         // TODO: Uncomment when LoginScreen is ready
         // return MaterialPageRoute(builder: (_) => const LoginScreen());
@@ -28,8 +29,12 @@ class RouteGenerator {
         // return MaterialPageRoute(builder: (_) => const HomeScreen());
         return unDefinedRoute();
       case Routes.onboarding:
-         return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
-        
+        // TODO: Uncomment when OnboardingScreen is ready
+        // return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+        return unDefinedRoute();
+      case Routes.profileScreen:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+
       default:
         return unDefinedRoute();
     }
