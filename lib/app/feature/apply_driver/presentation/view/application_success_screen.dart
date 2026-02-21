@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
@@ -76,7 +77,7 @@ class ApplicationSuccessScreen extends StatelessWidget {
           SizedBox(height: 24.h),
 
           Text(
-            'application_submitted'.tr(),
+            AppLocale.application_submitted.tr(),
             style: TextStyle(
               fontFamily: FontsFamily.inter,
               fontWeight: FontWeights.semiBold,
@@ -90,7 +91,7 @@ class ApplicationSuccessScreen extends StatelessWidget {
           SizedBox(height: 24.h),
 
           Text(
-            'application_submitted_description'.tr(),
+            AppLocale.application_submitted_description.tr(),
             style: TextStyle(
               fontFamily: FontsFamily.inter,
               fontWeight: FontWeights.regular,
@@ -125,7 +126,7 @@ class ApplicationSuccessScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
         ),
         child: Text(
-          'login'.tr(),
+          AppLocale.login.tr(),
           style: TextStyle(
             fontFamily: FontsFamily.inter,
             fontWeight: FontWeights.medium,

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
 import 'package:flowery_rider_app/app/feature/vehicles/domain/model/vehicle_entity.dart';
@@ -25,7 +26,7 @@ class VehicleTypeDropdown extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'vehicle_type'.tr(),
+          AppLocale.vehicle_type.tr(),
           style: TextStyle(
             fontSize: FontSize.s12,
             color: AppColors.grayColor,
@@ -55,7 +56,7 @@ class VehicleTypeDropdown extends StatelessWidget {
                     isExpanded: true,
                     value: selectedVehicle,
                     hint: Text(
-                      'car'.tr(),
+                      AppLocale.car.tr(),
                       style: TextStyle(
                         fontSize: FontSize.s16,
                         color: AppColors.blackColor,

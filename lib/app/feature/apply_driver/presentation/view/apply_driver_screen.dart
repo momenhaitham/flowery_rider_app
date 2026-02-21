@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/di/di.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
 import 'package:flowery_rider_app/app/core/reusable_widgets/show_dialog_utils.dart';
@@ -68,7 +69,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
         ShowDialogUtils.hideLoading(context);
         ShowDialogUtils.showMessage(
           context,
-          title: "error".tr(),
+          title: AppLocale.error.tr(),
           content: getException(context, event.errorMessage),
         );
         break;
@@ -103,18 +104,18 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
     if (!(_formKey.currentState?.validate() ?? false)) return false;
 
     final validations = [
-      (_selectedCountry == null, "country_required"),
-      (_selectedVehicle == null, "vehicle_type_required"),
-      (_selectedGender == null, "gender_required"),
-      (_vehicleLicenseImage == null, "vehicle_license_required"),
-      (_idImage == null, "id_image_required"),
+      (_selectedCountry == null, AppLocale.country_required.tr()),
+      (_selectedVehicle == null, AppLocale.vehicle_type_required.tr()),
+      (_selectedGender == null, AppLocale.gender_required.tr()),
+      (_vehicleLicenseImage == null, AppLocale.vehicle_license_required.tr()),
+      (_idImage == null, AppLocale.id_image_required.tr()),
     ];
 
     for (final validation in validations) {
       if (validation.$1) {
         ShowDialogUtils.showMessage(
           context,
-          title: "error".tr(),
+          title: AppLocale.error.tr(),
           content: validation.$2.tr(),
         );
         return false;
@@ -185,7 +186,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
         onPressed: () => Navigator.pop(context),
       ),
       title: Text(
-        'apply'.tr(),
+        AppLocale.apply.tr(),
         style: Theme.of(context).textTheme.headlineLarge,
       ),
       centerTitle: true,
@@ -197,7 +198,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'welcome_apply'.tr(),
+          AppLocale.welcome_apply.tr(),
           style: TextStyle(
             fontSize: FontSize.s20,
             fontWeight: FontWeights.medium,
@@ -207,7 +208,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
         ),
         SizedBox(height: 8.h),
         Text(
-          'delivery_man_join'.tr(),
+          AppLocale.delivery_man_join.tr(),
           style: TextStyle(
             fontSize: FontSize.s16,
             fontWeight: FontWeights.medium,
@@ -233,16 +234,16 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
 
       CustomTextFormField(
         controller: _firstNameController,
-        label: 'first_legal_name'.tr(),
-        placeholder: 'enter_first_legal_name'.tr(),
+        label: AppLocale.first_legal_name.tr(),
+        placeholder: AppLocale.enter_first_legal_name.tr(),
         validator: (value) => AppValidators.validateFirstName(value, context),
       ),
       SizedBox(height: 25.h),
 
       CustomTextFormField(
         controller: _lastNameController,
-        label: 'second_legal_name'.tr(),
-        placeholder: 'enter_second_legal_name'.tr(),
+        label: AppLocale.second_legal_name.tr(),
+        placeholder: AppLocale.enter_second_legal_name.tr(),
         validator: (value) => AppValidators.validateLastName(value, context),
       ),
       SizedBox(height: 25.h),
@@ -257,17 +258,17 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
 
       CustomTextFormField(
         controller: _vehicleNumberController,
-        label: 'vehicle_number'.tr(),
-        placeholder: 'enter_vehicle_number'.tr(),
+        label: AppLocale.vehicle_number.tr(),
+        placeholder: AppLocale.enter_vehicle_number.tr(),
         validator: (value) => value == null || value.isEmpty
-            ? 'vehicle_number_required'.tr()
+            ? AppLocale.vehicle_number_required.tr()
             : null,
       ),
       SizedBox(height: 25.h),
 
       ImageUploadField(
-        label: 'vehicle_license'.tr(),
-        placeholder: 'upload_license_photo'.tr(),
+        label: AppLocale.vehicle_license.tr(),
+        placeholder: AppLocale.upload_license_photo.tr(),
         image: _vehicleLicenseImage,
         onTap: () => _pickImage(true),
       ),
@@ -275,8 +276,8 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
 
       CustomTextFormField(
         controller: _emailController,
-        label: 'email'.tr(),
-        placeholder: 'enter_you_email'.tr(),
+        label: AppLocale.email.tr(),
+        placeholder: AppLocale.enter_you_email.tr(),
         keyboardType: TextInputType.emailAddress,
         validator: (value) => AppValidators.validateEmail(value, context),
       ),
@@ -284,8 +285,8 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
 
       CustomTextFormField(
         controller: _phoneController,
-        label: 'phone_number'.tr(),
-        placeholder: 'enter_phone_number'.tr(),
+        label: AppLocale.phone_number.tr(),
+        placeholder: AppLocale.enter_phone_number.tr(),
         keyboardType: TextInputType.phone,
         validator: (value) => AppValidators.validateNumberPhone(value, context),
       ),
@@ -293,16 +294,17 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
 
       CustomTextFormField(
         controller: _idNumberController,
-        label: 'id_number'.tr(),
-        placeholder: 'enter_national_id_number'.tr(),
-        validator: (value) =>
-            value == null || value.isEmpty ? 'id_number_required'.tr() : null,
+        label: AppLocale.id_number.tr(),
+        placeholder: AppLocale.enter_national_id_number.tr(),
+        validator: (value) => value == null || value.isEmpty
+            ? AppLocale.id_number_required.tr()
+            : null,
       ),
       SizedBox(height: 25.h),
 
       ImageUploadField(
-        label: 'id_image'.tr(),
-        placeholder: 'upload_id_image'.tr(),
+        label: AppLocale.id_image.tr(),
+        placeholder: AppLocale.upload_id_image.tr(),
         image: _idImage,
         onTap: () => _pickImage(false),
       ),
@@ -313,8 +315,8 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
           Expanded(
             child: CustomTextFormField(
               controller: _passwordController,
-              label: 'password'.tr(),
-              placeholder: 'password'.tr(),
+              label: AppLocale.password.tr(),
+              placeholder: AppLocale.password.tr(),
               obscureText: !_isPasswordVisible,
               validator: (value) =>
                   AppValidators.validatePassword(value, context),
@@ -332,8 +334,8 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
           Expanded(
             child: CustomTextFormField(
               controller: _confirmPasswordController,
-              label: 'confirm_password'.tr(),
-              placeholder: 'confirm_password'.tr(),
+              label: AppLocale.confirm_password.tr(),
+              placeholder: AppLocale.confirm_password.tr(),
               obscureText: !_isConfirmPasswordVisible,
               validator: (value) => AppValidators.validateConfirmPassword(
                 value,
@@ -377,7 +379,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
           ),
         ),
         child: Text(
-          'continue_btn'.tr(),
+          AppLocale.continue_btn.tr(),
           style: TextStyle(
             fontSize: FontSize.s16,
             fontWeight: FontWeights.medium,

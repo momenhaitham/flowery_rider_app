@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
 import 'package:flowery_rider_app/app/feature/countries/domain/model/country_entity.dart';
@@ -35,7 +36,7 @@ class CountrySelector extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'select_country'.tr(),
+                    AppLocale.select_country.tr(),
                     style: TextStyle(
                       fontSize: FontSize.s18,
                       fontWeight: FontWeights.semiBold,
@@ -94,7 +95,7 @@ class CountrySelector extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'country'.tr(),
+          AppLocale.country.tr(),
           style: TextStyle(
             fontSize: FontSize.s12,
             color: AppColors.grayColor,
@@ -122,7 +123,7 @@ class CountrySelector extends StatelessWidget {
                 ],
                 Expanded(
                   child: Text(
-                    selectedCountry?.name ?? 'select_country'.tr(),
+                    selectedCountry?.name ?? AppLocale.select_country.tr(),
                     style: TextStyle(
                       fontSize: FontSize.s16,
                       color: selectedCountry != null

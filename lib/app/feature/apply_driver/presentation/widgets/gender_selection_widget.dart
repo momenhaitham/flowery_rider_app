@@ -20,7 +20,7 @@ class GenderSelection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'gender'.tr(),
+          AppLocale.gender.tr(),
           style: TextStyle(
             fontSize: FontSize.s16,
             fontWeight: FontWeights.medium,
