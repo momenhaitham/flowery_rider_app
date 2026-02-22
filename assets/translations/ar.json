@@ -54,5 +54,14 @@
   "invalidOtp": "كود غير صحيح",
   "home": "الرئيسية",
   "orders": "الطلبات",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "flowery_rider": "سائق فلاوري",
+  "flower_order": "طلب زهور",
+  "pick_up_address": "عنوان الاستلام",
+  "userAddress": "عنوان المستخدم",
+  "accept": "قبول",
+  "reject": "رفض",
+  "noPendingOrders": "لا توجد طلبات معلقة",
+  "egp": "ج.م",
+  "orderRejected": "تم رفض الطلب"
 }

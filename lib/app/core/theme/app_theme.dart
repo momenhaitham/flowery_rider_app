@@ -76,6 +76,11 @@ class AppTheme {
             fontSize: FontSize.s16,
             fontWeight: FontWeight.normal,
             color: AppColors.blackColor
+      ),
+      titleLarge: GoogleFonts.imFellEnglish(
+        fontSize: FontSize.s20,
+        fontWeight: FontWeights.regular,
+        color: AppColors.primaryColor
       )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

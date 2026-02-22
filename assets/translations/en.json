@@ -54,5 +54,14 @@
   "invalidOtp": "invalid code",
   "home":"Home",
   "orders":"Orders",
-  "profile":"Profile"
+  "profile":"Profile",
+  "flowery_rider":"Flowery rider",
+  "flower_order":"Flower Order",
+  "pick_up_address":"Pickup address",
+  "userAddress":"User address",
+  "accept":"Accept",
+  "reject":"Reject",
+  "noPendingOrders":"No pending orders found",
+  "egp":"EGP",
+  "orderRejected":"Order rejected"
 }
