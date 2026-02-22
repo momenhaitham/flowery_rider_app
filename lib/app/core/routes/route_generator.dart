@@ -2,12 +2,10 @@ import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/forget_password/view/forget_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
-import 'package:flowery_rider_app/app/feature/auth/login/presentation/view/screens/login_screen.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/home_screen.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
 
 class RouteGenerator {
@@ -15,11 +13,7 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.splash:
          return MaterialPageRoute(builder: (_) => const SplashScreen());
-      
       case Routes.home:
-        // TODO: HomeScreen
-        // return MaterialPageRoute(builder: (_) => const HomeScreen());
-        return unDefinedRoute();
          return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.onboarding:
          return MaterialPageRoute(builder: (_) => const OnboardingScreen());
