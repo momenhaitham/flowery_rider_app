@@ -7,15 +7,19 @@ import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/ho
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
     switch (settings.name) {
       case Routes.splash:
          return MaterialPageRoute(builder: (_) => const SplashScreen());
-      case Routes.login:
-         return MaterialPageRoute(builder: (_) => const LoginScreen());
+      
       case Routes.home:
+        // TODO: HomeScreen
+        // return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return unDefinedRoute();
          return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.onboarding:
          return MaterialPageRoute(builder: (_) => const OnboardingScreen());
@@ -27,6 +31,9 @@ class RouteGenerator {
       case Routes.resetPasswordScreen:
         String email = settings.arguments as String;
         return MaterialPageRoute(builder: (_) =>  ResetPasswordScreen(email));
+      case Routes.forgetPassword:
+      case Routes.register:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       default:
         return unDefinedRoute();
     }

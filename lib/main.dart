@@ -14,20 +14,19 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   configureDependencies();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   AppProvider appProvider = getIt<AppProvider>();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => appProvider..getCurrentLocale(context),
-      child: EasyLocalization(
-      supportedLocales: [Locale('ar'),Locale('en')],
+    EasyLocalization(
+      supportedLocales: const [Locale('ar'), Locale('en')],
       path: 'assets/translations',
-      child: MainApp()
+      fallbackLocale: const Locale('en'),
+      child: ChangeNotifierProvider(
+        create: (context) => appProvider,
+        child: const MainApp(),
       ),
-    )
- );
+    ),
+  );
 }
 
 class MainApp extends StatefulWidget {
@@ -38,26 +37,26 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  late AppProvider appProvider;
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async{
-      //appProvider.getCurrentLocale();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Get the provider and call getCurrentLocale AFTER build is complete
+      final appProvider = Provider.of<AppProvider>(context, listen: false);
+      appProvider.getCurrentLocale(context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(context, child) =>  MaterialApp(
+      designSize: const Size(390, 844),
+      builder: (context, child) => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         onGenerateRoute: RouteGenerator.getRoutes,
-        home: child,
         locale: context.locale,
         initialRoute: Routes.splash,
       ),
