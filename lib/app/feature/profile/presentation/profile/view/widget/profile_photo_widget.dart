@@ -11,8 +11,21 @@ class ProfilePhotoWidget extends StatelessWidget {
       radius: 50,
       backgroundImage: photoFile != null
           ? FileImage(photoFile!)
-          : NetworkImage(photoUrl),
+          :photoUrl.isEmpty||!photoUrl.startsWith('http')?
+      null:
+      NetworkImage(photoUrl),
       backgroundColor: AppColors.transparentColor,
+    );
+  }
+  Widget buildProfileImage(String photoUrl) {
+    if (photoUrl.isEmpty || !photoUrl.startsWith('http')) {
+      return const CircleAvatar(
+        child: Icon(Icons.person),
+      );
+    }
+
+    return CircleAvatar(
+      backgroundImage: NetworkImage(photoUrl),
     );
   }
 }
