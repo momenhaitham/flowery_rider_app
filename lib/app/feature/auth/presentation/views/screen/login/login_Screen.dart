@@ -59,152 +59,154 @@ class LoginScreen extends StatelessWidget {
       create: (context) => viewModel,
       child: BlocConsumer<LoginViewModel, LoginStates>(
         builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(AppPadding.p20),
-            child: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AppTextField(
-                    label: 'email'.tr(),
-                    hint: 'enterEmail'.tr(),
-                    controller: emailController,
-                    validator: (value) =>
-                        AppValidators.validateEmail(value, context),
-                  ),
-                  SizedBox(height: AppSize.s12),
-                  AppTextField(
-                    label: 'password'.tr(),
-                    hint: 'enterPassword'.tr(),
-                    controller: passwordController,
-                    isPassword: true,
-                    validator: (value) =>
-                        AppValidators.validatePassword(value, context),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(AppSize.s10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        RememberMeWidget(
-                            rememberController: rememberController),
-
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, Routes.forgetPassword);
-                          },
-                          child: Text(
-                            'forgetPassword'.tr(),
-                            style: AppTheme.lightTheme.textTheme.bodyMedium!
-                                .copyWith(
-                                  fontSize: AppSize.s14,
-                                  fontWeight: FontWeights.regular,
-                                  decoration: TextDecoration.underline,
-                                ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(AppPadding.p20),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppTextField(
+                      label: 'email'.tr(),
+                      hint: 'enterEmail'.tr(),
+                      controller: emailController,
+                      validator: (value) =>
+                          AppValidators.validateEmail(value, context),
+                    ),
+                    SizedBox(height: AppSize.s12),
+                    AppTextField(
+                      label: 'password'.tr(),
+                      hint: 'enterPassword'.tr(),
+                      controller: passwordController,
+                      isPassword: true,
+                      validator: (value) =>
+                          AppValidators.validatePassword(value, context),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(AppSize.s10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RememberMeWidget(
+                              rememberController: rememberController),
+            
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.forgetPasswordScreen);
+                            },
+                            child: Text(
+                              'forgetPassword'.tr(),
+                              style: AppTheme.lightTheme.textTheme.bodyMedium!
+                                  .copyWith(
+                                    fontSize: AppSize.s14,
+                                    fontWeight: FontWeights.regular,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: AppSize.s30),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            AppTheme.lightTheme.colorScheme.primary,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: AppSize.s30),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          AppTheme.lightTheme.colorScheme.primary,
-                        ),
-                      ),
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          viewModel.doIntent(
-                            LoginEvent(
-                                emailController.text,
-                                passwordController.text,
-                                rememberController.rememberMe
-                            ),
-
-                          );
-                        }
-                      },
-                      child: Text(
-                        'login'.tr(),
-                        style: AppTheme.lightTheme.textTheme.titleMedium!
-                            .copyWith(
-                              fontSize: FontSize.s16,
-                              fontWeight: FontWeights.medium,
-                            ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: AppSize.s16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          AppColors.whiteColor,
-                        ),
-                        shape:
-                            WidgetStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  AppSize.s50,
-                                ),
-                                side: BorderSide(color: AppColors.whiteColor),
+                        onPressed: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            viewModel.doIntent(
+                              LoginEvent(
+                                  emailController.text,
+                                  passwordController.text,
+                                  rememberController.rememberMe
                               ),
-                            ),
-                      ),
-                      onPressed: () =>
-                          Navigator.pushNamed(context, Routes.home),
-                      child: Text(
-                        'continueAsGuest'.tr(),
-                        style: AppTheme.lightTheme.textTheme.titleMedium!
-                            .copyWith(
-                              fontSize: FontSize.s16,
-                              fontWeight: FontWeights.medium,
-                              color: AppTheme.lightTheme.colorScheme.shadow,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(AppSize.s10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'dontHaveAnAccount'.tr(),
-                          style: AppTheme.lightTheme.textTheme.bodyMedium!
+            
+                            );
+                          }
+                        },
+                        child: Text(
+                          'login'.tr(),
+                          style: AppTheme.lightTheme.textTheme.titleMedium!
                               .copyWith(
-                                fontSize: AppSize.s16,
-                                fontWeight: FontWeights.regular,
+                                fontSize: FontSize.s16,
+                                fontWeight: FontWeights.medium,
                               ),
                         ),
-                        SizedBox(width: AppSize.s4),
-                        InkWell(
-                          onTap: () =>
-                              Navigator.pushNamed(context, Routes.register),
-                          child: Text(
-                            'signup'.tr(),
+                      ),
+                    ),
+                    SizedBox(height: AppSize.s16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            AppColors.whiteColor,
+                          ),
+                          shape:
+                              WidgetStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    AppSize.s50,
+                                  ),
+                                  side: BorderSide(color: AppColors.whiteColor),
+                                ),
+                              ),
+                        ),
+                        onPressed: () =>
+                            Navigator.pushNamed(context, Routes.home),
+                        child: Text(
+                          'continueAsGuest'.tr(),
+                          style: AppTheme.lightTheme.textTheme.titleMedium!
+                              .copyWith(
+                                fontSize: FontSize.s16,
+                                fontWeight: FontWeights.medium,
+                                color: AppTheme.lightTheme.colorScheme.shadow,
+                              ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(AppSize.s10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'dontHaveAnAccount'.tr(),
                             style: AppTheme.lightTheme.textTheme.bodyMedium!
                                 .copyWith(
                                   fontSize: AppSize.s16,
                                   fontWeight: FontWeights.regular,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor:
-                                      AppTheme.lightTheme.colorScheme.primary,
-                                  color:
-                                      AppTheme.lightTheme.colorScheme.primary,
                                 ),
                           ),
-                        ),
-                      ],
+                          SizedBox(width: AppSize.s4),
+                          InkWell(
+                            onTap: () =>
+                                Navigator.pushNamed(context, Routes.register),
+                            child: Text(
+                              'signup'.tr(),
+                              style: AppTheme.lightTheme.textTheme.bodyMedium!
+                                  .copyWith(
+                                    fontSize: AppSize.s16,
+                                    fontWeight: FontWeights.regular,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor:
+                                        AppTheme.lightTheme.colorScheme.primary,
+                                    color:
+                                        AppTheme.lightTheme.colorScheme.primary,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

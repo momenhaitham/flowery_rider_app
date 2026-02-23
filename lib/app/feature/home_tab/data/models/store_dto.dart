@@ -28,7 +28,7 @@ class StoreDTO {
     StoreModel toDomain(){
       return StoreModel(
         storeAddress: address,
-        storeImage: 'https://flower.elevateegy.com/uploads/$image',
+        storeImage: image,
         storeName: name,
         storePhone: phoneNumber,
       );

@@ -47,7 +47,6 @@
   "enterOtp": "Please enter your code that was sent to your email address",
   "receiveCodeQuestion": "Didn't receive code?",
   "resend": "Resend",
-  "forgetPassword": "Forgot Password",
   "forgetPasswordQuote": "Please enter your email associated with your account",
   "continueTxt": "Continue",
   "enterYourEmail": "Enter your email",
@@ -70,5 +69,7 @@
   "reject":"Reject",
   "noPendingOrders":"No pending orders found",
   "egp":"EGP",
-  "orderRejected":"Order rejected"
+  "orderRejected":"Order rejected",
+  "storeInfoUnavailable":"Store information unavailable",
+  "userInfoUnavailable":"User information unavailable"
 }

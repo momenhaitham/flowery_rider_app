@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-02-22 10:10:58.552472
+// Last generated: 2026-02-23 21:19:00.450403
 
 class AppLocale {
   AppLocale._();
@@ -16,15 +16,19 @@ class AppLocale {
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
+  static const String continueAsGuest = 'continueAsGuest';
   static const String continueTxt = 'continueTxt';
   static const String create_account = 'create_account';
+  static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dont_have_account = 'dont_have_account';
   static const String egp = 'egp';
   static const String email = 'email';
   static const String emailInvalid = 'emailInvalid';
   static const String emailRequired = 'emailRequired';
   static const String emailVerification = 'emailVerification';
+  static const String enterEmail = 'enterEmail';
   static const String enterOtp = 'enterOtp';
+  static const String enterPassword = 'enterPassword';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
   static const String error_invalid_credentials = 'error_invalid_credentials';
@@ -62,11 +66,15 @@ class AppLocale {
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
   static const String reject = 'reject';
+  static const String rememberMe = 'rememberMe';
   static const String resend = 'resend';
   static const String resetPassword = 'resetPassword';
   static const String resetPasswordQuote = 'resetPasswordQuote';
   static const String reset_password = 'reset_password';
+  static const String signup = 'signup';
+  static const String storeInfoUnavailable = 'storeInfoUnavailable';
   static const String userAddress = 'userAddress';
+  static const String userInfoUnavailable = 'userInfoUnavailable';
   static const String userNameRequired = 'userNameRequired';
   static const String verfy_email = 'verfy_email';
   static const String welcome = 'welcome';

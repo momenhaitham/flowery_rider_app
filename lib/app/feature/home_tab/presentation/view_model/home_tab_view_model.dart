@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 class HomeTabViewModel extends Cubit<HomeTabStates>{
   final HomeTabUseCase _homeTabUseCase;
   HomeTabViewModel(this._homeTabUseCase):super(HomeTabStates());
-  static const int _initialLimit=5;
+  static const int _initialLimit=3;
   static const int _loadMoreIncrement=5;
   void doIntent(HomeTabEvents event){
     switch(event){

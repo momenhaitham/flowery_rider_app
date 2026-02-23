@@ -18,12 +18,15 @@ class OrderCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var width=MediaQuery.sizeOf(context).width;
     var height=MediaQuery.sizeOf(context).height;
+    final store = orderDetailsModel.store;
+    final user = orderDetailsModel.user;
+    final shippingAddress = orderDetailsModel.shippingAddressModel;
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 0.04*width,
         vertical: 0.01*height
       ),
-      height: 0.25*height,
+      height: 0.45*height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.03*width),
         border: Border.all(width: 1,color: AppColors.lightGrayColor)
@@ -39,18 +42,49 @@ class OrderCardWidget extends StatelessWidget {
             fontSize: FontSize.s12
           ),),
           SizedBox(height: 0.007*height,),
-          StoreCardWidget(storeModel: orderDetailsModel.store!),
+          if (store != null)
+            StoreCardWidget(storeModel: store)
+          else
+            Container(
+              padding: EdgeInsets.all(0.02 * width),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(0.02 * width),
+                color: AppColors.lightGrayColor,
+              ),
+              child: Center(
+                child: Text(
+                  AppLocale.storeInfoUnavailable.tr(),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ),
           SizedBox(height: 0.01*height,),
           Text(AppLocale.userAddress.tr(),style: Theme.of(context).textTheme.labelMedium?.copyWith(
             fontSize: FontSize.s12
           ),),
           SizedBox(height: 0.007*height,),
-          UserCardWidget(
-            userModel: orderDetailsModel.user!, 
-            shippingAddressModel: orderDetailsModel.shippingAddressModel!
-          ),
+          if (user != null && shippingAddress != null)
+            UserCardWidget(
+              userModel: user, 
+              shippingAddressModel: shippingAddress
+            )
+          else
+            Container(
+              padding: EdgeInsets.all(0.02 * width),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(0.02 * width),
+                color: AppColors.lightGrayColor,
+              ),
+              child: Center(
+                child: Text(
+                  AppLocale.userInfoUnavailable.tr(),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ),
+            ),
           SizedBox(height: 0.01*height,),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text('${AppLocale.egp.tr()} ${orderDetailsModel.totalPrice}',style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                 fontSize: FontSize.s14,
@@ -64,11 +98,19 @@ class OrderCardWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50.r),
                     side: BorderSide(width: 1,color: AppColors.primaryColor)
                   ),),
+                  padding: WidgetStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 30.h, vertical: 15.h),
+                  ), 
                 ),
                 onPressed: onReject, 
                 child: Text(AppLocale.reject.tr())
               ),
               ElevatedButton(
+                style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                  padding: WidgetStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 30.h, vertical: 15.h),
+                  ), 
+                ),
                 onPressed: onAccept, 
                 child: Text(AppLocale.accept.tr())
               )

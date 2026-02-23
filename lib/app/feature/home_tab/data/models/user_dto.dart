@@ -48,7 +48,8 @@ class UserDTO {
         firstName: firstName,
         lastName: lastName,
         phone: phone,
-        profileImage: 'https://flower.elevateegy.com/uploads/$photo'
+        profileImage: photo != null 
+        ? (photo!.startsWith('http') ? photo! : 'https://flower.elevateegy.com/uploads/$photo'): null,
       );
     }
 }

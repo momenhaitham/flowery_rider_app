@@ -3,7 +3,9 @@ import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/home_screen.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
@@ -26,8 +28,11 @@ class RouteGenerator {
         String email = settings.arguments as String;
         return MaterialPageRoute(builder: (_) =>  ResetPasswordScreen(email));
       case Routes.forgetPassword:
-      case Routes.register:
+      case Routes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case Routes.trackOrder:
+        final OrderDetailsModel orderDetailsModel = settings.arguments as OrderDetailsModel;
+        return MaterialPageRoute(builder: (_) =>  TrackOrderScreen(orderDetailsModel: orderDetailsModel,));
       default:
         return unDefinedRoute();
     }

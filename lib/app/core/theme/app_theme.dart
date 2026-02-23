@@ -16,6 +16,7 @@ class AppTheme {
 
     // appBarTheme
     appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.blackColor),
       leadingWidth: 20.w,
       titleTextStyle: TextStyle(

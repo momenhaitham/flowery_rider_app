@@ -7,6 +7,7 @@ import 'package:flowery_rider_app/app/feature/home_tab/presentation/view_model/h
 import 'package:flowery_rider_app/app/feature/home_tab/presentation/view_model/home_tab_states.dart';
 import 'package:flowery_rider_app/app/feature/home_tab/presentation/view_model/home_tab_view_model.dart';
 import 'package:flowery_rider_app/app/feature/home_tab/presentation/views/widget/order_card_widget.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,7 +53,7 @@ class _HomeTabState extends State<HomeTab> {
           },);
         },
         child: BlocProvider<HomeTabViewModel>(
-          create: (context) => viewModel..doIntent(GetInitialOrdersEvent(initialLimit: 5)),
+          create: (context) => viewModel..doIntent(GetInitialOrdersEvent(initialLimit: 3)),
           child: BlocBuilder<HomeTabViewModel,HomeTabStates>(
             builder: (context, state) {
               final ordersState = state.ordersState;
@@ -64,21 +65,30 @@ class _HomeTabState extends State<HomeTab> {
                 return Center(child: Text(AppLocale.noPendingOrders.tr(),style: Theme.of(context).textTheme.bodyMedium,),);
               }else{
                 final visibleOrders = state.visibleOrders;
+                final hasMoreData = state.hasMoreData;
                 return ListView.separated(
                   controller: _scrollController,
                   padding: EdgeInsets.symmetric(horizontal: 0.04*width),
                   itemBuilder: (context, index) {
+                    if (hasMoreData && index == visibleOrders.length) {
+                      return Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(0.04*width),
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                   }
                     return OrderCardWidget(
                       orderDetailsModel: visibleOrders[index],
                       onAccept: () {
-                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrackOrderScreen(orderDetailsModel: visibleOrders[index],),));
                       },
                       onReject: () {
                         viewModel.doIntent(RejectOrderEvent(orderId: visibleOrders[index].orderId!));
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: AppColors.errorColor,
-                            content: Text(AppLocale.orderRejected,style: Theme.of(context).textTheme.titleMedium,),
+                            content: Text(AppLocale.orderRejected.tr(),style: Theme.of(context).textTheme.titleMedium,),
                             duration: const Duration(seconds: 2),
                           ),
                         );

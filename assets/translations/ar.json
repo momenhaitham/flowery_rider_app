@@ -47,7 +47,6 @@
   "enterOtp": "من فضلك أدخل الرمز المرسل إلى عنوان بريدك الإلكتروني",
   "receiveCodeQuestion": "لم تستلم الرمز؟",
   "resend": "إعادة الإرسال",
-  "forgetPassword": "نسيت كلمة المرور",
   "forgetPasswordQuote": "يرجى إدخال البريد الإلكتروني المرتبط بحسابك",
   "continueTxt": "متابعة",
   "enterYourEmail": "أدخل بريدك الإلكتروني",
@@ -70,5 +69,7 @@
   "reject": "رفض",
   "noPendingOrders": "لا توجد طلبات معلقة",
   "egp": "ج.م",
-  "orderRejected": "تم رفض الطلب"
+  "orderRejected": "تم رفض الطلب",
+  "storeInfoUnavailable": "معلومات المتجر غير متوفرة",
+  "userInfoUnavailable": "معلومات المستخدم غير متوفرة"
 }

@@ -14,28 +14,32 @@ class UserCardWidget extends StatelessWidget {
     var width=MediaQuery.sizeOf(context).width;
     var height=MediaQuery.sizeOf(context).height;
     return Card(
+      color: AppColors.whiteColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.03*width),
         side: BorderSide(width: 1,color: AppColors.lightGrayColor)
       ),
       child: ListTile(
+        minTileHeight: 0.05*height,
         contentPadding: EdgeInsets.symmetric(
           horizontal: 0.02*width,
           vertical: 0.01*height
         ),
         leading: CircleAvatar(
-          radius: 0.44*width,
-          backgroundImage: NetworkImage(userModel.profileImage!),
+          radius: 0.04*width,
+          backgroundImage:userModel.profileImage!=null? NetworkImage(userModel.profileImage!):null,
         ),
         title: Text('${userModel.firstName} ${userModel.lastName}',style: Theme.of(context).textTheme.labelMedium,),
         subtitle: Row(
           children: [
             Icon(Icons.location_on_outlined,color: AppColors.blackColor,),
             SizedBox(width: 0.01*width,),
-            Text(shippingAddressModel.street!,style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontSize: FontSize.s13,
-              fontWeight: FontWeights.regular
-            ),)
+            Expanded(
+              child: Text(shippingAddressModel.street ?? '',style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontSize: FontSize.s13,
+                fontWeight: FontWeights.regular
+              ),),
+            )
           ],
         ),
       ),
