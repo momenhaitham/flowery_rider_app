@@ -53,7 +53,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ? _buildProfileSection(widget.profileState.profileState.data!,)
                           : widget.profileState.profileState.error != null
                           ? Text(
-                          getException(context, widget.profileState.profileState.error))
+                          getException(widget.profileState.profileState.error))
                           : Container(),
                       const SizedBox(height: 10),
                       ProfileItemsWidget(
