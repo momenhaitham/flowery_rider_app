@@ -39,5 +39,19 @@
   "language":"Language",
   "english":"English",
   "arabic":"Arabic",
-  "profile": "profile"
+  "profile": "profile",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "update": "Update",
+  "update_profile": "update profile",
+  "update_profile_error": "error in update profile",
+  "uploading_photo": "uploading photo",
+  "uploading_photo_error": "error in uploading photo",
+  "phoneNumber": "phone number",
+  "change": "Change",
+  "edit_profile": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name"
+
 }

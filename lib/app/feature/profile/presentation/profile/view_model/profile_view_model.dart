@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flowery_rider_app/app/config/base_state/custom_cubit.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_intent.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_state.dart';
 import 'package:injectable/injectable.dart';
@@ -8,7 +10,7 @@ import '../../../domain/model/driver_entity.dart';
 import '../../../domain/use_case/get_driver_data_use_case.dart';
 
 @injectable
-class ProfileViewModel extends Cubit<ProfileState> {
+class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
   final GetDriverDataUseCase _getDriverDataUseCase;
   ProfileViewModel(this._getDriverDataUseCase)
     : super(ProfileState(profileState: BaseState()));
@@ -36,6 +38,9 @@ class ProfileViewModel extends Cubit<ProfileState> {
     switch (intent) {
       case GetProfileAction():
         _getDriverData();
+        break;
+      case NavigateToEditProfileIntent():
+        streamController.add(NavigateToEditProfileScreen(intent.driver));
         break;
     }
   }

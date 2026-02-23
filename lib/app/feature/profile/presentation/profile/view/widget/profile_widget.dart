@@ -6,6 +6,7 @@ import '../../../../../../core/app_locale/app_locale.dart';
 import '../../../../../../core/consts/app_consts.dart';
 import '../../../../../../core/resources/app_colors.dart';
 import '../../../../../../core/utils/helper_function.dart';
+import '../../view_model/profile_intent.dart';
 import '../../view_model/profile_state.dart';
 import '../../view_model/profile_view_model.dart';
 import 'notification_widget.dart';
@@ -101,10 +102,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     );
   }
 
-  Widget _buildProfileSection( DriverEntity driver) {
+  Widget _buildProfileSection( DriverEntity driver,{ProfileViewModel? profileViewModel}) {
     return Column(
       children: [
-       ProfileCartWidget(photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
+       ProfileCartWidget(
+         onTap: () => profileViewModel?.doIntent(NavigateToEditProfileIntent(driver)),
+         photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
        ProfileCartWidget(title:'vehicle info', subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)

@@ -1,7 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// Generated at: 2026-02-19 14:10:02.285737
+// Generated at: 2026-02-23 17:13:13.887808
 
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../feature/profile/presentation/profile/view/profile_screen.dart';
@@ -12,6 +14,8 @@ import '../../feature/profile/presentation/profile/view/profile_screen.dart';
 // import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
 // import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
 // import 'package:flowery_rider_app/app/feature/profile_screen/presentation/views/profile_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/change_password_screen/presentation/views/change_password_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/update_profile_screen/presentation/views/update_profile_screen_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
@@ -33,8 +37,17 @@ class RouteGenerator {
         // return MaterialPageRoute(builder: (_) => const OnboardingScreen());
         return unDefinedRoute();
       case Routes.profileScreen:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
-
+        // TODO: Uncomment when ProfileScreenScreen is ready
+         return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        return unDefinedRoute();
+      case Routes.changePasswordScreen:
+        // TODO: Uncomment when ChangePasswordScreenScreen is ready
+        // return MaterialPageRoute(builder: (_) => const ChangePasswordScreenScreen());
+        return unDefinedRoute();
+      case Routes.updateProfileScreen:
+        final driver = settings.arguments as DriverEntity;
+         return MaterialPageRoute(builder: (_) =>  UpdateProfileWidget(driver: driver));
+        return unDefinedRoute();
       default:
         return unDefinedRoute();
     }

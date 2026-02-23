@@ -5,12 +5,12 @@ import '../../../../../../core/resources/app_colors.dart';
 
 class ProfileCartWidget extends StatelessWidget {
   const ProfileCartWidget({super.key,this.photoUrl,
-    required this.title,required this.subtitle,required this.subSubTitle});
+    required this.title,required this.subtitle,required this.subSubTitle,this.onTap});
 final String? photoUrl;
 final String title;
 final String subtitle;
 final String subSubTitle;
-
+final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,6 +22,7 @@ final String subSubTitle;
           border: Border.all(color: AppColors.grayColor, width: .25)
         ),
        child: ListTile(
+         onTap: onTap,
          leading:photoUrl!=null? ProfilePhotoWidget(photoUrl:photoUrl??'' ):null,
          title:Column(
            crossAxisAlignment: CrossAxisAlignment.start,
