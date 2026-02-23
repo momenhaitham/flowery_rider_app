@@ -35,5 +35,9 @@
   "lastNameRequired": "Last name is required",
   "Welcometo":"Welcome to",
   "Floweryriderapp":"Flowery Rider App",
-  "Applynow":"Apply Now"
+  "Applynow":"Apply Now",
+  "language":"Language",
+  "english":"English",
+  "arabic":"Arabic",
+  "profile": "profile"
 }

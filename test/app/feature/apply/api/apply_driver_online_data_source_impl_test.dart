@@ -3,7 +3,7 @@ import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_driver_online_data_source_impl.dart';
-import 'package:flowery_rider_app/app/feature/apply_driver/data/model/apply_driver_response.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -14,12 +14,12 @@ import 'apply_driver_online_data_source_impl_test.mocks.dart';
 void main() {
   late ApplyDriverOnlineDataSourceImpl dataSource;
   late ApplyApiClient apiClient;
-  late ApplyDriverResponse applyResponse;
+  late DriverAuthResponse applyResponse;
   late ApplyDriverRequest driverRequest;
   setUpAll(() {
     apiClient = MockApplyApiClient();
     dataSource = ApplyDriverOnlineDataSourceImpl(apiClient);
-    applyResponse = ApplyDriverResponse(message: 'success',
+    applyResponse = DriverAuthResponse(message: 'success',
     driver: Driver(
       id: '1',
       firstName: 'ahmed',
@@ -42,7 +42,7 @@ void main() {
 
         ).thenAnswer((_) async => applyResponse);
         final response = await dataSource.applyDriver(driverRequest)
-        as SuccessResponse<ApplyDriverResponse>;
+        as SuccessResponse<DriverAuthResponse>;
         expect(response.data, applyResponse);
       },
     );
@@ -53,7 +53,7 @@ void main() {
         when(apiClient.applyDriver(driverRequest)).thenThrow(IOException);
         final response =
         await dataSource.applyDriver(driverRequest)
-        as ErrorResponse<ApplyDriverResponse>;
+        as ErrorResponse<DriverAuthResponse>;
         expect(response.error, UnexpectedError());
       },
     );
