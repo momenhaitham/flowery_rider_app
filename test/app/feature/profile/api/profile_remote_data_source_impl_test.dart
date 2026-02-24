@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
@@ -7,6 +8,8 @@ import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_api_client.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_remote_data_source_impl.dart';
+import 'package:flowery_rider_app/app/feature/profile/data/model/profile_photo_response.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/request/update_profile_request.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -19,8 +22,10 @@ import 'profile_remote_data_source_impl_test.mocks.dart';
 void main() {
   late ProfileApiClient profileApiClient;
   late ProfileRemoteDataSourceImpl profileRemoteDataSourceImpl;
-
   late DriverAuthResponse driverAuth;
+  late UpdateProfileRequest updateProfileRequest;
+  late ProfilePhotoResponse profilePhotoResponse;
+  late File file;
   setUpAll(() {
     profileApiClient = MockProfileApiClient();
     profileRemoteDataSourceImpl = ProfileRemoteDataSourceImpl(profileApiClient);
@@ -32,7 +37,9 @@ void main() {
         email: 's@yahoo.com',
       )
     );
-
+    updateProfileRequest = UpdateProfileRequest(email: 's@yahoo.com');
+    profilePhotoResponse = ProfilePhotoResponse(message: 'success');
+    file = File('test/resources/fake_image.png');
   });
   group('get profile section', () {
     test(
@@ -69,4 +76,83 @@ void main() {
       },
     );
   },);
+  group('updateProfile', () {
+    test(
+      'when calling update profile and api return success it should return data',
+          () async {
+        when(
+          profileApiClient.updateProfile(updateProfileRequest),
+        ).thenAnswer((_) async => driverAuth);
+        var result =
+        await profileRemoteDataSourceImpl.updateProfile(
+          updateProfileRequest,
+        )
+        as SuccessResponse<DriverAuthResponse>;
+        expect(result, isA<SuccessResponse<DriverAuthResponse>>());
+        expect(result.data, equals(driverAuth));
+        expect(result.data.driver?.email, equals('s@yahoo.com'));
+      },
+    );
+    test(
+      'when calling updateProfile and api return error it should return exact error',
+          () async {
+        final ServerErrorResponse response = ServerErrorResponse(error: "Fail");
+        when(profileApiClient.updateProfile(updateProfileRequest)).thenThrow(
+          DioException(
+            requestOptions: RequestOptions(),
+            type: DioExceptionType.badResponse,
+            response: Response(
+              requestOptions: RequestOptions(),
+              data: jsonEncode(response.toJson()),
+            ),
+          ),
+        );
+        var result =
+        await profileRemoteDataSourceImpl.updateProfile(
+          updateProfileRequest,
+        )
+        as ErrorResponse<DriverAuthResponse>;
+        expect(result, isA<ErrorResponse<DriverAuthResponse>>());
+        expect(result.error, equals(ServerError(message: response.error)));
+      },
+    );
+  });
+  group('Profile photo', () {
+    test(
+      'when calling upload profile photo and api return success it should return data',
+          () async {
+        when(
+          profileApiClient.uploadPhoto(file),
+        ).thenAnswer((_) async => profilePhotoResponse);
+        var result =
+        await profileRemoteDataSourceImpl.uploadPhoto(file)
+        as SuccessResponse<ProfilePhotoResponse>;
+        expect(result, isA<SuccessResponse<ProfilePhotoResponse>>());
+        expect(result.data, equals(profilePhotoResponse));
+        expect(result.data.message, equals('success'));
+      },
+    );
+    test(
+      'when calling uploadProfilePhoto and api return error it should return exact error',
+          () async {
+        final ServerErrorResponse response = ServerErrorResponse(error: "Fail");
+        when(profileApiClient.uploadPhoto(file)).thenThrow(
+          DioException(
+            requestOptions: RequestOptions(),
+            type: DioExceptionType.badResponse,
+            response: Response(
+              requestOptions: RequestOptions(),
+              data: jsonEncode(response.toJson()),
+            ),
+          ),
+        );
+        var result =
+        await profileRemoteDataSourceImpl.uploadPhoto(file)
+        as ErrorResponse<ProfilePhotoResponse>;
+        expect(result, isA<ErrorResponse<ProfilePhotoResponse>>());
+        expect(result.error, equals(ServerError(message: response.error)));
+      },
+    );
+  });
+
 }

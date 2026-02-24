@@ -5,6 +5,7 @@ import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_photo_widget.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_state.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_view_model.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'profile_screen_test.mocks.dart';
 void main() {
   late ProfileViewModel viewModel;
 late GetIt getIt;
+late   DriverEntity driverEntity;
  buildWidget(){
    return MaterialApp(
      onGenerateRoute: (settings) {
@@ -34,10 +36,15 @@ late GetIt getIt;
      getIt.unregister<ProfileViewModel>();
    }
    getIt.registerSingleton<ProfileViewModel>(viewModel);
+    driverEntity=DriverEntity(firstName: 'ahmed',
+       lastName: 'sayed',email: 's@yahoo.com',vehicleType: 'car',phone: '12345',vehicleNumber: '123',photo: 'photo');
  },);
   testWidgets('test profile init state with loading',(widgetTester)async {
     when(viewModel.state).thenReturn(ProfileState(profileState: BaseState(isLoading: true)));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState: BaseState(isLoading: true))));
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+      driverEntity
+    )));
    await widgetTester.pumpWidget(buildWidget());
     expect(find.byKey(Key('profile_safe_area')),findsOneWidget);
     expect(find.byType(Scaffold),findsOneWidget);
@@ -58,6 +65,9 @@ late GetIt getIt;
     ))));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState:
     BaseState(isLoading:false,error:ConnectionError()))));
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+        driverEntity
+    )));
     await widgetTester.pumpWidget(buildWidget());
     expect(find.byKey(Key('profile_safe_area')),findsOneWidget);
     expect(find.byType(Scaffold),findsOneWidget);
@@ -74,11 +84,13 @@ late GetIt getIt;
     expect(find.text(AppLocale.connectionFailed.tr()),findsOneWidget);
     },);
   testWidgets('test profile with success in getting profile data',(widgetTester)async {
-DriverEntity driverEntity=DriverEntity(firstName: 'ahmed',
-    lastName: 'sayed',email: 's@yahoo.com',vehicleType: 'car',phone: '12345',vehicleNumber: '123',photo: 'photo');
+
     when(viewModel.state).thenReturn(ProfileState(profileState: BaseState(isLoading:false,data:driverEntity )));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState:
     BaseState(isLoading:false,data: driverEntity))));
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+        driverEntity
+    )));
     await widgetTester.pumpWidget(buildWidget());
     expect(find.byKey(Key('profile_safe_area')),findsOneWidget);
     expect(find.byType(Scaffold),findsOneWidget);
