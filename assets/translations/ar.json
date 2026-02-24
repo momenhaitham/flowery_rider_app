@@ -52,5 +52,12 @@
   "change": "تغيير",
   "edit_profile": "تعديل الملف الشخصي",
   "firstName": "الاسم الاول",
-  "lastName": "الاسم الاخير"
+  "lastName": "الاسم الاخير",
+  "cancel": "cancel",
+  "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+  "resetPassword": "اعادة ضبط كلمة المرور",
+  "currentPassword": "كلمة المرور الحالية",
+  "newPassword": "كلمة المرور الجديدة",
+  "confirmPassword": "تأكيد كلمة المرور"
+
 }

@@ -52,6 +52,13 @@
   "change": "Change",
   "edit_profile": "Edit Profile",
   "firstName": "First Name",
-  "lastName": "Last Name"
+  "lastName": "Last Name",
+  "cancel": "cancel",
+  "passwordChanged": "Password changed successfully",
+  "resetPassword": "Reset Password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password"
+
 
 }

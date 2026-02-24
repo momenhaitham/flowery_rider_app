@@ -6,7 +6,9 @@ import '../../../config/base_response/base_response.dart';
 import '../../apply_driver/data/model/driver_auth_response.dart';
 import '../domain/model/driver_entity.dart';
 import '../domain/profile_repo_contract.dart';
+import '../domain/request/change_password_request.dart';
 import '../domain/request/update_profile_request.dart';
+import 'model/change_password_response.dart';
 import 'model/profile_photo_response.dart';
 
 
@@ -46,5 +48,18 @@ class ProfileRepoImpl extends ProfileRepoContract {
         return ErrorResponse(error: response.error);
     }
   }
- 
+  @override
+  Future<BaseResponse<String>> changePassword(
+      ChangePasswordRequest changePasswordRequest,
+      ) async {
+    final response = await _profileDataSourceContract.changePassword(
+      changePasswordRequest,
+    );
+    switch (response) {
+      case SuccessResponse<ChangePasswordResponse>():
+        return SuccessResponse(data: response.data.message ?? '');
+      case ErrorResponse<ChangePasswordResponse>():
+        return ErrorResponse(error: response.error);
+    }
+  }
 }

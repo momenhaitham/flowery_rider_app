@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_cart_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_items_widget.dart';
@@ -55,7 +57,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           key:Key('loading_center'),
                           child: CircularProgressIndicator())
                           : widget.profileState.profileState.data != null
-                          ? _buildProfileSection(widget.profileState.profileState.data!,)
+                          ? _buildProfileSection(widget.profileState.profileState.data!,onTap: () {
+                            widget.profileViewModel.doIntent(NavigateToEditProfileIntent(widget.profileState.profileState.data!));
+                          },)
                           : widget.profileState.profileState.error != null
                           ? Text(
                           getException(widget.profileState.profileState.error))
@@ -102,11 +106,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     );
   }
 
-  Widget _buildProfileSection( DriverEntity driver,{ProfileViewModel? profileViewModel}) {
+  Widget _buildProfileSection( DriverEntity driver,{void Function()? onTap}) {
     return Column(
       children: [
        ProfileCartWidget(
-         onTap: () => profileViewModel?.doIntent(NavigateToEditProfileIntent(driver)),
+         onTap: onTap,
          photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
