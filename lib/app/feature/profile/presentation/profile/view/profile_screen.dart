@@ -1,4 +1,6 @@
+import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_widget.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../config/di/di.dart';
@@ -20,6 +22,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     viewModel.doIntent(GetProfileAction());
+    viewModel.cubitStream.listen((event) {
+      switch(event) {
+        case NavigateToEditProfileScreen():
+          if(mounted) {
+            Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
+          }
+      }
+    },);
   }
   @override
   Widget build(BuildContext context) {

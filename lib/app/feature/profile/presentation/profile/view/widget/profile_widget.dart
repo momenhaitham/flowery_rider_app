@@ -6,6 +6,7 @@ import '../../../../../../core/app_locale/app_locale.dart';
 import '../../../../../../core/consts/app_consts.dart';
 import '../../../../../../core/resources/app_colors.dart';
 import '../../../../../../core/utils/helper_function.dart';
+import '../../view_model/profile_intent.dart';
 import '../../view_model/profile_state.dart';
 import '../../view_model/profile_view_model.dart';
 import 'notification_widget.dart';
@@ -29,26 +30,30 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        key: Key('profile_safe_area'),
         child: Padding(
+          key: Key('profile_padding'),
           padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
+                key: Key('profile_expanded'),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Icon(Icons.arrow_back_ios),
-                          Text(AppLocale.profile),
+                          Text(AppLocale.profile),//1
                          const Spacer(),
-                          NotificationWidget(),
+                          NotificationWidget(),//2
                         ],
                       ),
                       const SizedBox(height: 20),
                       widget.profileState.profileState.isLoading == true
-                          ? Center(child: CircularProgressIndicator())
+                          ? Center(
+                          key:Key('loading_center'),
+                          child: CircularProgressIndicator())
                           : widget.profileState.profileState.data != null
                           ? _buildProfileSection(widget.profileState.profileState.data!,)
                           : widget.profileState.profileState.error != null
@@ -56,10 +61,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           getException(widget.profileState.profileState.error))
                           : Container(),
                       const SizedBox(height: 10),
-                      ProfileItemsWidget(
+                      ProfileItemsWidget(//3
                         data: AppLocale.language,
                         leading: Icon(Icons.translate),
-                        trailing: Text(
+                        trailing: Text(//4
                             AppLocale.english ,
                             style: Theme
                                 .of(context)
@@ -71,7 +76,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                       const SizedBox(height: 10),
 
-                      ProfileItemsWidget(
+                      ProfileItemsWidget(//5
                         data: AppLocale.logout,
                         leading: Icon(Icons.logout),
                         trailing: Icon(Icons.logout),
@@ -89,7 +94,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     .textTheme
                     .titleSmall
                     ?.copyWith(color: AppColors.grayColor),
-              ),
+              ),//6
             ],
           ),
         ),
@@ -97,10 +102,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     );
   }
 
-  Widget _buildProfileSection( DriverEntity driver) {
+  Widget _buildProfileSection( DriverEntity driver,{ProfileViewModel? profileViewModel}) {
     return Column(
       children: [
-       ProfileCartWidget(photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
+       ProfileCartWidget(
+         onTap: () => profileViewModel?.doIntent(NavigateToEditProfileIntent(driver)),
+         photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
        ProfileCartWidget(title:'vehicle info', subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
