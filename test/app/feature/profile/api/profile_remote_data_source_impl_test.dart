@@ -178,10 +178,7 @@ void main() {
         as SuccessResponse<ChangePasswordResponse>;
         expect(result, isA<SuccessResponse<ChangePasswordResponse>>());
         expect(result.data, equals(changePasswordResponse));
-        await profileRemoteDataSourceImpl.getProfile()
-        as SuccessResponse<DriverAuthResponse>;
-        expect(result, isA<SuccessResponse<DriverAuthResponse>>());
-        expect(result.data, equals(driverAuth));
+
       },
     );
     test(
@@ -206,9 +203,6 @@ void main() {
         )
         as ErrorResponse<ChangePasswordResponse>;
         expect(result, isA<ErrorResponse<ChangePasswordResponse>>());
-        await profileRemoteDataSourceImpl.getProfile()
-        as ErrorResponse<DriverAuthResponse>;
-        expect(result, isA<ErrorResponse<DriverAuthResponse>>());
         expect(result.error, equals(ServerError(message: response.error)));
       },
     );

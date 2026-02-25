@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
@@ -58,13 +59,13 @@ void main() {
     expect(find.byType(SingleChildScrollView), findsOneWidget);
     expect(find.byType(Column), findsNWidgets(1));
     expect(find.byType(Text), findsNWidgets(8));
-    expect(find.text(AppLocale.currentPassword), findsNWidgets(2));
-    expect(find.text(AppLocale.confirmPassword), findsNWidgets(2));
-    expect(find.text(AppLocale.newPassword), findsNWidgets(2));
-    expect(find.text(AppLocale.passwordRequired), findsNothing);
-    expect(find.text(AppLocale.confirmPasswordRequired), findsNothing);
+    expect(find.text(AppLocale.currentPassword.tr()), findsNWidgets(2));
+    expect(find.text(AppLocale.confirmPassword.tr()), findsNWidgets(2));
+    expect(find.text(AppLocale.newPassword.tr()), findsNWidgets(2));
+    expect(find.text(AppLocale.passwordRequired.tr()), findsNothing);
+    expect(find.text(AppLocale.confirmPasswordRequired.tr()), findsNothing);
     expect(find.byType(ElevatedButton), findsOneWidget);
-    expect(find.text(AppLocale.update), findsOneWidget);
+    expect(find.text(AppLocale.update.tr()), findsOneWidget);
     expect(find.byType(IconButton), findsOneWidget);
     expect(find.byType(BackArrowIcon), findsOneWidget);
   });
