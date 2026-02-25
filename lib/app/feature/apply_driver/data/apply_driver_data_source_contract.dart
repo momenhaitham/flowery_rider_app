@@ -1,7 +1,7 @@
 import '../../../config/base_response/base_response.dart';
 import '../domain/request/apply_driver_request.dart';
-import 'model/apply_driver_response.dart';
+import 'model/driver_auth_response.dart';
 
 abstract class ApplyDriverDataSourceContract {
- Future<BaseResponse<ApplyDriverResponse>> applyDriver(ApplyDriverRequest request);
+ Future<BaseResponse<DriverAuthResponse>> applyDriver(ApplyDriverRequest request);
 }

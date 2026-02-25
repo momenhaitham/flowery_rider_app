@@ -35,5 +35,30 @@
   "lastNameRequired": "Last name is required",
   "Welcometo":"Welcome to",
   "Floweryriderapp":"Flowery Rider App",
-  "Applynow":"Apply Now"
+  "Applynow":"Apply Now",
+  "language":"Language",
+  "english":"English",
+  "arabic":"Arabic",
+  "profile": "profile",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "update": "Update",
+  "update_profile": "update profile",
+  "update_profile_error": "error in update profile",
+  "uploading_photo": "uploading photo",
+  "uploading_photo_error": "error in uploading photo",
+  "phoneNumber": "phone number",
+  "change": "Change",
+  "edit_profile": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "cancel": "cancel",
+  "passwordChanged": "Password changed successfully",
+  "resetPassword": "Reset Password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password"
+
+
 }
