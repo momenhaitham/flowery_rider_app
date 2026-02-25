@@ -24,12 +24,12 @@ class ChangePasswordViewModel
     switch (result) {
       case SuccessResponse<String>():
         emit(
-          state.copyWith(changePasswordState: BaseState(data: result.data)),
+          state.copyWith(changePasswordState: BaseState(isLoading:false,data: result.data)),
         );
         break;
       case ErrorResponse<String>():
         emit(
-          state.copyWith(changePasswordState: BaseState(error: result.error)),
+          state.copyWith(changePasswordState: BaseState(isLoading:false,error: result.error)),
         );
         break;
     }
