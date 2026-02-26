@@ -21,7 +21,7 @@ class OrderDetailsCard extends StatelessWidget{
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Container(
         padding: const EdgeInsets.all(16),
-        height: height*AppSize.s16,
+        height: height*AppSize.s0_15,
         width: double .infinity,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),color: AppColors.secondaryColor),
         child: Column(
