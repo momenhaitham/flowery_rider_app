@@ -68,11 +68,11 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   return TrackOrderIndecatorWidget(orderState: viewmodel.state.orderState?.data??1,);
                 },
               ),
-              SizedBox(height: height*0.02,),
+              SizedBox(height: height*0.04,),
               BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
                 return OrderDetailsCard(orderCreatedTime:widget.orderDetailsModel?.createdAt,orderId: widget.orderDetailsModel?.orderNumber,state: viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),);
               },),
-              SizedBox(height: height*0.02,),
+              SizedBox(height: height*0.04,),
               Text(AppLocale.pickupaddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
               SizedBox(height: height*0.02,),
               UserAddressCard(
