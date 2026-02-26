@@ -19,8 +19,8 @@ class OnboardingScreen extends StatelessWidget{
           children: [
             SizedBox(height: height*0.05),
             Image.asset(AssetsImage.onBoaedingLogo,fit: BoxFit.fill,height: height*0.43,),
-            Text(AppLocale.Welcometo.tr(),style: Theme.of(context).textTheme.headlineLarge,),
-            Text(AppLocale.Floweryriderapp.tr(),style: Theme.of(context).textTheme.headlineLarge,),
+            Text(AppLocale.welcometo.tr(),style: Theme.of(context).textTheme.headlineLarge,),
+            Text(AppLocale.floweryriderapp.tr(),style: Theme.of(context).textTheme.headlineLarge,),
             SizedBox(height: height*0.05,),
             ElevatedButton(onPressed: () {
               
@@ -32,7 +32,7 @@ class OnboardingScreen extends StatelessWidget{
               
             },
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.lightPinkColor),
-            child: Text(AppLocale.Applynow.tr(),style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: FontSize.s20),)
+            child: Text(AppLocale.applynow.tr(),style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: FontSize.s20),)
             ),
             Spacer(),
             Center(child: Text(AppConsts.appVersion,style: Theme.of(context).textTheme.labelMedium,)),

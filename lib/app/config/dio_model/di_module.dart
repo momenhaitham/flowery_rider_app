@@ -29,16 +29,20 @@ abstract class DiModule {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
     dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(logger);
-
-    InterceptorsWrapper(
-      onRequest: (options, handler) async {
-        String? token = await readAndWriteTokinUsecase.invokeGetToken();
-        if (token != null && token.isNotEmpty) {
-          options.headers["Authorization"] = "Bearer $token";
-        }
-        return handler.next(options);
-      },
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          String? token = await readAndWriteTokinUsecase.invokeGetToken();
+          if (token != null && token.isNotEmpty) {
+            options.headers["Authorization"] = "Bearer $token";
+          }
+          return handler.next(options);
+        },
+      ),
     );
+    
+  
+
 
     return dio;
   }

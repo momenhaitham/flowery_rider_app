@@ -3,6 +3,8 @@
 
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +31,9 @@ class RouteGenerator {
         return unDefinedRoute();
       case Routes.onboarding:
          return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
+      case Routes.trackOrder:
+         final OrderDetailsModel orderDetailsModel = settings.arguments as OrderDetailsModel;
+         return MaterialPageRoute(builder: (_) =>  TrackOrderScreen(orderDetailsModel: orderDetailsModel,));   
         
       default:
         return unDefinedRoute();
