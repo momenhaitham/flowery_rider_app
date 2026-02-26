@@ -50,5 +50,7 @@
   "arrivedAtPickuppoint":"Arrived at Pickup point",
   "startDeliver":"Start deliver",
   "arrivedTotheuser":"Arrived to the user",
-  "deliveredToTheUser":"Delivered to the user"
+  "deliveredToTheUser":"Delivered to the user",
+  "noInternetConnection":"No Internet Connection",
+  "noInternet":"no internet"
 }

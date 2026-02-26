@@ -26,8 +26,8 @@ abstract class DiAuthModel {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          String? token = await readAndWriteTokinUsecase.invokeGetToken();
-          //String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2OTkxYWY0NGUzNjRlZjYxNDA1NmM5NTAiLCJpYXQiOjE3NzEzMjE0MDd9.Sp3ic4JoUWN5zG57ODfCEJgPxmFz7aXdDu8Q_xGduO0";
+          //String? token = await readAndWriteTokinUsecase.invokeGetToken();
+          String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2OTkxYWY0NGUzNjRlZjYxNDA1NmM5NTAiLCJpYXQiOjE3NzEzMjE0MDd9.Sp3ic4JoUWN5zG57ODfCEJgPxmFz7aXdDu8Q_xGduO0";
           if (token != null && token.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $token";
           }

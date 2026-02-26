@@ -1,4 +1,5 @@
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
+import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -28,11 +29,11 @@ class OrderItemCard extends StatelessWidget{
       child: Row(
         children: [
           SizedBox(width: width*0.01,),
-          Container(
+          SizedBox(
             height: height*0.07,
             width: width*0.16,
-            child: ClipRRect(child: Image.network(orderItemImage??"",fit: BoxFit.fill,),
-            borderRadius: BorderRadius.circular(100),
+            child: ClipRRect(borderRadius: BorderRadius.circular(100),
+            child:orderItemImage != null && orderItemImage != "" ?Image.network(orderItemImage!,fit: BoxFit.fill,):Image.asset(AssetsImage.user,fit: BoxFit.fill,),
             ),
           ),
           SizedBox(width: width*0.03,),

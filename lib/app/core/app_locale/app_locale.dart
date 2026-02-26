@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-02-17 20:10:55.206708
+// Last generated: 2026-02-26 14:11:01.824869
 
 class AppLocale {
   AppLocale._();
@@ -31,6 +31,8 @@ class AppLocale {
   static const String loginwith_google = 'loginwith_google';
   static const String logout = 'logout';
   static const String name = 'name';
+  static const String noInternet = 'noInternet';
+  static const String noInternetConnection = 'noInternetConnection';
   static const String or = 'or';
   static const String orderdetails = 'orderdetails';
   static const String outfordelivery = 'outfordelivery';

@@ -1,4 +1,5 @@
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
+import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -32,8 +33,8 @@ class UserAddressCard extends StatelessWidget{
           Container(
             height: height*0.07,
             width: width*0.16,
-            child: ClipRRect(child: Image.network(userImage??"",fit: BoxFit.fill,),
-            borderRadius: BorderRadius.circular(100),
+            child: ClipRRect(borderRadius: BorderRadius.circular(100),
+            child: userImage != null && userImage != "" ? Image.network(userImage!,fit: BoxFit.fill,):Image.asset(AssetsImage.user,fit: BoxFit.fill,),
             ),
           ),
           SizedBox(width: width*0.01,),

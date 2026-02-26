@@ -50,5 +50,7 @@
   "arrivedAtPickuppoint":"وصل في نقطة الاستلام",
   "startDeliver":"بدء التوصيل",
   "arrivedTotheuser":"وصل للمستخدم",
-  "deliveredToTheUser":"تم التوصيل للمستخدم"
+  "deliveredToTheUser":"تم التوصيل للمستخدم",
+  "noInternetConnection":"لا يوجد اتصال بالانترنت",
+  "noInternet":"لا يوجد انترنت"
 }

@@ -56,7 +56,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       body: SingleChildScrollView(
         child: BlocProvider<TrackOrderViewmodel>(create: (context) => viewmodel,
         
-        child: Padding(
+        child:BlocConsumer<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
+          return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -109,24 +110,30 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               SizedBox(height: height*0.02,),
               TotalAndPaymentMethodCard(title: AppLocale.paymentmethod.tr(),value: widget.orderDetailsModel?.paymentMethod,),
               SizedBox(height: height*0.02,),
-              BlocConsumer<TrackOrderViewmodel,TrackOrderStates>(
+              BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
                builder: (context, state) {
                   int currentOrderState = viewmodel.state.orderState?.data??1;
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: currentOrderState == 5 ? AppColors.grayColor : AppColors.primaryColor),
                     onPressed: (){
-                      
+                    int newOrderState = viewmodel.state.orderState?.data??1 ;
+                    newOrderState++;
                     if(currentOrderState < 5){
+
                       viewmodel.doIntent(UpdateOrderStateOnFirebaseEvent(
                      currentOrderState:viewmodel.state.orderState!.data! , 
                      body:{
                             "clientName":"${widget.orderDetailsModel?.user?.firstName} ${widget.orderDetailsModel?.user?.lastName}",
                             "clientPhoneNumber":widget.orderDetailsModel?.user?.phone,
                             "orderId":widget.orderDetailsModel?.orderId,
-                            "orderState":viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),
+                            "orderState":viewmodel.editOrderStateOnFireBase(newOrderState),
                           } ,
                     orderId:widget.orderDetailsModel!.orderId! 
                      ));
+                    if(viewmodel.state.orderState!.data ==1){
+                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
+                    } 
+
                     }else{
                       viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel!.orderId!));
                     }  
@@ -135,16 +142,16 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   
                   );
                 },
-                listener: (context, state) {
-                  if(state.orderState?.error != null){
-                    ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
-                  }
-                },
               ),
               SizedBox(height: height*0.04,),
             ],
           ),
-        ),
+        );
+        }, listener: (context, state) {
+          if(state.orderState?.error != null){
+                    ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
+          }
+        },) ,
         
        ),
       ),

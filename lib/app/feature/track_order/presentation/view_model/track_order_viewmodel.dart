@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
-import 'package:flowery_rider_app/app/feature/track_order/domain/models/update_order_state_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_usecase.dart';
@@ -36,33 +35,27 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
       case SuccessResponse<String>():
         emit(state.copyWith(newOrderState: BaseState(data: 1))); 
       case ErrorResponse<String>():
-        emit(state.copyWith(newOrderState: BaseState(error: result.error,isLoading: false))); 
+        emit(state.copyWith(newOrderState: BaseState(data: 1,error: result.error,isLoading: false))); 
     }
   }
 
   void _updateOrderStateOnFirebase({Map<String,dynamic>? body,String? orderId,required int currentOrderState})async{
     
-    emit(state.copyWith(newOrderState: BaseState(isLoading: true)));
+    
     var result = await _updateOrderStateOnFirebaseUsecase.call(body: body, orderId: orderId);
     switch(result){
       case SuccessResponse<String>():
         currentOrderState++;
         emit(state.copyWith(newOrderState: BaseState(data: currentOrderState,isLoading: false))); 
       case ErrorResponse<String>():
-        emit(state.copyWith(newOrderState: BaseState(error: result.error,isLoading: false))); 
+        emit(state.copyWith(newOrderState: BaseState(data: currentOrderState,error: result.error,isLoading: false))); 
     }
   }
 
   void _updateOrderState({Map<String,dynamic>? body,String? orderId})async{
-    //emit(state.copyWith(newOrderState: BaseState(isLoading: true)));
-    var result = await _updateOrderStateUsecase.call(body: body, orderId: orderId);
-    switch(result){
-      case ErrorResponse<UpdateOrderStateModel>():
-        
-        emit(state.copyWith(newOrderState: BaseState(error: result.error,isLoading: false))); 
-      case SuccessResponse<UpdateOrderStateModel>():
-        
-    }
+    
+    await _updateOrderStateUsecase.call(body: body, orderId: orderId);
+    
   }
 
   String? editOrderStateOnFireBase(int? stateNum){
