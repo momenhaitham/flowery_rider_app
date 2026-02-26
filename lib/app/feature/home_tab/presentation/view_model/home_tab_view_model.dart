@@ -119,6 +119,7 @@ class HomeTabViewModel extends Cubit<HomeTabStates>{
   bool shouldLoadMore(int lastVisibleIndex) {
     final visibleOrders = state.visibleOrders;
     final isLoading = state.ordersState?.isLoading ?? true;
+    if (visibleOrders.isEmpty) return false;
     return !isLoading && state.hasMoreData && lastVisibleIndex >= visibleOrders.length - 1;
   }
 }
