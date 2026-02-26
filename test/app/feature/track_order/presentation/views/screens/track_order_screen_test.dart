@@ -17,7 +17,6 @@ import 'package:flowery_rider_app/app/feature/track_order/presentation/views/wid
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/widgets/track_order_indecator_widget.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/widgets/user_address_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
@@ -29,18 +28,37 @@ import 'track_order_screen_test.mocks.dart';
 
 
 @GenerateNiceMocks([MockSpec<TrackOrderViewmodel>()])
-void main() {
+
+
+void main()async {
   late MockTrackOrderViewmodel mockedViewModel;
-  SharedPreferences.setMockInitialValues({});
-  setUp(()async {
-    mockedViewModel = MockTrackOrderViewmodel();
+  
+  GetIt getItInstance = GetIt.instance;
+  
+
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
     await EasyLocalization.ensureInitialized();
-    final sl = GetIt.instance;
-    if (sl.isRegistered<TrackOrderViewmodel>()) {
-      sl.unregister<TrackOrderViewmodel>();
-    }
-    sl.registerSingleton<TrackOrderViewmodel>(mockedViewModel);
   },);
+
+  setUp(()async {
+    SharedPreferences.setMockInitialValues({});
+    
+    mockedViewModel = MockTrackOrderViewmodel();
+    if (getItInstance.isRegistered<TrackOrderViewmodel>()) {
+    getItInstance.unregister<TrackOrderViewmodel>();
+    }
+    
+    getItInstance.registerFactory<TrackOrderViewmodel>(() => mockedViewModel,);
+    
+  },);
+   
+   tearDown(()async {
+    //await getItInstance.unregister<TrackOrderViewmodel>();
+     getItInstance.reset();
+    
+    await Future.delayed(const Duration(seconds: 1));
+   },);
 
   Widget buildTrackOrderScreen(){
     OrderDetailsModel orderDetailsModel = OrderDetailsModel(
@@ -74,47 +92,50 @@ void main() {
           ),
           shippingAddressModel: ShippingAddressModel(street: "mohamed koraaim",city: "alexandria")
          );
-      return EasyLocalization(
+    return EasyLocalization(
     supportedLocales: const [Locale('ar'),Locale('en')],
     path: 'assets/translations',
     fallbackLocale: const Locale('en'),
-    child: Builder( // ✅ Builder بيديك context بعد EasyLocalization
+    child: Builder(
       builder: (context) => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: BlocProvider<MockTrackOrderViewmodel>(
-          create: (context) => mockedViewModel,
-          child: TrackOrderScreen(orderDetailsModel: orderDetailsModel),
-        ),
+        home: TrackOrderScreen(orderDetailsModel: orderDetailsModel),
       ),
     ),
   );
   }
 
-
-  testWidgets('track order screen with success state and Accepeted status', (tester) async {
-    await tester.binding.setSurfaceSize(const Size(1080, 1920));
-    
-    addTearDown(() => tester.binding.setSurfaceSize(null));
-    when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
-    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
-    when(mockedViewModel.state).thenReturn(TrackOrderStates(orderState: BaseState(data: 1)));
-    when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 1))));
-    
-    await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
-    await tester.pumpAndSettle();
-    var allText = tester.widgetList<Text>(find.byType(Text));
-    for (var t in allText) {
-    print('TEXT FOUND: "${t.data}"');
-    }
+  void findConstatntWidgets(){
     expect(find.byType(OrderDetailsCard),findsNWidgets(1));
     expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
     expect(find.byType(UserAddressCard),findsNWidgets(2));
     expect(find.byType(OrderItemCard),findsNWidgets(1));
     expect(find.byType(Icon),findsNWidgets(6));
     expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    
+  }
+
+
+  testWidgets('track order screen with success state and Accepeted status delivery', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1080, 1920));
+    
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    
+    when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
+    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
+    when(mockedViewModel.state).thenReturn(TrackOrderStates(orderState: BaseState(data: 1)));
+    when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 1))));
+    
+    await tester.pumpWidget(buildTrackOrderScreen());
+    await tester.pumpAndSettle();
+    
+    var allText = tester.widgetList<Text>(find.byType(Text));
+    for (var t in allText) {
+    print('TEXT FOUND: "${t.data}"');
+    }
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(20));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 1;
@@ -146,28 +167,26 @@ void main() {
     
   });
 
-  testWidgets('track order screen with success state and Pick status', (tester) async {
+  testWidgets('track order screen with success state and Pick status delivery', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
     
     addTearDown(() => tester.binding.setSurfaceSize(null));
+    
+
     when(mockedViewModel.editOrderStateOnFireBase(2)).thenReturn(AppLocale.picked.tr());
     when(mockedViewModel.editDeliveryStatus(2)).thenReturn(AppLocale.startDeliver.tr());
     when(mockedViewModel.state).thenReturn(TrackOrderStates(orderState: BaseState(data: 2)));
     when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 2))));
+    await tester.pumpWidget(Container());
     
     await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
     await tester.pumpAndSettle();
+    
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
     print('TEXT FOUND: "${t.data}"');
     }
-    expect(find.byType(OrderDetailsCard),findsNWidgets(1));
-    expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
-    expect(find.byType(UserAddressCard),findsNWidgets(2));
-    expect(find.byType(OrderItemCard),findsNWidgets(1));
-    expect(find.byType(Icon),findsNWidgets(6));
-    expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(20));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 2;
@@ -201,28 +220,25 @@ void main() {
     
   });
 
-  testWidgets('track order screen with success state and out for delivery status', (tester) async {
+  testWidgets('track order screen with success state and out for delivery status delivery', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
     
     addTearDown(() => tester.binding.setSurfaceSize(null));
+        addTearDown(() => tester.pumpWidget(Container())); 
+
     when(mockedViewModel.editOrderStateOnFireBase(3)).thenReturn(AppLocale.outfordelivery.tr());
     when(mockedViewModel.editDeliveryStatus(3)).thenReturn(AppLocale.arrivedTotheuser.tr());
     when(mockedViewModel.state).thenReturn(TrackOrderStates(orderState: BaseState(data: 3)));
     when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 3))));
     
     await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
     await tester.pumpAndSettle();
+    
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
     print('TEXT FOUND: "${t.data}"');
     }
-    expect(find.byType(OrderDetailsCard),findsNWidgets(1));
-    expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
-    expect(find.byType(UserAddressCard),findsNWidgets(2));
-    expect(find.byType(OrderItemCard),findsNWidgets(1));
-    expect(find.byType(Icon),findsNWidgets(6));
-    expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(20));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 3;
@@ -256,7 +272,7 @@ void main() {
     
   });
   
-  testWidgets('track order screen with success state and arrived status', (tester) async {
+  testWidgets('track order screen with success state and arrived status delivery', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
     
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -266,18 +282,13 @@ void main() {
     when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 4))));
     
     await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
     await tester.pumpAndSettle();
+   
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
     print('TEXT FOUND: "${t.data}"');
     }
-    expect(find.byType(OrderDetailsCard),findsNWidgets(1));
-    expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
-    expect(find.byType(UserAddressCard),findsNWidgets(2));
-    expect(find.byType(OrderItemCard),findsNWidgets(1));
-    expect(find.byType(Icon),findsNWidgets(6));
-    expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(20));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 4;
@@ -311,7 +322,7 @@ void main() {
     
   });
 
-  testWidgets('track order screen with success state and delivered status', (tester) async {
+  testWidgets('track order screen with success state and delivered status delivery', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
     
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -321,18 +332,13 @@ void main() {
     when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 5))));
     
     await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
     await tester.pumpAndSettle();
+    
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
     print('TEXT FOUND: "${t.data}"');
     }
-    expect(find.byType(OrderDetailsCard),findsNWidgets(1));
-    expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
-    expect(find.byType(UserAddressCard),findsNWidgets(2));
-    expect(find.byType(OrderItemCard),findsNWidgets(1));
-    expect(find.byType(Icon),findsNWidgets(6));
-    expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(20));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 5;
@@ -367,7 +373,7 @@ void main() {
     
   });
   
-  testWidgets('track order screen with no internet error state', (tester) async {
+  testWidgets('track order screen with no internet error state delivery', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
     
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -377,18 +383,13 @@ void main() {
     when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.value(TrackOrderStates(orderState: BaseState(data: 1,error: Exception(AppLocale.noInternet.tr())))));
     
     await tester.pumpWidget(buildTrackOrderScreen());
-    await tester.pump();
     await tester.pumpAndSettle();
+    
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
     print('TEXT FOUND: "${t.data}"');
     }
-    expect(find.byType(OrderDetailsCard),findsNWidgets(1));
-    expect(find.byType(TotalAndPaymentMethodCard),findsNWidgets(2));
-    expect(find.byType(UserAddressCard),findsNWidgets(2));
-    expect(find.byType(OrderItemCard),findsNWidgets(1));
-    expect(find.byType(Icon),findsNWidgets(6));
-    expect(find.byType(TrackOrderIndecatorWidget),findsNWidgets(1));
+    findConstatntWidgets();
     expect(find.byType(Text),findsNWidgets(23));
     expect(find.byWidgetPredicate((widget) { 
       return widget is TrackOrderIndecatorWidget && widget.orderState == 1;
