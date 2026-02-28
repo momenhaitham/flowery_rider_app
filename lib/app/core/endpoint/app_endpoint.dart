@@ -4,4 +4,7 @@ abstract class AppEndPoint {
   static const String forgetPassword = '/drivers/forgotPassword';
   static const String verifyOtp = '/drivers/verifyResetCode';
   static const String resetPassword = '/drivers/resetPassword';
+  
+  static const String applyDriver = "/drivers/apply";
+  static const String vehicles = "/vehicles";
 }
