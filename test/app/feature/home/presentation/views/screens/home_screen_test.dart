@@ -17,7 +17,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../../home_tab/presentation/views/screen/home_tab_test.mocks.dart';
+
 import 'home_screen_test.mocks.dart';
 @GenerateMocks([HomeViewModel,HomeTabViewModel])
 void main() {
