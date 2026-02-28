@@ -13,7 +13,7 @@ void main() {
       expect(dto.message, equals(json['message']));
       expect(dto.token, equals(json['token']));
     },);
-    test('toJson shuld serialize all fields', () {
+    test('toJson should serialize all fields', () {
       final dto=ResetPasswordResponse(
         message: 'test_message',
         token: 'test_token'
