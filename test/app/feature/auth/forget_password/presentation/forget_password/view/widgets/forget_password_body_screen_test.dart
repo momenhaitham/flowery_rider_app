@@ -92,5 +92,6 @@ void main() {
     expect(find.text("emailRequired".tr()), findsNothing);
     expect(find.text(AppLocale.continueTxt.tr()), findsOneWidget);
     expect(find.text(AppLocale.loading.tr()), findsOneWidget);
+    await stateController.close();
   },);
 }

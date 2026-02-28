@@ -209,5 +209,6 @@ void main() {
     expect(find.byType(TextFormField), findsNWidgets(2));
     expect(find.byType(ElevatedButton), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await stateController.close();
   },);
 }
