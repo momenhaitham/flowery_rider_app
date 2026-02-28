@@ -12,10 +12,11 @@ class AppTheme {
       primary: AppColors.primaryColor,
       secondary: AppColors.secondaryColor,
     ),
-    scaffoldBackgroundColor: AppColors.secondaryColor,
+    scaffoldBackgroundColor: AppColors.whiteColor,
 
     // appBarTheme
     appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.blackColor),
       leadingWidth: 20.w,
       titleTextStyle: TextStyle(
@@ -76,6 +77,11 @@ class AppTheme {
             fontSize: FontSize.s16,
             fontWeight: FontWeight.normal,
             color: AppColors.blackColor
+      ),
+      titleLarge: GoogleFonts.imFellEnglish(
+        fontSize: FontSize.s20,
+        fontWeight: FontWeights.regular,
+        color: AppColors.primaryColor
       )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

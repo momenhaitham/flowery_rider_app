@@ -4,9 +4,12 @@ import 'package:flowery_rider_app/app/core/consts/app_consts.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
+import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget{
+  const OnboardingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width;
@@ -23,7 +26,7 @@ class OnboardingScreen extends StatelessWidget{
             Text(AppLocale.Floweryriderapp.tr(),style: Theme.of(context).textTheme.headlineLarge,),
             SizedBox(height: height*0.05,),
             ElevatedButton(onPressed: () {
-              
+              Navigator.pushReplacementNamed(context, Routes.login);
             }, 
             child: Text(AppLocale.login.tr(),style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: FontSize.s20),)
             ),
