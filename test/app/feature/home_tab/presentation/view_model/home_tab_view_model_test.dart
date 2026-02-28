@@ -19,12 +19,12 @@ import 'home_tab_view_model_test.mocks.dart';
 void main() {
   late HomeTabViewModel homeTabViewModel;
   late MockHomeTabUseCase mockHomeTabUseCase;
-  setUpAll(() {
+  setUp(() {
     provideDummy<BaseResponse<GetPendingOrdersResponseModel>>(SuccessResponse<GetPendingOrdersResponseModel>(data: GetPendingOrdersResponseModel()));
     mockHomeTabUseCase=MockHomeTabUseCase();
     homeTabViewModel=HomeTabViewModel(mockHomeTabUseCase);
   },);
-  tearDownAll(() {
+  tearDown(() {
     homeTabViewModel.close();
   },);
   group('GetInitialOrdersEvent test cases', () {

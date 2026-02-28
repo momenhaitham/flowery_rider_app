@@ -5,6 +5,8 @@ import 'package:flowery_rider_app/app/feature/home/presentation/view_model/home_
 import 'package:flowery_rider_app/app/feature/home/presentation/view_model/home_states.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/view_model/home_view_model.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/home_screen.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/presentation/view_model/home_tab_states.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/presentation/view_model/home_tab_view_model.dart';
 import 'package:flowery_rider_app/app/feature/home_tab/presentation/views/screen/home_tab.dart';
 import 'package:flowery_rider_app/app/feature/orders/presentation/views/screen/orders_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
@@ -15,18 +17,25 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../home_tab/presentation/views/screen/home_tab_test.mocks.dart';
 import 'home_screen_test.mocks.dart';
-@GenerateMocks([HomeViewModel])
+@GenerateMocks([HomeViewModel,HomeTabViewModel])
 void main() {
   late MockHomeViewModel mockHomeViewModel;
+  late MockHomeTabViewModel mockHomeTabViewModel;
   late GetIt getIt;
   setUp(() {
     mockHomeViewModel=MockHomeViewModel();
+    mockHomeTabViewModel=MockHomeTabViewModel();
     getIt=GetIt.instance;
     if(getIt.isRegistered<HomeViewModel>()){
       getIt.unregister<HomeViewModel>();
     }
+    if (getIt.isRegistered<HomeTabViewModel>()) {
+      getIt.unregister<HomeTabViewModel>();
+    }
     getIt.registerSingleton<HomeViewModel>(mockHomeViewModel);
+    getIt.registerSingleton<HomeTabViewModel>(mockHomeTabViewModel);
     when(mockHomeViewModel.stream).thenAnswer((_) =>const Stream.empty() ,);
     when(mockHomeViewModel.state).thenReturn(HomeStates(isLoggedIn: true, currAppTab: AppTab.home));
     when(mockHomeViewModel.tabs).thenReturn([
@@ -34,6 +43,10 @@ void main() {
       const OrdersScreen(),
       const ProfileScreen(),
     ]);
+    when(mockHomeTabViewModel.stream).thenAnswer((_) => const Stream.empty());
+    when(mockHomeTabViewModel.state).thenReturn(HomeTabStates());
+    when(mockHomeTabViewModel.doIntent(any)).thenAnswer((_) {});
+    when(mockHomeTabViewModel.shouldLoadMore(any)).thenReturn(false);
   },);
   tearDown(() {
     if(getIt.isRegistered<HomeViewModel>()){
