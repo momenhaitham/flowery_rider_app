@@ -100,6 +100,7 @@ void main() {
     expect(find.byType(ElevatedButton), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(find.byType(SnackBar), findsNothing);
+    await stateController.close();
   },);
   testWidgets('testing error case when an un expected network error occurs', (WidgetTester tester) async{
     final dummyException=Exception("Network Error");
@@ -151,6 +152,8 @@ void main() {
     expect(find.byType(ElevatedButton), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
     expect(find.byType(SnackBar), findsNothing);
+    await stateController.close();
+    await navigatorController.close();
   },);
   testWidgets('testing success state when entering two matching valid passwords', (WidgetTester tester) async{
     final stateController=StreamController<ResetPasswordState>.broadcast();
@@ -186,5 +189,7 @@ void main() {
     expect(find.byType(ElevatedButton), findsNothing);
     expect(find.byType(CircularProgressIndicator), findsNothing);
     expect(find.byType(SnackBar), findsNothing);
+    await stateController.close();
+    await navigatorController.close();
   },);
 }

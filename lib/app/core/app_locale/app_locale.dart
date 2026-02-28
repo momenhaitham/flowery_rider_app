@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-02-10 22:11:57.036626
+// Last generated: 2026-02-16 10:52:53.879285
 
 class AppLocale {
   AppLocale._();
@@ -30,6 +30,7 @@ class AppLocale {
   static const String forgetPassword = 'forgetPassword';
   static const String forgetPasswordQuote = 'forgetPasswordQuote';
   static const String forgot_password = 'forgot_password';
+  static const String home = 'home';
   static const String invalidOtp = 'invalidOtp';
   static const String lastNameRequired = 'lastNameRequired';
   static const String loading = 'loading';
@@ -39,6 +40,7 @@ class AppLocale {
   static const String name = 'name';
   static const String ok = 'ok';
   static const String or = 'or';
+  static const String orders = 'orders';
   static const String password = 'password';
   static const String passwordLowerCase = 'passwordLowerCase';
   static const String passwordMinLength = 'passwordMinLength';
@@ -49,6 +51,7 @@ class AppLocale {
   static const String passwordUpperCase = 'passwordUpperCase';
   static const String phoneNumberRequired = 'phoneNumberRequired';
   static const String phonnumber = 'phonnumber';
+  static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
   static const String resend = 'resend';
