@@ -36,25 +36,23 @@ void main()async {
   GetIt getItInstance = GetIt.instance;
   
 
-  setUpAll(() async {
-    SharedPreferences.setMockInitialValues({});
-    await EasyLocalization.ensureInitialized();
-  },);
+  
 
   setUp(()async {
+    
     SharedPreferences.setMockInitialValues({});
+    await EasyLocalization.ensureInitialized();
     
     mockedViewModel = MockTrackOrderViewmodel();
     if (getItInstance.isRegistered<TrackOrderViewmodel>()) {
     getItInstance.unregister<TrackOrderViewmodel>();
     }
-    
     getItInstance.registerFactory<TrackOrderViewmodel>(() => mockedViewModel,);
     
   },);
    
    tearDown(()async {
-    //await getItInstance.unregister<TrackOrderViewmodel>();
+    await getItInstance.unregister<TrackOrderViewmodel>();
      getItInstance.reset();
     
     await Future.delayed(const Duration(seconds: 1));
