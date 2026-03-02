@@ -28,7 +28,9 @@ class ShippingAddressDTO {
     ShippingAddressModel toDomain(){
       return ShippingAddressModel(
         city: city,
-        street: street
+        street: street,
+        lat: lat,
+        long: long
       );
     }
 }

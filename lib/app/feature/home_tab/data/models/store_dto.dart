@@ -31,6 +31,8 @@ class StoreDTO {
         storeImage: image,
         storeName: name,
         storePhone: phoneNumber,
+        storeLat: latLong?.split(",").first,
+        storeLong: latLong?.split(",").last
       );
     }
 }
