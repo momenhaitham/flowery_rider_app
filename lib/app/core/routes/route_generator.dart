@@ -47,7 +47,7 @@ class RouteGenerator {
       case Routes.updateProfileScreen:
         final driver = settings.arguments as DriverEntity;
          return MaterialPageRoute(builder: (_) =>  UpdateProfileWidget(driver: driver));
-        return unDefinedRoute();
+
       default:
         return unDefinedRoute();
     }

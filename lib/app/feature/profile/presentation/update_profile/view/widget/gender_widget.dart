@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../core/app_locale/app_locale.dart';
 import '../../../../../../core/resources/app_colors.dart';
@@ -33,10 +34,10 @@ class _GenderWidgetState extends State<GenderWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Text(AppLocale.gender,)),
+        Expanded(child: Text(AppLocale.gender.tr(),)),
         Expanded(
           child: RadioListTile<String>(
-            title: Text(AppLocale.female,
+            title: Text(AppLocale.female.tr(),
                 style: Theme
                     .of(context)
                     .textTheme
@@ -46,8 +47,8 @@ class _GenderWidgetState extends State<GenderWidget> {
                     fontSize: 16
                 )
             ),
-            value: AppLocale.female.toLowerCase(),
-            groupValue: widget.genderController.gender.toLowerCase(),
+            value: AppLocale.female.tr().toLowerCase(),
+            groupValue: widget.genderController.gender.tr().toLowerCase(),
             onChanged: (value) {
               widget.genderController.changeGender(value!);
               widget.onChanged?.call();
@@ -56,9 +57,9 @@ class _GenderWidgetState extends State<GenderWidget> {
         ),
         Expanded(
           child: RadioListTile<String>(
-            title: Text(AppLocale.male),
-            value: AppLocale.male.toLowerCase(),
-            groupValue: widget.genderController.gender.toLowerCase(),
+            title: Text(AppLocale.male.tr()),
+            value: AppLocale.male.tr().toLowerCase(),
+            groupValue: widget.genderController.gender.tr().toLowerCase(),
             onChanged: (value) {
               widget.genderController.changeGender(value!);
               widget.onChanged?.call();

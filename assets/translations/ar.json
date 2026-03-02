@@ -52,5 +52,7 @@
   "change": "تغيير",
   "edit_profile": "تعديل الملف الشخصي",
   "firstName": "الاسم الاول",
-  "lastName": "الاسم الاخير"
+  "lastName": "الاسم الاخير",
+  "vehicleInfo": "بيانات المركبة"
+
 }

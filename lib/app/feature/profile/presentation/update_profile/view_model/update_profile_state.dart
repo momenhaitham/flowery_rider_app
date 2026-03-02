@@ -15,17 +15,19 @@ class UpdateProfileState extends Equatable {
     BaseState<String>? profilePhotoState,
   }) {
     return UpdateProfileState(
-      profileState: BaseState(
-        isLoading: profileState?.isLoading ?? this.profileState.isLoading,
-        data: profileState?.data ?? this.profileState.data,
-        error: profileState?.error ?? this.profileState.error,
-      ),
-      profilePhotoState: BaseState(
-        isLoading:
-            profilePhotoState?.isLoading ?? this.profilePhotoState.isLoading,
-        data: profilePhotoState?.data ?? this.profilePhotoState.data,
-        error: profilePhotoState?.error ?? this.profilePhotoState.error,
-      ),
+      profileState: profileState?? this.profileState,
+      // BaseState(
+      //   isLoading: profileState?.isLoading ?? this.profileState.isLoading,
+      //   data: profileState?.data ?? this.profileState.data,
+      //   error: profileState?.error ?? this.profileState.error,
+      // ),
+      profilePhotoState: profilePhotoState?? this.profilePhotoState,
+      // BaseState(
+      //   isLoading:
+      //       profilePhotoState?.isLoading ?? this.profilePhotoState.isLoading,
+      //   data: profilePhotoState?.data ?? this.profilePhotoState.data,
+      //   error: profilePhotoState?.error ?? this.profilePhotoState.error,
+      // ),
     );
   }
 

@@ -17,15 +17,5 @@ class ProfilePhotoWidget extends StatelessWidget {
       backgroundColor: AppColors.transparentColor,
     );
   }
-  Widget buildProfileImage(String photoUrl) {
-    if (photoUrl.isEmpty || !photoUrl.startsWith('http')) {
-      return const CircleAvatar(
-        child: Icon(Icons.person),
-      );
-    }
 
-    return CircleAvatar(
-      backgroundImage: NetworkImage(photoUrl),
-    );
-  }
 }

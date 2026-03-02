@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/widget/gender_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/widget/photo_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/widget/update_button_widget.dart';
@@ -150,7 +151,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                         },
                         icon: const Icon(Icons.arrow_back_ios),
                       ),
-                      Text(AppLocale.edit_profile),
+                      Text(AppLocale.edit_profile.tr()),
                       Spacer(),
                       NotificationWidget(),
                     ],
@@ -181,7 +182,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                           },
                           controller: firstNameController,
                           decoration: InputDecoration(
-                            labelText: AppLocale.firstName,
+                            labelText: AppLocale.firstName.tr(),
                           ),
                           validator: (value) =>
                               AppValidators.validateFirstName(value, context),
@@ -199,7 +200,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                           },
                           controller: lastNameController,
                           decoration: InputDecoration(
-                            labelText: AppLocale.lastName,
+                            labelText: AppLocale.lastName.tr(),
                           ),
                           validator: (value) =>
                               AppValidators.validateLastName(value, context),
@@ -217,7 +218,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                     },
                     controller: emailController,
                     decoration: InputDecoration(
-                      labelText: AppLocale.email,
+                      labelText: AppLocale.email.tr(),
                     ),
                     validator: (value) =>
                         AppValidators.validateEmail(value, context),
@@ -232,7 +233,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                     },
                     controller: phoneController,
                     decoration: InputDecoration(
-                      labelText: AppLocale.phoneNumber,
+                      labelText: AppLocale.phoneNumber.tr(),
                     ),
                     validator: (value) =>
                         AppValidators.validateNumberPhone(value, context),
@@ -240,7 +241,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                   TextFormField(
                     readOnly: true,
                     decoration: InputDecoration(
-                      labelText: AppLocale.password,
+                      labelText: AppLocale.password.tr(),
                       suffix: TextButton(
                         onPressed: () {
                           updateProfileViewModel.doIntent(
@@ -248,7 +249,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                           );
                         },
                         child: Text(
-                          AppLocale.change,
+                          AppLocale.change.tr(),
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(color: AppColors.primaryColor),
                         ),

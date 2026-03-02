@@ -44,14 +44,14 @@
   "male": "Male",
   "female": "Female",
   "update": "Update",
-  "update_profile": "update profile",
+  "updateProfile": "update profile",
   "update_profile_error": "error in update profile",
   "uploading_photo": "uploading photo",
   "uploading_photo_error": "error in uploading photo",
   "phoneNumber": "phone number",
   "change": "Change",
-  "edit_profile": "Edit Profile",
+  "editProfile": "Edit Profile",
   "firstName": "First Name",
-  "lastName": "Last Name"
-
+  "lastName": "Last Name",
+  "vehicleInfo": "vehicle info"
 }

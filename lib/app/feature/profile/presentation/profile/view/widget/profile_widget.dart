@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_cart_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_items_widget.dart';
@@ -55,17 +56,18 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           key:Key('loading_center'),
                           child: CircularProgressIndicator())
                           : widget.profileState.profileState.data != null
-                          ? _buildProfileSection(widget.profileState.profileState.data!,)
+                          ? _buildProfileSection(widget.profileState.profileState.data!,
+                          profileViewModel: widget.profileViewModel)
                           : widget.profileState.profileState.error != null
                           ? Text(
                           getException(widget.profileState.profileState.error))
                           : Container(),
                       const SizedBox(height: 10),
                       ProfileItemsWidget(//3
-                        data: AppLocale.language,
+                        data: AppLocale.language.tr(),
                         leading: Icon(Icons.translate),
                         trailing: Text(//4
-                            AppLocale.english ,
+                            AppLocale.english.tr() ,
                             style: Theme
                                 .of(context)
                                 .textTheme
@@ -77,7 +79,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       const SizedBox(height: 10),
 
                       ProfileItemsWidget(//5
-                        data: AppLocale.logout,
+                        data: AppLocale.logout.tr(),
                         leading: Icon(Icons.logout),
                         trailing: Icon(Icons.logout),
                       ),
@@ -110,7 +112,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
          photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
-       ProfileCartWidget(title:'vehicle info', subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
+       ProfileCartWidget(title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
       ],
     );
   }
