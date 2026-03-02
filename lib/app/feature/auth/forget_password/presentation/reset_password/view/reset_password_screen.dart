@@ -48,7 +48,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         if (state.resetPasswordState.error != null) {
           Navigator.pop(context);
           AppDialog.viewDialog(context,
-              getException(context, state.resetPasswordState.error),
+              getException(state.resetPasswordState.error),
               cancelText: AppLocale.cancel.tr()
           );
         }

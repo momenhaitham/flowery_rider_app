@@ -14,22 +14,22 @@ void main() {
             builder: (context) {
               // Test ConnectionError
               expect(
-                getException(context, ConnectionError()),
+                getException(ConnectionError()),
                 'connectionFailed',
               );
 
               // Test ServerError with message
               const message = 'Server error';
               expect(
-                getException(context, ServerError(message: message)),
+                getException(ServerError(message: message)),
                 message,
               );
 
               // Test ServerError without message
-              expect(getException(context, ServerError()), '');
+              expect(getException(ServerError()), '');
 
               // Test unknown exception
-              expect(getException(context, Exception('test')), '');
+              expect(getException(Exception('test')), '');
 
               return Container();
             },

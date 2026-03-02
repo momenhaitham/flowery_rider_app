@@ -102,7 +102,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                      getException(context, state.forgetPasswordState.error)),
+                      getException(state.forgetPasswordState.error)),
                 ),
               );
             }

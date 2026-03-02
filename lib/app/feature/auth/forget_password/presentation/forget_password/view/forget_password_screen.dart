@@ -54,7 +54,7 @@ void dispose() {
         if(state.forgetPasswordState.error!=null){
           Navigator.pop(context);
           AppDialog.viewDialog(context,
-            getException(context, state.forgetPasswordState.error!),
+            getException(state.forgetPasswordState.error!),
           cancelText: AppLocale.cancel.tr(),
 
           );

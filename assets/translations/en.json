@@ -54,5 +54,22 @@
   "invalidOtp": "invalid code",
   "home":"Home",
   "orders":"Orders",
-  "profile":"Profile"
+  "profile":"Profile",
+  "language":"Language",
+  "english":"English",
+  "arabic":"Arabic",
+  "gender": "Gender",
+  "male": "Male",
+  "female": "Female",
+  "update": "Update",
+  "updateProfile": "update profile",
+  "update_profile_error": "error in update profile",
+  "uploading_photo": "uploading photo",
+  "uploading_photo_error": "error in uploading photo",
+  "phoneNumber": "phone number",
+  "change": "Change",
+  "editProfile": "Edit Profile",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "vehicleInfo": "vehicle info"
 }

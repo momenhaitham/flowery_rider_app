@@ -54,5 +54,23 @@
   "invalidOtp": "كود غير صحيح",
   "home": "الرئيسية",
   "orders": "الطلبات",
-  "profile": "الملف الشخصي"
+  "language":"اللغة",
+  "english":"الانجليزية",
+  "arabic":"العربية",
+  "profile": "الملف الشخصي",
+  "gender": "النوع",
+  "male": "ذكر",
+  "female": "انثى",
+  "update": "تحديث",
+  "updateProfile": "تحديث الملف الشخصي",
+  "update_profile_error": "خطأ في تحديث الملف الشخصي",
+  "uploading_photo": "تحميل الصورة",
+  "uploading_photo_error": "خطأ في تحميل الصورة",
+  "phoneNumber": "رقم الهاتف",
+  "change": "تغيير",
+  "editProfile": "تعديل الملف الشخصي",
+  "firstName": "الاسم الاول",
+  "lastName": "الاسم الاخير",
+  "vehicleInfo": "بيانات المركبة"
+
 }
