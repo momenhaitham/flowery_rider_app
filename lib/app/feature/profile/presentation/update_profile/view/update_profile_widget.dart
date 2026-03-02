@@ -96,7 +96,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                '${AppLocale.update_profile} ${state.profileState.data!}',
+                '${AppLocale.updateProfile} ${state.profileState.data!}',
               ),
             ),
           );
@@ -151,7 +151,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                         },
                         icon: const Icon(Icons.arrow_back_ios),
                       ),
-                      Text(AppLocale.edit_profile.tr()),
+                      Text(AppLocale.editProfile.tr()),
                       Spacer(),
                       NotificationWidget(),
                     ],

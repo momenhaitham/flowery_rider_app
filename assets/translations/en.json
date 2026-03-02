@@ -54,12 +54,10 @@
   "invalidOtp": "invalid code",
   "home":"Home",
   "orders":"Orders",
-  "profile":"Profile"
-  "Applynow":"Apply Now",
+  "profile":"Profile",
   "language":"Language",
   "english":"English",
   "arabic":"Arabic",
-  "profile": "profile",
   "gender": "Gender",
   "male": "Male",
   "female": "Female",
