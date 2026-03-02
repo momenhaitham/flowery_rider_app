@@ -5,9 +5,7 @@ import 'package:flowery_rider_app/app/config/api_utils/api_utils.dart';
 import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_error/server_error_response.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
-
-import 'package:flutter_test/flutter_test.dart';
-
+import 'package:test/test.dart';
 void main() {
   group("Testing executeApi", () {
     test("When call executeApi with success response", () async {

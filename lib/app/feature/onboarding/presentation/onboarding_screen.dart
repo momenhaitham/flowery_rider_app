@@ -7,6 +7,8 @@ import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget{
+  const OnboardingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width;

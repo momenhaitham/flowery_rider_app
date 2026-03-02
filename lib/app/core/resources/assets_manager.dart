@@ -7,6 +7,7 @@ abstract class AssetsImage {
   static const String onBoaedingLogo ='$imagePath/onBoarding.png';
   static const String user="assets/images/user.jpg";
 
+  static const String orderIconBottomTab='$imagePath/order-icon.png';
 }
 
 abstract class AssetsIcons {
