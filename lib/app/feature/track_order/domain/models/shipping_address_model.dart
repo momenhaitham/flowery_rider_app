@@ -1,5 +1,7 @@
 class ShippingAddressModel {
   String? street;
   String? city;
-  ShippingAddressModel({this.city,this.street});
+  String? lat;
+  String? long;
+  ShippingAddressModel({this.city,this.street,this.lat,this.long});
 }
