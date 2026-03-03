@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/di/di.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
+import 'package:flowery_rider_app/app/core/resources/values_manager.dart';
 import 'package:flowery_rider_app/app/core/reusable_widgets/show_dialog_utils.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
@@ -30,16 +31,9 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   //int activeStep = 0;
   @override
   void initState() {
-    viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
-    viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(
-          body:{
-            "clientName":"${widget.orderDetailsModel?.user?.firstName} ${widget.orderDetailsModel?.user?.lastName}",
-            "clientPhoneNumber":widget.orderDetailsModel?.user?.phone,
-            "orderId":widget.orderDetailsModel?.orderId,
-            "orderState":"Accepted",
-          } ,
-          orderId:widget.orderDetailsModel!.orderId!
-          ));
+    
+    //viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
+    viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
     super.initState();
   }
   @override
@@ -57,6 +51,30 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         child: BlocProvider<TrackOrderViewmodel>(create: (context) => viewmodel,
         
         child:BlocConsumer<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
+          if  (state.getDriverDataState?.isLoading == true){
+            return Center(child: Column(
+              
+              children: [
+                SizedBox(height: height*AppSize.s0_5,),
+                CircularProgressIndicator(),
+                
+              ],
+            ));
+          }else if(state.getDriverDataState?.error != null && state.getDriverDataState?.isLoading == false){
+            return Expanded(
+              child: Center(child: Column(
+                children: [
+                  SizedBox(height: height*AppSize.s0_5,),
+                  Text(state.getDriverDataState?.error.toString()??""),
+                  ElevatedButton(onPressed: (){
+                    viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
+                  }, child: Text(AppLocale.retry.tr()))
+                ],
+              ),),
+            );
+            
+          }else if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
+            
           return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
@@ -147,6 +165,9 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
             ],
           ),
         );
+        }else{
+          return Container();
+        }
         }, listener: (context, state) {
           if(state.orderState?.error != null){
                     ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");

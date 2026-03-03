@@ -1,3 +1,5 @@
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
+
 sealed class TrackOrderEvents {}
 
 class UpdateOrderStateEvent extends TrackOrderEvents {
@@ -14,7 +16,7 @@ class UpdateOrderStateOnFirebaseEvent extends TrackOrderEvents {
 }
 
 class AddOrderDocumentToFirebaseEvent extends TrackOrderEvents {
-  final Map<String,dynamic> body;
-  final String orderId;
-  AddOrderDocumentToFirebaseEvent({required this.body,required this.orderId});
+  OrderDetailsModel? orderDetailsModel;
+  
+  AddOrderDocumentToFirebaseEvent({required this.orderDetailsModel});
 }

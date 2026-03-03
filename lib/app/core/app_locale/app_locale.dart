@@ -1,12 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-02-08 23:49:23.360052
+// Last generated: 2026-03-03 00:03:09.292071
 
 class AppLocale {
   AppLocale._();
 
+  static const String Applynow = 'Applynow';
+  static const String Floweryriderapp = 'Floweryriderapp';
+  static const String Welcometo = 'Welcometo';
   static const String accepted = 'accepted';
   static const String already_have_account = 'already_have_account';
+  static const String arabic = 'arabic';
+  static const String arrived = 'arrived';
+  static const String arrivedAtPickuppoint = 'arrivedAtPickuppoint';
+  static const String arrivedTotheuser = 'arrivedTotheuser';
+  static const String cancel = 'cancel';
+  static const String change = 'change';
+  static const String confirm = 'confirm';
+  static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
@@ -15,25 +26,42 @@ class AppLocale {
   static const String delivered = 'delivered';
   static const String deliveredToTheUser = 'deliveredToTheUser';
   static const String dont_have_account = 'dont_have_account';
+  static const String editProfile = 'editProfile';
   static const String email = 'email';
   static const String emailInvalid = 'emailInvalid';
   static const String emailRequired = 'emailRequired';
   static const String emailVerification = 'emailVerification';
+  static const String english = 'english';
   static const String enterOtp = 'enterOtp';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
   static const String error_invalid_credentials = 'error_invalid_credentials';
+  static const String female = 'female';
+  static const String firstName = 'firstName';
   static const String firstNameRequired = 'firstNameRequired';
+  static const String forgetPassword = 'forgetPassword';
+  static const String forgetPasswordQuote = 'forgetPasswordQuote';
   static const String forgot_password = 'forgot_password';
+  static const String gender = 'gender';
   static const String home = 'home';
+  static const String retry = 'retry';
   static const String invalidOtp = 'invalidOtp';
+  static const String language = 'language';
+  static const String lastName = 'lastName';
   static const String lastNameRequired = 'lastNameRequired';
   static const String loading = 'loading';
   static const String login = 'login';
   static const String loginwith_google = 'loginwith_google';
   static const String logout = 'logout';
+  static const String male = 'male';
   static const String name = 'name';
+  static const String noInternet = 'noInternet';
+  static const String noInternetConnection = 'noInternetConnection';
+  static const String ok = 'ok';
   static const String or = 'or';
+  static const String orderdetails = 'orderdetails';
+  static const String orders = 'orders';
+  static const String outfordelivery = 'outfordelivery';
   static const String password = 'password';
   static const String passwordLowerCase = 'passwordLowerCase';
   static const String passwordMinLength = 'passwordMinLength';
@@ -43,8 +71,13 @@ class AppLocale {
   static const String passwordSpecialChar = 'passwordSpecialChar';
   static const String passwordUpperCase = 'passwordUpperCase';
   static const String paymentmethod = 'paymentmethod';
+  static const String phoneNumber = 'phoneNumber';
   static const String phoneNumberRequired = 'phoneNumberRequired';
   static const String phonnumber = 'phonnumber';
+  static const String picked = 'picked';
+  static const String pickupaddress = 'pickupaddress';
+  static const String profile = 'profile';
+  static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
   static const String resend = 'resend';
   static const String resetPassword = 'resetPassword';
@@ -53,9 +86,14 @@ class AppLocale {
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
   static const String total = 'total';
+  static const String update = 'update';
+  static const String updateProfile = 'updateProfile';
+  static const String update_profile_error = 'update_profile_error';
+  static const String uploading_photo = 'uploading_photo';
+  static const String uploading_photo_error = 'uploading_photo_error';
   static const String userNameRequired = 'userNameRequired';
   static const String useraddress = 'useraddress';
+  static const String vehicleInfo = 'vehicleInfo';
   static const String verfy_email = 'verfy_email';
   static const String welcome = 'welcome';
-  static const String welcometo = 'welcometo';
 }

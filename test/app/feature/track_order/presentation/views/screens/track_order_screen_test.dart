@@ -76,6 +76,8 @@ void main()async {
           orderNumber: "#126246",
           paymentMethod: "cash",
           store: StoreModel(
+            storeLat: "69.123456",
+            storeLong: "69.123456",
             storeAddress: "123 Fixed Address, City, Country",
             storeImage: "",
             storeName: "Elevate FlowerApp Store",
@@ -87,8 +89,9 @@ void main()async {
             lastName: "samy",
             phone: "01099097432",
             profileImage: ""
+          
           ),
-          shippingAddressModel: ShippingAddressModel(street: "mohamed koraaim",city: "alexandria")
+          shippingAddressModel: ShippingAddressModel(street: "mohamed koraaim",city: "alexandria",lat: "69.123456",long: "69.123456")
          );
     return EasyLocalization(
     supportedLocales: const [Locale('ar'),Locale('en')],

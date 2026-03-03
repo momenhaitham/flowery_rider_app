@@ -1,7 +1,11 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/use_case/get_driver_data_use_case.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_usecase.dart';
@@ -9,13 +13,18 @@ import 'package:flowery_rider_app/app/feature/track_order/presentation/view_mode
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:geolocator/geolocator.dart';
 
 @injectable
 class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
-  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase):super(TrackOrderStates());
+  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase,this._getDriverDataUseCase):super(TrackOrderStates());
   AddOrderDocumentToFirebaseUsecase _addOrderDocumentToFirebaseUsecase;
   UpdateOrderStateOnFirebaseUsecase _updateOrderStateOnFirebaseUsecase;
   UpdateOrderStateUsecase _updateOrderStateUsecase;
+  GetDriverDataUseCase _getDriverDataUseCase;
+  DriverEntity? driverData;
+  double? driveLat;
+  double? driverLong;
 
   void doIntent(TrackOrderEvents event){
     switch(event){
@@ -25,17 +34,47 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
       case UpdateOrderStateOnFirebaseEvent():
         _updateOrderStateOnFirebase(body: event.body, orderId: event.orderId,currentOrderState: event.currentOrderState);
       case AddOrderDocumentToFirebaseEvent():
-        _addOrderDocumentToFirebase(body: event.body, orderId: event.orderId);
+        _addOrderDocumentToFirebase(orderDetailsModel: event.orderDetailsModel);
     }
   }
 
-  void _addOrderDocumentToFirebase({Map<String,dynamic>? body,String? orderId})async{
-    var result = await _addOrderDocumentToFirebaseUsecase.call(body: body, orderId: orderId);
-    switch(result){
+  void _addOrderDocumentToFirebase({OrderDetailsModel ? orderDetailsModel})async{
+    
+    await getDriverData();
+    
+    await getDriverPosition();
+    
+    
+
+    if(state.getDriverDataState?.isLoading == false && state.getDriverDataState?.error == null){
+      _updateOrderState(body: {"state":"inProgress"}, orderId: orderDetailsModel?.orderId);
+      var result = await _addOrderDocumentToFirebaseUsecase.call(body: {
+           "clientLat":orderDetailsModel?.shippingAddressModel?.lat,
+            "clientLong":orderDetailsModel?.shippingAddressModel?.long,
+            "clientName":"${orderDetailsModel?.user?.firstName} ${orderDetailsModel?.user?.lastName}",
+            "clientPhoneNumber":orderDetailsModel?.user?.phone,
+            "driverLat":driveLat,
+            "driverLong":driverLong,
+            "driverName":driverData?.firstName??"niggr",
+            "driverPhoneNumber":driverData?.phone??"niggr",
+            "storeLat":orderDetailsModel?.store?.storeLat,
+            "storeLong":orderDetailsModel?.store?.storeLong,
+            "storeName":orderDetailsModel?.store?.storeName,
+            "storePhoneNumber":orderDetailsModel?.store?.storePhone,
+            "orderId":orderDetailsModel?.orderId,
+            "orderState":"Accepted",
+      }
+      , 
+      orderId: orderDetailsModel?.orderId
+      );
+      switch(result){
       case SuccessResponse<String>():
         emit(state.copyWith(newOrderState: BaseState(data: 1))); 
       case ErrorResponse<String>():
         emit(state.copyWith(newOrderState: BaseState(data: 1,error: result.error,isLoading: false))); 
+      }
+    }else{
+      return;
     }
   }
 
@@ -57,6 +96,74 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
     await _updateOrderStateUsecase.call(body: body, orderId: orderId);
     
   }
+
+  Future<bool> getDriverData()async{
+    emit(state.copyWith(newGetDriverDataState: BaseState(isLoading: true))); 
+    final response = await _getDriverDataUseCase.invoke();
+    switch (response) {
+      case SuccessResponse<DriverEntity>():
+        driverData = response.data;
+        //emit(state.copyWith(newGetDriverDataState: BaseState(error: null)));
+        print("Driver Data: ${response.data.firstName}, ${response.data.lastName} NIggggggggggggggr");
+        return true;
+      case ErrorResponse<DriverEntity>():
+        emit(state.copyWith(newGetDriverDataState: BaseState(error: response.error,isLoading: false)));
+        //print("Driver Data: ${response.data?.firstName}, ${response.data?.lastName} NIggggggggggggggr");
+        return false; 
+
+    }
+  }
+
+  Future<void> getDriverPosition() async {
+
+  bool serviceEnabled;
+  LocationPermission permission;
+
+ 
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    
+    emit(state.copyWith(newGetDriverDataState: BaseState(error: Exception('Location services are disabled.'),isLoading: false)));
+    return;
+  }
+
+ 
+  permission = await Geolocator.checkPermission();
+  print("Permission before request: $permission");
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      
+      emit(state.copyWith(newGetDriverDataState: BaseState(error: Exception('Location permissions are denied'),isLoading: false)));
+      return ;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    
+    emit(state.copyWith(newGetDriverDataState: BaseState(error: Exception('Location permissions are permanently denied'),isLoading: false)));
+    return ;
+  }
+
+ 
+  await Geolocator.getCurrentPosition(
+    desiredAccuracy: LocationAccuracy.high,
+  ).then((value) {
+   driveLat = value.latitude;
+   driverLong = value.longitude;
+   print(  "Driver Position: Lat: ${driveLat}, Long: ${driverLong}");
+   emit(state.copyWith(newGetDriverDataState: BaseState(error: null,isLoading: false)));
+  },).catchError((error) {
+    emit(state.copyWith(newGetDriverDataState: BaseState(error: error,isLoading: false)));
+  });
+  
+
+  
+  
+  return ;
+}
+
+
 
   String? editOrderStateOnFireBase(int? stateNum){
     if(stateNum==1){

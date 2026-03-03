@@ -44,7 +44,7 @@ class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.mobile) || connectivityResult.contains(ConnectivityResult.wifi)){
       try{
-     var response = await orderDetailsFireBase.doc(orderId).set(body)
+     var response = await orderDetailsFireBase.doc(orderId).update(body!)
      .then((value) => SuccessResponse<String>(data: "Order State Updated"));
       return response;
     }catch(error){
@@ -55,5 +55,7 @@ class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
     }
     
   }
+
+  
 
 }

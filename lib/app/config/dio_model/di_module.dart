@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/dio_model/token_interceptors.dart';
+import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
 import 'package:flutter/foundation.dart';
@@ -9,7 +10,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../feature/profile/api/profile_api_client.dart';
 import '../../feature/vehicles/api/vehicle_api_client.dart';
-import '../local_storage_processes/domain/storage_data_source_contract.dart';
 
 @module
 abstract class DiModule {
@@ -27,25 +27,12 @@ abstract class DiModule {
     BaseOptions baseOptions,
     PrettyDioLogger logger,
     TokenInterceptor tokenInterceptor,
+    ReadAndWriteTokinUsecase readAndWriteTokinUsecase,
   ) {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
-    dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(logger);
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          String? token = await readAndWriteTokinUsecase.invokeGetToken();
-          if (token != null && token.isNotEmpty) {
-            options.headers["Authorization"] = "Bearer $token";
-          }
-          return handler.next(options);
-        },
-      ),
-    );
+    dio.interceptors.add(tokenInterceptor);
     
-  
-
-
     return dio;
   }
 
@@ -70,8 +57,8 @@ abstract class DiModule {
 
   @lazySingleton
   TokenInterceptor provideTokenInterceptor(
-    StorageDataSourceContract storageDataSourceContract,
-  ) => TokenInterceptor(storageDataSourceContract);
+    ReadAndWriteTokinUsecase readAndWriteTokinUsecase
+  ) => TokenInterceptor(readAndWriteTokinUsecase);
 
   @preResolve
   Future<SharedPreferences> provideSharedPreferences() =>

@@ -88,5 +88,10 @@
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "vehicleInfo": "vehicle info"
+  "vehicleInfo": "vehicle info",
+  "locationServicesAreDisabled": "Location services are disabled.",
+  "LocationPermissionsAreDenied": "Location permissions are denied",
+  "locationPermissionsArePermanentlyDenied":"Location permissions are permanently denied",
+  "failedToGetDriverDataOrDeterminePosition":"Failed to get driver data or determine position",
+  "retry": "Retry"
 }
