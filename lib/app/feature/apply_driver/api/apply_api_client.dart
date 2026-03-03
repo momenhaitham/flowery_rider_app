@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
-import 'package:flowery_rider_app/app/feature/apply_driver/data/model/apply_driver_response.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -11,7 +11,7 @@ abstract class ApplyApiClient {
   factory ApplyApiClient(Dio dio, {String baseUrl}) = _ApplyApiClient;
 
   @POST(AppEndPoint.applyDriver)
-  Future<ApplyDriverResponse> applyDriver(
+  Future<DriverAuthResponse> applyDriver(
     @MultiPart() ApplyDriverRequest request,
   );
 }
