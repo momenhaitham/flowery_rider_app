@@ -35,5 +35,14 @@
   "lastNameRequired": "اسم العائلة مطلوب",
   "Welcometo":"مرحبًا بك في",
   "Floweryriderapp":"تطبيق توصيل النباتات",
-  "Applynow":"تقدم الان"
+  "Applynow":"تقدم الان",
+  "my_orders": "طلباتي",
+  "recent_orders": "الطلبات الأخيرة",
+  "cancelled": "ملغي",
+  "completed": "مكتمل",
+  "flower_order": "طلب زهور",
+  "pickup_address": "عنوان الاستلام",
+  "user_address": "عنوان المستخدم",
+  "no_orders_yet": "لا توجد طلبات",
+  "egp": "جنيه"
 }

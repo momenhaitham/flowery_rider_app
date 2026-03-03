@@ -62,7 +62,6 @@ class _SplashScreenState extends State<SplashScreen> {
               .scale(
                 delay: Duration(milliseconds: 700),
                 duration: Duration(milliseconds: 300),
-                
               ),
         ),
       ),

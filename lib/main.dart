@@ -14,20 +14,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   configureDependencies();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   AppProvider appProvider = getIt<AppProvider>();
   runApp(
     ChangeNotifierProvider(
       create: (context) => appProvider..getCurrentLocale(context),
       child: EasyLocalization(
-      supportedLocales: [Locale('ar'),Locale('en')],
-      path: 'assets/translations',
-      child: MainApp()
+        supportedLocales: [Locale('ar'), Locale('en')],
+        path: 'assets/translations',
+        child: MainApp(),
       ),
-    )
- );
+    ),
+  );
 }
 
 class MainApp extends StatefulWidget {
@@ -43,7 +41,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async{
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       //appProvider.getCurrentLocale();
     });
   }
@@ -51,7 +49,7 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      builder:(context, child) =>  MaterialApp(
+      builder: (context, child) => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         debugShowCheckedModeBanner: false,
