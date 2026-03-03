@@ -71,6 +71,8 @@
   "editProfile": "تعديل الملف الشخصي",
   "firstName": "الاسم الاول",
   "lastName": "الاسم الاخير",
-  "vehicleInfo": "بيانات المركبة"
+  "vehicleInfo": "بيانات المركبة",
+  "confirmLogout": "تأكيد تسجيل الخروج"
+
 
 }

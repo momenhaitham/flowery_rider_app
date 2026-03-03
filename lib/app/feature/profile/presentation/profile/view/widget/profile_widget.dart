@@ -78,7 +78,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                       const SizedBox(height: 10),
 
-                      ProfileItemsWidget(//5
+                      ProfileItemsWidget(
+                        onTap: () {
+                          widget.profileViewModel.doIntent(ShowLogoutDialogAction());
+                        },
                         data: AppLocale.logout.tr(),
                         leading: Icon(Icons.logout),
                         trailing: Icon(Icons.logout),

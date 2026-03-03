@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flowery_rider_app/app/config/base_state/custom_cubit.dart';
+import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/logout_user_use_case.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_intent.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_state.dart';
@@ -12,7 +13,8 @@ import '../../../domain/use_case/get_driver_data_use_case.dart';
 @injectable
 class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
   final GetDriverDataUseCase _getDriverDataUseCase;
-  ProfileViewModel(this._getDriverDataUseCase)
+  final LogoutUserUseCase _logoutUserUseCase;
+  ProfileViewModel(this._getDriverDataUseCase,this._logoutUserUseCase)
     : super(ProfileState(profileState: BaseState()));
   Future<void> _getDriverData() async {
     emit(state.copyWith(profileState: BaseState(isLoading: true)));
@@ -34,6 +36,17 @@ class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
         break;
     }
   }
+  Future<void> _logoutUser() async {
+    final response = await _logoutUserUseCase.invoke();
+    switch (response) {
+      case SuccessResponse<bool>():
+        emit(state.copyWith(isLogout: true));
+        break;
+      case ErrorResponse<bool>():
+        emit(state.copyWith(isLogout: false));
+        break;
+    }
+  }
   void doIntent(ProfileIntent intent) {
     switch (intent) {
       case GetProfileAction():
@@ -41,6 +54,12 @@ class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
         break;
       case NavigateToEditProfileIntent():
         streamController.add(NavigateToEditProfileScreen(intent.driver));
+        break;
+      case LogoutAction():
+       _logoutUser();
+        break;
+      case ShowLogoutDialogAction():
+        streamController.add(ShowLogoutDialogEvent());
         break;
     }
   }

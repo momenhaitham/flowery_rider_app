@@ -71,5 +71,6 @@
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "vehicleInfo": "vehicle info"
+  "vehicleInfo": "vehicle info",
+  "confirmLogout": "confirm Logout!!"
 }
