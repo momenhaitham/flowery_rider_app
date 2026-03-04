@@ -56,6 +56,7 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
             "driverLat":driveLat,
             "driverLong":driverLong,
             "driverName":driverData?.firstName??"niggr",
+            "driverPhoto":driverData?.photo??"niggr",
             "driverPhoneNumber":driverData?.phone??"niggr",
             "storeLat":orderDetailsModel?.store?.storeLat,
             "storeLong":orderDetailsModel?.store?.storeLong,
