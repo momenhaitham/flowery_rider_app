@@ -5,6 +5,8 @@ const String filesPath="assets/files";
 abstract class AssetsImage {
   static const String flower='$imagePath/Flower.png';
   static const String onBoaedingLogo ='$imagePath/onBoarding.png';
+  static const String user="assets/images/user.jpg";
+
   static const String orderIconBottomTab='$imagePath/order-icon.png';
 }
 
