@@ -16,18 +16,19 @@ import '../local_storage_processes/domain/storage_data_source_contract.dart';
 abstract class DiModule {
   @lazySingleton
   OrdersApiClient ordersApiClient(Dio dio) => OrdersApiClient(dio);
+
   @lazySingleton
   ApplyApiClient provideApplyApiClient(Dio dio) =>
       ApplyApiClient(dio, baseUrl: AppEndPoint.baseUrl);
+
   @lazySingleton
   VehicleApiClient provideVehicleApiClient(Dio dio) =>
       VehicleApiClient(dio, baseUrl: AppEndPoint.baseUrl);
-<<<<<<< HEAD
-=======
+
   @lazySingleton
   ProfileApiClient provideProfileApiClient(Dio dio) =>
       ProfileApiClient(dio, baseUrl: AppEndPoint.baseUrl);
->>>>>>> origin/develop
+
   @lazySingleton
   Dio provideDio(
     BaseOptions baseOptions,
@@ -37,16 +38,15 @@ abstract class DiModule {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
     dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(logger);
-
     return dio;
   }
 
   @lazySingleton
   BaseOptions provideBaseOptions() => BaseOptions(
     baseUrl: AppEndPoint.baseUrl,
-    sendTimeout: Duration(seconds: 60),
-    receiveTimeout: Duration(seconds: 60),
-    connectTimeout: Duration(seconds: 60),
+    sendTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
+    connectTimeout: const Duration(seconds: 60),
   );
 
   @lazySingleton
@@ -58,7 +58,8 @@ abstract class DiModule {
   );
 
   @lazySingleton
-  FlutterSecureStorage provideFlutterSecureStorage() => FlutterSecureStorage();
+  FlutterSecureStorage provideFlutterSecureStorage() =>
+      const FlutterSecureStorage();
 
   @lazySingleton
   TokenInterceptor provideTokenInterceptor(
