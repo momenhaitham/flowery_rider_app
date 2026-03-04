@@ -41,6 +41,7 @@ dependencies:
   geocoding: ^4.0.0  
   easy_localization: ^3.0.8
   easy_localization_loader: ^2.0.2
+  dartz: ^0.10.1
   
 
 dev_dependencies:

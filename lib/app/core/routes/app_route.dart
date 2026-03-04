@@ -3,11 +3,12 @@ abstract class Routes {
   static const String login = "loginScreen";
   static const String home = "homeScreen";
   static const String onboarding = "onboardingScreen";
+  static const String orders = '/orders';
+  static const String orderDetails = '/order-details';
   static const String forgetPasswordScreen = 'Forget_Password';
   static const String verifyOtpScreen = 'Verify_Otp';
   static const String resetPasswordScreen = 'Reset_Password';
   static const String profileScreen = "profileScreen";
   static const String changePasswordScreen = "changePasswordScreen";
   static const String updateProfileScreen = "updateProfileScreen";
-
 }
