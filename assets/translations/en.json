@@ -80,5 +80,10 @@
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "vehicleInfo": "vehicle info"
+  "vehicleInfo": "vehicle info",
+  "order_details": "Order details",
+  "total": "Total",
+  "payment_method": "Payment method",
+  "cash_on_delivery": "Cash on delivery",
+  "quantity_x": "x"
 }

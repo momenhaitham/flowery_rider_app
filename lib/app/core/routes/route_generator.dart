@@ -11,6 +11,8 @@ import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/orders/presentation/view/orders_screen.dart';
+import 'package:flowery_rider_app/app/feature/orders/presentation/view/order_details_screen.dart';
+import 'package:flowery_rider_app/app/feature/orders/domain/model/driver_order_entity.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
@@ -37,16 +39,14 @@ class RouteGenerator {
 
       /// Order Details
       case Routes.orderDetails:
-        return MaterialPageRoute(
-          builder: (_) => const Scaffold(
-            body: Center(
-              child: Text(
-                'Order Details\nComing in next PR',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        );
+        final driverOrder = settings.arguments;
+        if (driverOrder is DriverOrderEntity) {
+          return MaterialPageRoute(
+            builder: (_) => OrderDetailsScreen(driverOrder: driverOrder),
+            settings: settings,
+          );
+        }
+        return unDefinedRoute();
 
       /// Forget Password
       case Routes.forgetPasswordScreen:

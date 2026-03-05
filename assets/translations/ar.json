@@ -80,5 +80,10 @@
   "editProfile": "تعديل الملف الشخصي",
   "firstName": "الاسم الاول",
   "lastName": "الاسم الاخير",
-  "vehicleInfo": "بيانات المركبة"
+  "vehicleInfo": "بيانات المركبة",
+  "order_details": "تفاصيل الطلب",
+  "total": "الإجمالي",
+  "payment_method": "طريقة الدفع",
+  "cash_on_delivery": "نقداً عند التسليم",
+  "quantity_x": "x"
 }
