@@ -9,10 +9,15 @@ class TrackingModel {
   final String? storePhoto;
   final String? storeLat;
   final String? storeLong;
-
+  final double? driverLat;
+  final double? driverLong;
+  final String? userPhone;
+  final String? storePhone;
   TrackingModel({this.orderId,
     this.orderState,this.clientName,
-    this.clientPhoto,this.clientLat,this.clientLong,this.storeName,this.storePhoto,this.storeLat,this.storeLong});
+    this.clientPhoto,this.clientLat,this.clientLong,this.storeName,this.storePhoto,
+    this.storeLat,this.storeLong,this.driverLat,
+    this.driverLong,this.userPhone,this.storePhone});
   factory TrackingModel.fromJson(Map<String, dynamic> json) {
     return TrackingModel(
       orderId: json['orderId'],
@@ -25,6 +30,10 @@ class TrackingModel {
       storePhoto: json['storePhoto'],
       storeLat: json['storeLat'],
       storeLong: json['storeLong'],
+      driverLat: json['driverLat'],
+      driverLong: json['driverLong'],
+      userPhone: json['clientPhoneNumber'],
+      storePhone: json['storePhoneNumber'],
     );
   }
   Map<String, dynamic> toJson() {
@@ -39,29 +48,10 @@ class TrackingModel {
       'storePhoto': storePhoto,
       'storeLat': storeLat,
       'storeLong': storeLong,
-    };
-  }
-}
-class Address {
-  final double? lat;
-  final double? long;
-  final String? name;
-  final String? photo;
-  Address({this.lat, this.long, this.name, this.photo});
-  factory Address.fromJson({required String tag,required Map<String, dynamic> json}) {
-    return Address(
-      lat: json['${tag}Lat'],
-      long: json['${tag}Long'],
-      name: json['${tag}Name'],
-      photo: json['${tag}Photo'],
-    );
-  }
-  Map<String, dynamic> toJson({required String tag}) {
-    return {
-      '${tag}Lat': lat,
-      '${tag}Long': long,
-      '${tag}Name': name,
-      '${tag}Photo': photo,
+      'driverLat': driverLat,
+      'driverLong': driverLong,
+      'clientPhoneNumber': userPhone,
+      'storePhoneNumber': storePhone,
     };
   }
 }

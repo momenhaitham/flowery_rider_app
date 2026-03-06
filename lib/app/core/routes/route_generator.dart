@@ -5,6 +5,8 @@ import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../feature/map_tracking/presentation/view/map_tracking_screen.dart';
+import '../../feature/onboarding/presentation/onboarding_screen.dart';
+import '../../feature/splash/presentation/views/splash_screen.dart';
 
 // TODO: Uncomment imports when screens are ready:
 // import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
@@ -24,11 +26,11 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.splash:
         // TODO: Uncomment when SplashScreen is ready
-        // return MaterialPageRoute(builder: (_) => const SplashScreen());
+         return MaterialPageRoute(builder: (_) => const SplashScreen());
         return unDefinedRoute();
       case Routes.login:
         // TODO: Uncomment when LoginScreen is ready
-        // return MaterialPageRoute(builder: (_) => const LoginScreen());
+         //return MaterialPageRoute(builder: (_) => const LoginScreen());
         return unDefinedRoute();
       case Routes.home:
         // TODO: Uncomment when HomeScreen is ready
@@ -36,7 +38,7 @@ class RouteGenerator {
         return unDefinedRoute();
       case Routes.onboarding:
         // TODO: Uncomment when OnboardingScreen is ready
-        // return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
         return unDefinedRoute();
       case Routes.forgetPasswordScreen:
         // TODO: Uncomment when ForgetPasswordScreenScreen is ready
@@ -48,11 +50,11 @@ class RouteGenerator {
         return unDefinedRoute();
       case Routes.resetPasswordScreen:
         // TODO: Uncomment when ResetPasswordScreenScreen is ready
-        // return MaterialPageRoute(builder: (_) => const ResetPasswordScreenScreen());
+       //  return MaterialPageRoute(builder: (_) => const ResetPasswordScreenScreen());
         return unDefinedRoute();
       case Routes.profileScreen:
         // TODO: Uncomment when ProfileScreenScreen is ready
-        // return MaterialPageRoute(builder: (_) => const ProfileScreenScreen());
+         //return MaterialPageRoute(builder: (_) => const ProfileScreenScreen());
         return unDefinedRoute();
       case Routes.changePasswordScreen:
         // TODO: Uncomment when ChangePasswordScreenScreen is ready
@@ -64,10 +66,10 @@ class RouteGenerator {
         return unDefinedRoute();
       case Routes.mapTracking:
    // String? trackingId = settings.arguments as String?;
-    return MaterialPageRoute(builder: (_) =>  MapTrackingScreen(
+    return MaterialPageRoute(builder: (_) =>  TrackingScreen(
      // trackingId: trackingId,
     ));
-        return unDefinedRoute();
+
       default:
         return unDefinedRoute();
     }

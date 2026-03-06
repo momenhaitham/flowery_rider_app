@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
+import 'package:retrofit/error_logger.dart';
 
 import '../../../core/consts/app_consts.dart';
 import '../domain/model/tracking_model.dart';
@@ -23,10 +24,14 @@ class FirebaseTrackingManager {
       var document = await getCollection().doc(trackingId).get();
 
       return document.data()!;
-    }
-    catch (e) {
+    }on FirebaseException catch (e) {
+      rethrow;
+    }on Object catch (e,s) {
+      print(e);
+      print(s);
       rethrow;
     }
+
   }
 
   }

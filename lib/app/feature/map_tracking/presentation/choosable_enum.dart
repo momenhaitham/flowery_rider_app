@@ -1,0 +1,4 @@
+enum ChoosableEnum {
+  isUser,
+  isStore;
+}
