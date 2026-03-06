@@ -1,6 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-02-16 10:52:53.879285
 
 class AppLocale {
   AppLocale._();
@@ -10,6 +9,10 @@ class AppLocale {
   static const String Welcometo = 'Welcometo';
   static const String already_have_account = 'already_have_account';
   static const String cancel = 'cancel';
+  static const String cancelled = 'cancelled';
+  static const String cashOnDelivery = 'cash_on_delivery';
+  static const String change = 'change';
+  static const String completed = 'completed';
   static const String confirm = 'confirm';
   static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
@@ -18,6 +21,8 @@ class AppLocale {
   static const String continueTxt = 'continueTxt';
   static const String create_account = 'create_account';
   static const String dont_have_account = 'dont_have_account';
+  static const String editProfile = 'editProfile';
+  static const String egp = 'egp';
   static const String email = 'email';
   static const String emailInvalid = 'emailInvalid';
   static const String emailRequired = 'emailRequired';
@@ -26,20 +31,32 @@ class AppLocale {
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
   static const String error_invalid_credentials = 'error_invalid_credentials';
+  static const String female = 'female';
   static const String firstNameRequired = 'firstNameRequired';
+  static const String firstName = 'firstName';
+  static const String flowerOrder = 'flower_order';
   static const String forgetPassword = 'forgetPassword';
   static const String forgetPasswordQuote = 'forgetPasswordQuote';
   static const String forgot_password = 'forgot_password';
+  static const String gender = 'gender';
   static const String home = 'home';
   static const String invalidOtp = 'invalidOtp';
+  static const String language = 'language';
+  static const String arabic = 'arabic';
+  static const String english = 'english';
   static const String lastNameRequired = 'lastNameRequired';
+  static const String lastName = 'lastName';
   static const String loading = 'loading';
   static const String login = 'login';
   static const String loginwith_google = 'loginwith_google';
   static const String logout = 'logout';
+  static const String male = 'male';
+  static const String myOrders = 'my_orders';
   static const String name = 'name';
+  static const String noOrdersYet = 'no_orders_yet';
   static const String ok = 'ok';
   static const String or = 'or';
+  static const String orderDetails = 'order_details';
   static const String orders = 'orders';
   static const String password = 'password';
   static const String passwordLowerCase = 'passwordLowerCase';
@@ -49,25 +66,29 @@ class AppLocale {
   static const String passwordRequired = 'passwordRequired';
   static const String passwordSpecialChar = 'passwordSpecialChar';
   static const String passwordUpperCase = 'passwordUpperCase';
+  static const String paymentMethod = 'payment_method';
+  static const String phoneNumber = 'phoneNumber';
   static const String phoneNumberRequired = 'phoneNumberRequired';
   static const String phonnumber = 'phonnumber';
+  static const String pickupAddress = 'pickup_address';
   static const String profile = 'profile';
+  static const String quantityX = 'quantity_x';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
+  static const String recentOrders = 'recent_orders';
   static const String regster = 'regster';
   static const String resend = 'resend';
   static const String resetPassword = 'resetPassword';
   static const String resetPasswordQuote = 'resetPasswordQuote';
   static const String reset_password = 'reset_password';
+  static const String total = 'total';
+  static const String update = 'update';
+  static const String update_profile_error = 'update_profile_error';
+  static const String updateProfile = 'updateProfile';
+  static const String uploading_photo = 'uploading_photo';
+  static const String uploading_photo_error = 'uploading_photo_error';
+  static const String userAddress = 'user_address';
   static const String userNameRequired = 'userNameRequired';
+  static const String vehicleInfo = 'vehicleInfo';
   static const String verfy_email = 'verfy_email';
   static const String welcome = 'welcome';
-  static const String myOrders = 'my_orders';
-  static const String recentOrders = 'recent_orders';
-  static const String cancelled = 'cancelled';
-  static const String completed = 'completed';
-  static const String flowerOrder = 'flower_order';
-  static const String pickupAddress = 'pickup_address';
-  static const String userAddress = 'user_address';
-  static const String noOrdersYet = 'no_orders_yet';
-  static const String egp = 'egp';
 }

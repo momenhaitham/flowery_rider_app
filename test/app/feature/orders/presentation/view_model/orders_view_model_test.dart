@@ -23,6 +23,9 @@ void main() {
   setUp(() {
     mockUseCase = MockGetDriverOrdersUseCase();
     viewModel = OrdersViewModel(mockUseCase);
+    provideDummy<BaseResponse<DriverOrdersResult>>(
+      ErrorResponse<DriverOrdersResult>(error: Exception('dummy')),
+    );
   });
 
   tearDown(() => viewModel.close());
