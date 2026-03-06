@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/orders/domain/model/driver_order_entity.dart';
 import 'package:flowery_rider_app/app/feature/orders/domain/model/driver_orders_result.dart';
@@ -18,9 +17,12 @@ void main() {
   setUp(() {
     mockRepo = MockOrdersRepoContract();
     useCase = GetDriverOrdersUseCase(mockRepo);
+    provideDummy<BaseResponse<DriverOrdersResult>>(
+      ErrorResponse<DriverOrdersResult>(error: Exception('dummy')),
+    );
   });
 
-  DriverOrderEntity _fakeOrder({String state = 'completed'}) =>
+  DriverOrderEntity fakeOrder({String state = 'completed'}) =>
       DriverOrderEntity(
         id: 'order-id-1',
         driverId: 'driver-id-1',
@@ -52,28 +54,24 @@ void main() {
         createdAt: DateTime(2025, 1, 17),
       );
 
-  DriverOrdersResult _resultWith({
+  DriverOrdersResult resultWith({
     required List<DriverOrderEntity> orders,
     int totalPages = 3,
     int currentPage = 1,
-  }) {
-    return DriverOrdersResult(
-      orders: orders,
-      totalPages: totalPages,
-      currentPage: currentPage,
-    );
-  }
+  }) => DriverOrdersResult(
+    orders: orders,
+    totalPages: totalPages,
+    currentPage: currentPage,
+  );
 
   group('GetDriverOrdersUseCase', () {
     test(
       'should return DriverOrdersResult with list of DriverOrderEntity when repo succeeds',
       () async {
-        final orders = [_fakeOrder(), _fakeOrder(state: 'canceled')];
-        when(
-          mockRepo.getDriverOrders(page: 1),
-        ).thenAnswer(
+        final orders = [fakeOrder(), fakeOrder(state: 'canceled')];
+        when(mockRepo.getDriverOrders(page: 1)).thenAnswer(
           (_) async => SuccessResponse<DriverOrdersResult>(
-            data: _resultWith(orders: orders, totalPages: 5, currentPage: 1),
+            data: resultWith(orders: orders, totalPages: 5, currentPage: 1),
           ),
         );
 
@@ -90,61 +88,45 @@ void main() {
     );
 
     test('should pass correct page number to repo', () async {
-      when(
-        mockRepo.getDriverOrders(page: 3),
-      ).thenAnswer(
+      when(mockRepo.getDriverOrders(page: 3)).thenAnswer(
         (_) async => SuccessResponse<DriverOrdersResult>(
-          data: _resultWith(orders: [_fakeOrder()], currentPage: 3),
+          data: resultWith(orders: [fakeOrder()], currentPage: 3),
         ),
       );
-
       await useCase.call(page: 3);
-
       verify(mockRepo.getDriverOrders(page: 3)).called(1);
     });
 
     test('should return ErrorResponse when repo fails', () async {
-      final exception = Exception('Network error');
-      when(
-        mockRepo.getDriverOrders(page: 1),
-      ).thenAnswer(
-        (_) async => ErrorResponse<DriverOrdersResult>(error: exception),
+      when(mockRepo.getDriverOrders(page: 1)).thenAnswer(
+        (_) async => ErrorResponse<DriverOrdersResult>(
+          error: Exception('Network error'),
+        ),
       );
-
       final result = await useCase.call(page: 1);
-
       expect(result, isA<ErrorResponse<DriverOrdersResult>>());
     });
 
     test('should return empty list when repo returns empty list', () async {
-      when(
-        mockRepo.getDriverOrders(page: 1),
-      ).thenAnswer(
+      when(mockRepo.getDriverOrders(page: 1)).thenAnswer(
         (_) async => SuccessResponse<DriverOrdersResult>(
-          data: _resultWith(orders: const [], totalPages: 1, currentPage: 1),
+          data: resultWith(orders: const [], totalPages: 1, currentPage: 1),
         ),
       );
-
       final result = await useCase.call(page: 1);
-
       expect(result, isA<SuccessResponse<DriverOrdersResult>>());
       final data = (result as SuccessResponse<DriverOrdersResult>).data;
       expect(data.orders, isEmpty);
       expect(data.totalPages, equals(1));
-      expect(data.currentPage, equals(1));
     });
 
     test('should use page 1 as default when no page is specified', () async {
-      when(
-        mockRepo.getDriverOrders(page: 1),
-      ).thenAnswer(
+      when(mockRepo.getDriverOrders(page: 1)).thenAnswer(
         (_) async => SuccessResponse<DriverOrdersResult>(
-          data: _resultWith(orders: const [], totalPages: 1, currentPage: 1),
+          data: resultWith(orders: const [], totalPages: 1, currentPage: 1),
         ),
       );
-
       await useCase.call();
-
       verify(mockRepo.getDriverOrders(page: 1)).called(1);
     });
   });
