@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
@@ -7,6 +9,7 @@ import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/get_driver_data_use_case.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_driver_loacation_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
@@ -17,14 +20,16 @@ import 'package:geolocator/geolocator.dart';
 
 @injectable
 class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
-  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase,this._getDriverDataUseCase):super(TrackOrderStates());
+  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._updateDriverLocationOnFireBaseUeecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase,this._getDriverDataUseCase):super(TrackOrderStates());
   AddOrderDocumentToFirebaseUsecase _addOrderDocumentToFirebaseUsecase;
   UpdateOrderStateOnFirebaseUsecase _updateOrderStateOnFirebaseUsecase;
   UpdateOrderStateUsecase _updateOrderStateUsecase;
   GetDriverDataUseCase _getDriverDataUseCase;
+  UpdateDriverLoacationOnFirebaseUsecase? _updateDriverLocationOnFireBaseUeecase;
   DriverEntity? driverData;
   double? driveLat;
   double? driverLong;
+  Timer? timer;
 
   void doIntent(TrackOrderEvents event){
     switch(event){
@@ -35,7 +40,17 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
         _updateOrderStateOnFirebase(body: event.body, orderId: event.orderId,currentOrderState: event.currentOrderState);
       case AddOrderDocumentToFirebaseEvent():
         _addOrderDocumentToFirebase(orderDetailsModel: event.orderDetailsModel);
+      case UpdateDriverLatAndLongOnFireBaseEvent():
+        _updateDriverLatAndLongOnFireBase(body: event.body, orderId: event.orderId);
     }
+  }
+
+  void _updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId}){
+    timer = Timer.periodic(Duration(seconds: 10), (timer) {
+      _updateDriverLocationOnFireBaseUeecase?.call(body:body, orderId: orderId,);
+    });
+    
+   
   }
 
   void _addOrderDocumentToFirebase({OrderDetailsModel ? orderDetailsModel})async{

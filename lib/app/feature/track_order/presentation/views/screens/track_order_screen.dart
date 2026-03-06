@@ -36,6 +36,13 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
     super.initState();
   }
+
+  @override
+  void dispose() {
+    viewmodel.timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width;
@@ -169,6 +176,17 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           return Container();
         }
         }, listener: (context, state) {
+
+          if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
+            Future.delayed(Duration(seconds: 10)).then((value) {
+              viewmodel.doIntent(UpdateDriverLatAndLongOnFireBaseEvent(body: {
+              "driverLat":viewmodel.driveLat,
+              "driverLong":viewmodel.driverLong
+            }, orderId: widget.orderDetailsModel?.orderId));
+          },);
+            
+          }
+
           if(state.orderState?.error != null){
                     ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
           }

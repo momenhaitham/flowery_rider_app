@@ -20,3 +20,9 @@ class AddOrderDocumentToFirebaseEvent extends TrackOrderEvents {
   
   AddOrderDocumentToFirebaseEvent({required this.orderDetailsModel});
 }
+
+class UpdateDriverLatAndLongOnFireBaseEvent extends TrackOrderEvents {
+  final Map<String,dynamic>? body;
+  final String? orderId;
+  UpdateDriverLatAndLongOnFireBaseEvent({required this.body,required this.orderId});
+}

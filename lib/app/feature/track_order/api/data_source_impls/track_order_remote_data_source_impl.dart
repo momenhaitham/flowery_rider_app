@@ -56,6 +56,22 @@ class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
     
   }
 
+  Future<BaseResponse<String>> updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId})async {
+    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+    if(connectivityResult.contains(ConnectivityResult.mobile) || connectivityResult.contains(ConnectivityResult.wifi)){
+      try{
+     var response = await orderDetailsFireBase.doc(orderId).update(body!)
+     .then((value) => SuccessResponse<String>(data: ""));
+      return response;
+    }catch(error){
+      return ErrorResponse<String>(error: error as Exception);
+    }
+    } else {
+      return ErrorResponse<String>(error: Exception(AppLocale.noInternetConnection.tr()));
+    }
+    
+  }
+
   
 
 }

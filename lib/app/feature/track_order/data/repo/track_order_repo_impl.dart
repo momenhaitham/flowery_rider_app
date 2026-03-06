@@ -46,5 +46,10 @@ class TrackOrderRepoImpl extends TrackOrderRepoContract{
         return ErrorResponse<String>(error: response.error);
     }
   }
+  
+  @override
+  Future<BaseResponse<String>> updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId}) {
+    return orderDetailsRemoteDataSourceContract.updateDriverLatAndLongOnFireBase(body: body, orderId: orderId);
+  }
 
 }
