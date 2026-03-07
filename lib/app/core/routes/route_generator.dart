@@ -4,6 +4,7 @@
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flutter/material.dart';
 
+import '../../feature/map_tracking/presentation/map_tracking_argument.dart';
 import '../../feature/map_tracking/presentation/view/map_tracking_screen.dart';
 import '../../feature/onboarding/presentation/onboarding_screen.dart';
 import '../../feature/splash/presentation/views/splash_screen.dart';
@@ -65,9 +66,10 @@ class RouteGenerator {
         // return MaterialPageRoute(builder: (_) => const UpdateProfileScreenScreen());
         return unDefinedRoute();
       case Routes.mapTracking:
-   // String? trackingId = settings.arguments as String?;
-    return MaterialPageRoute(builder: (_) =>  TrackingScreen(
-     // trackingId: trackingId,
+   MapTrackingArgument trackingArgument=settings.arguments as MapTrackingArgument;
+    return MaterialPageRoute(builder: (_) =>  MapTrackingScreen(
+      trackingId: trackingArgument.orderId,
+      choosableEnum: trackingArgument.choosableEnum,
     ));
 
       default:

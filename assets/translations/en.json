@@ -71,5 +71,10 @@
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "vehicleInfo": "vehicle info"
+  "vehicleInfo": "vehicle info",
+  "tryAgain":"try again",
+  "userAddress": "user address",
+  "pickupAddress": "pickup address",
+  "someThingWrong":"some thing wrong"
+
 }

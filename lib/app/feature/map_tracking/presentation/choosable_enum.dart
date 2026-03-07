@@ -1,4 +1,0 @@
-enum ChoosableEnum {
-  isUser,
-  isStore;
-}

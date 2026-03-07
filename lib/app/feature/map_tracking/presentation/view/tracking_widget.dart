@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/feature/map_tracking/domain/model/tracking_model.dart';
 import 'package:flowery_rider_app/app/feature/map_tracking/presentation/view_model/tracking_view_model.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../choosable_enum.dart';
+import '../map_tracking_argument.dart';
 import '../view_model/tracking_intent.dart';
 import '../view_model/tracking_state.dart';
 import 'address_section.dart';
@@ -102,7 +104,7 @@ class TrackingWidget extends StatelessWidget {
   List<Widget> addressesSections(String userAddress,String storeAddress) {
     return [
     AddressSection(
-      label: "user address",
+      label:AppLocale.userAddress.tr(),
       title:trackingModel.clientName??"" ,
       subtitle:userAddress,
       imageWidget: CircleAvatar(
@@ -111,7 +113,7 @@ class TrackingWidget extends StatelessWidget {
       ),
       onWhatsAppTap: () {
         viewModel.doIntent(GoToWhatsAppIntent(trackingModel.userPhone??'',
-            "Hello"));
+            ""));
       },
       onPhoneTap: () {
         viewModel.doIntent(
@@ -120,7 +122,7 @@ class TrackingWidget extends StatelessWidget {
 
     ),
     AddressSection(
-      label: "pickup address",
+      label:AppLocale.pickupAddress.tr(),
       title:trackingModel.storeName??"",
       subtitle:storeAddress,
       imageWidget: CircleAvatar(
@@ -128,7 +130,7 @@ class TrackingWidget extends StatelessWidget {
       ),
       onWhatsAppTap: () {
         viewModel.doIntent(GoToWhatsAppIntent(trackingModel.storePhone??'',
-            "Hello"));
+            ""));
       },
       onPhoneTap: () {
         viewModel.doIntent(

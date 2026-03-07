@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/utils/helper_function.dart';
 import 'package:flowery_rider_app/app/feature/map_tracking/presentation/view/tracking_widget.dart';
@@ -6,18 +7,19 @@ import 'package:flowery_rider_app/app/feature/map_tracking/presentation/view_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/di/di.dart';
-import '../choosable_enum.dart';
+import '../../../../core/app_locale/app_locale.dart';
+import '../map_tracking_argument.dart';
 import '../view_model/tracking_intent.dart';
 
-class TrackingScreen extends StatelessWidget {
-   TrackingScreen({super.key,this.trackingId,this.choosableEnum=ChoosableEnum.isUser});
+class MapTrackingScreen extends StatelessWidget {
+   MapTrackingScreen({super.key,this.trackingId,this.choosableEnum=ChoosableEnum.isUser});
    final String? trackingId;
    final ChoosableEnum choosableEnum;
 final TrackingViewModel viewModel=getIt<TrackingViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrackingViewModel,TrackingState>(
-      bloc: viewModel..doIntent(GetTrackingDataIntent(trackingId??'696abaf4e364ef6140470e8d')),
+      bloc: viewModel..doIntent(GetTrackingDataIntent(trackingId??'')),
       builder:(context, state) =>  SafeArea(
         child: Scaffold(
           body:
@@ -35,13 +37,13 @@ final TrackingViewModel viewModel=getIt<TrackingViewModel>();
                         ) ,),
                       const SizedBox(height: 10,),
                       ElevatedButton(onPressed: (){
-                        viewModel.doIntent(GetTrackingDataIntent(trackingId??'696abaf4e364ef6140470e8d'));
+                        viewModel.doIntent(GetTrackingDataIntent(trackingId??''));
                       },
-                          child: const Text('try again'))
+                          child:  Text(AppLocale.tryAgain.tr(),))
         
                     ],
                   )):
-                      Text('some thing wrong')
+                      Text(AppLocale.someThingWrong.tr(),)
         
         ),
       )
