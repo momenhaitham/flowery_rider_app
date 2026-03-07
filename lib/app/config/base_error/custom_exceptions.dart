@@ -19,6 +19,8 @@ class ServerError with EquatableMixin implements Exception {
 }
 
 class UnexpectedError with EquatableMixin implements Exception {
+  String message;
+  UnexpectedError([this.message = "Something went wrong"]);
   @override
   List<Object?> get props => [];
 }

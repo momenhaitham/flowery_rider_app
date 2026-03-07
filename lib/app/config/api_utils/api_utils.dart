@@ -45,6 +45,9 @@ Future<BaseResponse<T>> executeApi<T>(Future<T> Function() apiCall) async {
         }
     }
   } catch (exception) {
-    return ErrorResponse(error: UnexpectedError());
+    return ErrorResponse(error: UnexpectedError(
+      exception.toString(),
+
+    ));
   }
 }
