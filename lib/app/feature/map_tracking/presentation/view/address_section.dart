@@ -37,10 +37,10 @@ class AddressSection extends StatelessWidget {
       children: [
         Text(label, style: const TextStyle(color: Colors.grey, fontSize: 14)),
         const SizedBox(height: 10),
-        Container(
+        Container(//4
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: const Color(0xFFF8F8F8),
+            color:AppColors.whiteColor,
             borderRadius: BorderRadius.circular(15),
             border: Border.all(color:AppColors.blackColor.withValues(alpha: 0.05)),
           ),

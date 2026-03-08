@@ -21,15 +21,19 @@ final TrackingViewModel viewModel=getIt<TrackingViewModel>();
     return BlocBuilder<TrackingViewModel,TrackingState>(
       bloc: viewModel..doIntent(GetTrackingDataIntent(trackingId??'')),
       builder:(context, state) =>  SafeArea(
+        key: const Key('map_tracking_safe_area'),
         child: Scaffold(
           body:
-          state.trackingState.isLoading==true?const Center(child: CircularProgressIndicator()):
+          state.trackingState.isLoading==true?const Center(
+              key: Key('map_tracking_loading_center'),
+              child: CircularProgressIndicator()):
               state.trackingState.data!=null?
-
-                  TrackingWidget(trackingModel: state.trackingState.data!,
+              TrackingWidget(trackingModel: state.trackingState.data!,
                   viewModel: viewModel,
                   ):
-                  state.trackingState.error!=null?Center(child: Column(
+                  state.trackingState.error!=null?Center(
+                      key: const Key('map_tracking_error_center'),
+                      child: Column(
                     children: [
                       Text(getException(state.trackingState.error,),
                         style:Theme.of(context).textTheme.bodyMedium?.copyWith(

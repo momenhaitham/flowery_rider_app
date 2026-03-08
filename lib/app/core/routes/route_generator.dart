@@ -66,10 +66,11 @@ class RouteGenerator {
         // return MaterialPageRoute(builder: (_) => const UpdateProfileScreenScreen());
         return unDefinedRoute();
       case Routes.mapTracking:
-   MapTrackingArgument trackingArgument=settings.arguments as MapTrackingArgument;
+   MapTrackingArgument? trackingArgument=settings.arguments as MapTrackingArgument?;
+   trackingArgument ??= MapTrackingArgument(orderId: '696abaf4e364ef6140470e8d');
     return MaterialPageRoute(builder: (_) =>  MapTrackingScreen(
-      trackingId: trackingArgument.orderId,
-      choosableEnum: trackingArgument.choosableEnum,
+      trackingId: trackingArgument?.orderId??'696abaf4e364ef6140470e8d',
+      choosableEnum: trackingArgument?.choosableEnum??ChoosableEnum.isStore,
     ));
 
       default:

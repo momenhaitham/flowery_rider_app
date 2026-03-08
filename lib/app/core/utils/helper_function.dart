@@ -13,6 +13,9 @@ String getException( Exception? exception) {
     case ServerError():
       error = exception.message ?? '';
       break;
+      case UnexpectedError():
+      error = exception.message ?? '';
+      break;
   }
   return error;
 }

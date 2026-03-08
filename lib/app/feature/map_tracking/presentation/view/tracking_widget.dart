@@ -9,7 +9,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../map_tracking_argument.dart';
 import '../view_model/tracking_intent.dart';
-import '../view_model/tracking_state.dart';
+
 import 'address_section.dart';
 
 class TrackingWidget extends StatelessWidget {
@@ -24,13 +24,15 @@ class TrackingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return Stack(
+      key: const Key('map_tracking_stack'),
       children: [
         // 1. Map Background (Placeholder)
-        Container(
+        Container(//1
           width: double.infinity,
           height: double.infinity,
           color: AppColors.whiteColor,
           child: Center(
+            key: const Key('map_tracking_success_center'),
             child:_buildMap(
               driverLat:trackingModel.driverLat??0,
               driverLng:trackingModel.driverLong??0,
@@ -47,6 +49,7 @@ class TrackingWidget extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: AppColors.primaryColor,
             child: IconButton(
+              key: const Key('map_tracking_back_button'),
               icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white, size: 18),
               onPressed: () => Navigator.pop(context),
             ),
@@ -56,7 +59,7 @@ class TrackingWidget extends StatelessWidget {
         // 3. Address Bottom Sheet
         Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
+          child: Container(//2
             height: MediaQuery.of(context).size.height * 0.45,
             padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
@@ -67,7 +70,7 @@ class TrackingWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Container(
+                  child: Container(//3
                     width: 60,
                     height: 5,
                     decoration: BoxDecoration(
@@ -109,7 +112,10 @@ class TrackingWidget extends StatelessWidget {
       subtitle:userAddress,
       imageWidget: CircleAvatar(
         backgroundColor: AppColors.primaryColor,
-        child:Image.network(trackingModel.clientPhoto??''),
+        child:trackingModel.clientPhoto==null||
+            trackingModel.clientPhoto!.isEmpty||!trackingModel.clientPhoto!.startsWith('http')?
+        null:
+        Image.network(trackingModel.clientPhoto??''),
       ),
       onWhatsAppTap: () {
         viewModel.doIntent(GoToWhatsAppIntent(trackingModel.userPhone??'',
@@ -126,7 +132,8 @@ class TrackingWidget extends StatelessWidget {
       title:trackingModel.storeName??"",
       subtitle:storeAddress,
       imageWidget: CircleAvatar(
-        backgroundImage: NetworkImage(trackingModel.storePhoto??''),
+        backgroundImage:trackingModel.storePhoto==null||trackingModel.storePhoto!.isEmpty||!trackingModel.storePhoto!.startsWith('http')?
+        null: NetworkImage(trackingModel.storePhoto??''),
       ),
       onWhatsAppTap: () {
         viewModel.doIntent(GoToWhatsAppIntent(trackingModel.storePhone??'',
@@ -142,7 +149,7 @@ class TrackingWidget extends StatelessWidget {
     ),
   ];
   }
-  _buildMap({required double driverLat,required double driverLng,
+  Widget _buildMap({required double driverLat,required double driverLng,
     required double addressLat,required double addressLng}){
     return FlutterMap(
       options:  MapOptions(
