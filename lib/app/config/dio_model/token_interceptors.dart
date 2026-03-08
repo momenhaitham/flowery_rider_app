@@ -13,7 +13,7 @@ class TokenInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final result = await secureStorageService.getToken();
-    options.headers['Authorization'] = 'Bearer $result';
+    options.headers['Authorization'] = 'Bearer ${AppConsts.driverToken}';
     return handler.next(options);
   }
 }

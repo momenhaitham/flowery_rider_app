@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_state/base_state.dart';
 import '../../../../../config/base_state/custom_cubit.dart';
+import '../../../../apply_driver/domain/request/apply_driver_request.dart';
 import '../../../domain/request/update_profile_request.dart';
 import '../../../domain/use_case/update_profile_use_case.dart';
 import '../../../domain/use_case/upload_profile_photo_use_case.dart';
@@ -24,7 +25,7 @@ class UpdateProfileViewModel
         ),
       );
 
-  Future<void> _updateProfile(UpdateProfileRequest request) async {
+  Future<void> _updateProfile(ApplyDriverRequest request) async {
     emit(state.copyWith(profileState: BaseState(isLoading: true)));
     final response = await _updateProfileUseCase.invoke(request);
     switch (response) {

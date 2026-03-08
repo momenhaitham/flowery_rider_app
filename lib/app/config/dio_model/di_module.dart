@@ -31,7 +31,6 @@ abstract class DiModule {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
     dio.interceptors.add(tokenInterceptor);
     dio.interceptors.add(logger);
-
     return dio;
   }
 

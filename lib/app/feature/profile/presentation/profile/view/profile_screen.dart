@@ -26,7 +26,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       switch(event) {
         case NavigateToEditProfileScreen():
           if(mounted) {
-            Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
+            Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity)
+                .then((value) => viewModel.doIntent(GetProfileAction()));
           }
       }
     },);

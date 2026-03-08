@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_api_client.dart';
 import 'package:injectable/injectable.dart';
 import '../../../config/api_utils/api_utils.dart';
 import '../../../config/base_response/base_response.dart';
 import '../../apply_driver/data/model/driver_auth_response.dart';
+import '../../apply_driver/domain/request/apply_driver_request.dart';
 import '../data/model/profile_photo_response.dart';
 import '../data/profile_data_source_contract.dart';
 import '../domain/request/update_profile_request.dart';
@@ -23,7 +25,7 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSourceContract {
       executeApi(() => _profileApiClient.uploadPhoto(file),);
 
   @override
-  Future<BaseResponse<DriverAuthResponse>> updateProfile(UpdateProfileRequest request) =>
-      executeApi(() => _profileApiClient.updateProfile(request),);
+  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request) =>
+      executeApi(() => _profileApiClient.updateProfile(request));
 
 }

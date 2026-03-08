@@ -24,6 +24,7 @@ class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverStat
     final result=await _allVehiclesUseCase.invoke();
     switch(result) {
       case SuccessResponse<List<VehicleEntity>>():
+        print(result.data);
         emit(state.copyWith(
             vehiclesState: BaseState(isLoading:false,data: result.data)
         ));

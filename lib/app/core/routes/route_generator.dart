@@ -1,3 +1,4 @@
+import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/screen/update_vehicle_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 
@@ -11,7 +12,7 @@ import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
 
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
-import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/screen/update_profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 
 class RouteGenerator {
@@ -69,11 +70,18 @@ class RouteGenerator {
         final driver = settings.arguments;
         if (driver is DriverEntity) {
           return MaterialPageRoute(
-              builder: (_) => UpdateProfileWidget(driver: driver),
+              builder: (_) => UpdateProfileScreen(driver: driver),
               settings: settings);
         }
         return unDefinedRoute();
-
+      case Routes.updateVehicle:
+        final driver = settings.arguments;
+        if (driver is DriverEntity) {
+          return MaterialPageRoute(
+              builder: (_) => UpdateVehicleScreen(driver: driver),
+              settings: settings);
+        }
+        return unDefinedRoute();
       default:
         return unDefinedRoute();
     }

@@ -59,7 +59,7 @@ class _MainAppState extends State<MainApp> {
         onGenerateRoute: RouteGenerator.getRoutes,
         home: child,
         locale: context.locale,
-        initialRoute: Routes.splash,
+        initialRoute: Routes.profileScreen,
       ),
     );
   }

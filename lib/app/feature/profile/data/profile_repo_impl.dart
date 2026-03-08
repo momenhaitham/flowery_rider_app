@@ -4,6 +4,7 @@ import 'package:flowery_rider_app/app/feature/profile/data/profile_data_source_c
 import 'package:injectable/injectable.dart';
 import '../../../config/base_response/base_response.dart';
 import '../../apply_driver/data/model/driver_auth_response.dart';
+import '../../apply_driver/domain/request/apply_driver_request.dart';
 import '../domain/model/driver_entity.dart';
 import '../domain/profile_repo_contract.dart';
 import '../domain/request/update_profile_request.dart';
@@ -37,7 +38,7 @@ class ProfileRepoImpl extends ProfileRepoContract {
 
   @override
   Future<BaseResponse<String>> updateProfile(
-      UpdateProfileRequest request) async {
+      ApplyDriverRequest request) async {
     final response = await _profileDataSourceContract.updateProfile(request);
     switch (response) {
       case SuccessResponse<DriverAuthResponse>():

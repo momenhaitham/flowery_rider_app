@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import '../../../../apply_driver/domain/request/apply_driver_request.dart';
 import '../../../domain/request/update_profile_request.dart';
 
 sealed class UpdateProfileIntent {}
@@ -11,7 +12,7 @@ class UploadProfilePhotoAction extends UpdateProfileIntent {
 }
 
 class UpdateProfileAction extends UpdateProfileIntent {
-  final UpdateProfileRequest request;
+  final ApplyDriverRequest request;
 
   UpdateProfileAction(this.request);
 }

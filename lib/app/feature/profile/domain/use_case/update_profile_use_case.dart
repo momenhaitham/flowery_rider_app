@@ -2,6 +2,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/base_response/base_response.dart';
+import '../../../apply_driver/domain/request/apply_driver_request.dart';
 import '../profile_repo_contract.dart';
 import '../request/update_profile_request.dart';
 
@@ -11,7 +12,7 @@ class UpdateProfileUseCase {
 
   UpdateProfileUseCase(this._profileRepoContract);
 
-  Future<BaseResponse<String>> invoke(UpdateProfileRequest request) {
+  Future<BaseResponse<String>> invoke(ApplyDriverRequest request) {
     return _profileRepoContract.updateProfile(request);
   }
 }

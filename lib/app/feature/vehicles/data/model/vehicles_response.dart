@@ -23,7 +23,7 @@ class VehiclesResponse {
   }
 
   List<VehicleEntity>? toVehicleEntity() {
-    return vehicles?.map((e) => VehicleEntity(vehicleType: e.type)).toList();
+    return vehicles?.map((e) => VehicleEntity(vehicleType:e.type)).toList();
   }
 }
 

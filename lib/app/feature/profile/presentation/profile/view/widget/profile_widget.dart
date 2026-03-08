@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/app_locale/app_locale.dart';
 import '../../../../../../core/consts/app_consts.dart';
 import '../../../../../../core/resources/app_colors.dart';
+import '../../../../../../core/routes/app_route.dart';
 import '../../../../../../core/utils/helper_function.dart';
 import '../../view_model/profile_intent.dart';
 import '../../view_model/profile_state.dart';
@@ -112,7 +113,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
          photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
-       ProfileCartWidget(title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
+       ProfileCartWidget(
+         onTap: () {
+           Navigator.pushNamed(context,Routes.updateVehicle,arguments: driver);
+         },
+         title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
       ],
     );
   }
