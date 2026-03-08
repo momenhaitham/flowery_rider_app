@@ -71,6 +71,10 @@
   "editProfile": "تعديل الملف الشخصي",
   "firstName": "الاسم الاول",
   "lastName": "الاسم الاخير",
-  "vehicleInfo": "بيانات المركبة"
+  "vehicleInfo": "بيانات المركبة",
+  "tryAgain":"حاول مرة اخرى",
+  "userAddress": "عنوان العميل",
+  "pickupAddress": "عنوان المحل",
+  "someThingWrong":"هناك خطأ ما"
 
 }
