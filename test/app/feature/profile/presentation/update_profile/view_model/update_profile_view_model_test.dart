@@ -3,6 +3,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/request/update_profile_request.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/update_profile_use_case.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/upload_profile_photo_use_case.dart';
@@ -20,13 +21,13 @@ void main() {
   late UploadProfilePhotoUseCase uploadProfilePhotoUseCase;
   late UpdateProfileUseCase updateProfileUseCase;
   late UpdateProfileViewModel updateProfileViewModel;
-  late UpdateProfileRequest updateProfileRequest;
+  late ApplyDriverRequest updateProfileRequest;
   late File file;
 
   setUpAll(() {
     updateProfileUseCase = MockUpdateProfileUseCase();
     uploadProfilePhotoUseCase = MockUploadProfilePhotoUseCase();
-    updateProfileRequest = UpdateProfileRequest(email: 'test@test.com');
+    updateProfileRequest = ApplyDriverRequest(email: 'test@test.com');
     file = File('test/resources/fake_image.png');
   });
   setUp(() {
@@ -56,6 +57,8 @@ void main() {
         var state = UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState(),
+
         );
         return [
           state.copyWith(profileState: BaseState(isLoading: true)),
@@ -87,6 +90,7 @@ void main() {
         var state = UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState(),
         );
         return [
           state.copyWith(profileState: BaseState(isLoading: true)),
@@ -114,6 +118,7 @@ void main() {
         var state = UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState(),
         );
         return [
           state.copyWith(profilePhotoState: BaseState(isLoading: true)),
@@ -143,6 +148,7 @@ void main() {
         var state = UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState(),
         );
         return [
           state.copyWith(profilePhotoState: BaseState(isLoading: true)),
