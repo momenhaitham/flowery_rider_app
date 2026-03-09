@@ -7,6 +7,6 @@ import '../domain/request/update_profile_request.dart';
 import 'model/profile_photo_response.dart';
 abstract class ProfileDataSourceContract {
   Future<BaseResponse<DriverAuthResponse>> getProfile();
-  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request);
+  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request,{bool isFormData=false});
   Future<BaseResponse<ProfilePhotoResponse>> uploadPhoto(File file);
 }

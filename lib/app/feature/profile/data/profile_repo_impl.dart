@@ -38,8 +38,8 @@ class ProfileRepoImpl extends ProfileRepoContract {
 
   @override
   Future<BaseResponse<String>> updateProfile(
-      ApplyDriverRequest request) async {
-    final response = await _profileDataSourceContract.updateProfile(request);
+      ApplyDriverRequest request,{bool isFormData=false}) async {
+    final response = await _profileDataSourceContract.updateProfile(request,isFormData: isFormData);
     switch (response) {
       case SuccessResponse<DriverAuthResponse>():
         return SuccessResponse(data: response.data.message ?? "");

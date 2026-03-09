@@ -19,5 +19,5 @@ abstract class ProfileApiClient {
   Future<DriverAuthResponse> updateProfile(@Body() ApplyDriverRequest request);
   @PUT(AppEndPoint.updateProfile)
   @FormUrlEncoded()
-  Future<DriverAuthResponse> updateProfile2(@Body() FormData request);
+  Future<DriverAuthResponse> updateProfileFormData(@Body() FormData request);
 }

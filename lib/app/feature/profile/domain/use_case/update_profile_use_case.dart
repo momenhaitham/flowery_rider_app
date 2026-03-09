@@ -12,7 +12,7 @@ class UpdateProfileUseCase {
 
   UpdateProfileUseCase(this._profileRepoContract);
 
-  Future<BaseResponse<String>> invoke(ApplyDriverRequest request) {
-    return _profileRepoContract.updateProfile(request);
+  Future<BaseResponse<String>> invoke(ApplyDriverRequest request,{bool isFormData=false}) {
+    return _profileRepoContract.updateProfile(request,isFormData: isFormData);
   }
 }

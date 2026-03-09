@@ -7,6 +7,8 @@ import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_state/base_state.dart';
 import '../../../../../config/base_state/custom_cubit.dart';
 import '../../../../apply_driver/domain/request/apply_driver_request.dart';
+import '../../../../vehicles/domain/model/vehicle_entity.dart';
+import '../../../../vehicles/vehicle_util.dart';
 import '../../../domain/request/update_profile_request.dart';
 import '../../../domain/use_case/update_profile_use_case.dart';
 import '../../../domain/use_case/upload_profile_photo_use_case.dart';
@@ -22,12 +24,13 @@ class UpdateProfileViewModel
         UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState()
         ),
       );
 
-  Future<void> _updateProfile(ApplyDriverRequest request) async {
+  Future<void> _updateProfile(ApplyDriverRequest request,{bool isFormData=false}) async {
     emit(state.copyWith(profileState: BaseState(isLoading: true)));
-    final response = await _updateProfileUseCase.invoke(request);
+    final response = await _updateProfileUseCase.invoke(request,isFormData: isFormData);
     switch (response) {
       case SuccessResponse<String>():
         emit(
@@ -73,10 +76,11 @@ class UpdateProfileViewModel
     }
   }
 
+
   void doIntent(UpdateProfileIntent intent) {
     switch (intent) {
       case UpdateProfileAction():
-        _updateProfile(intent.request);
+        _updateProfile(intent.request,isFormData: intent.isFormData);
         break;
       case UploadProfilePhotoAction():
         _uploadProfilePhoto(intent.file);
@@ -86,6 +90,11 @@ class UpdateProfileViewModel
         break;
       case NavigateToChangePasswordAction():
         streamController.add(NavigateToChangePasswordEvent());
+        break;
+      case UpdateVehicleInitIntent():
+        getAllVehicles<List<VehicleEntity>,Exception>(onLoading: () => emit(state.copyWith(vehiclesState: BaseState(isLoading: true))),
+            onSuccess: (data) => emit(state.copyWith(vehiclesState: BaseState(isLoading: false, data: data))),
+            onError: (error) => emit(state.copyWith(vehiclesState: BaseState(isLoading: false, error: error))));
         break;
     }
   }

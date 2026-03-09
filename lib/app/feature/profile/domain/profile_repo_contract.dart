@@ -7,7 +7,7 @@ import '../../apply_driver/domain/request/apply_driver_request.dart';
 import 'model/driver_entity.dart';
 abstract class ProfileRepoContract {
   Future<BaseResponse<DriverEntity>> getProfile();
-  Future<BaseResponse<String>> updateProfile(ApplyDriverRequest request);
+  Future<BaseResponse<String>> updateProfile(ApplyDriverRequest request,{bool isFormData=false});
 
   Future<BaseResponse<String>> uploadPhoto(File file);
 }

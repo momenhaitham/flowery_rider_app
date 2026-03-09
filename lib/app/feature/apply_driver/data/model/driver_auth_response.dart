@@ -31,6 +31,7 @@ class DriverAuthResponse {
       lastName: driver?.lastName,
       vehicleType: driver?.vehicleType,
       vehicleNumber: driver?.vehicleNumber,
+      vehicleLicense: driver?.vehicleLicense,
       gender: driver?.gender,
     );
   }

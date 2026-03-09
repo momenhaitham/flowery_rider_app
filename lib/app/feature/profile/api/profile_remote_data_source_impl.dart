@@ -25,7 +25,8 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSourceContract {
       executeApi(() => _profileApiClient.uploadPhoto(file),);
 
   @override
-  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request) =>
-      executeApi(() => _profileApiClient.updateProfile(request));
+  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request,{bool isFormData=false}) =>
+      executeApi(() =>isFormData?_profileApiClient.updateProfileFormData(FormData.fromMap(request.toJson())):
+      _profileApiClient.updateProfile(request));
 
 }
