@@ -1,0 +1,138 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
+import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
+import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_viewmodel.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/widgets/order_details_card.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/widgets/track_order_indecator_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'error_case_no_internet.mocks.dart';
+import 'track_order_screen_test_setup.dart';
+
+
+
+@GenerateNiceMocks([MockSpec<TrackOrderViewmodel>()])
+void main() {
+  
+    TestWidgetsFlutterBinding.ensureInitialized();
+
+  late MockTrackOrderViewmodel mockedViewModel;
+  final getItInstance = GetIt.instance;
+
+  setUp(() async {
+    await getItInstance.reset();
+
+    SharedPreferences.setMockInitialValues({});
+    await EasyLocalization.ensureInitialized();
+
+    mockedViewModel = MockTrackOrderViewmodel();
+
+    getItInstance.registerFactory<TrackOrderViewmodel>(
+      () => mockedViewModel,
+    );
+  });
+
+  tearDown(() async {
+    await getItInstance.reset();
+  });
+
+
+  Widget buildTrackOrderScreen(){
+    
+    return EasyLocalization(
+    supportedLocales: const [Locale('ar'),Locale('en')],
+    path: 'assets/translations',
+    fallbackLocale: const Locale('en'),
+    child: Builder(
+      builder: (context) => MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: TrackOrderScreen(orderDetailsModel: TrackOrderScreenTestSetup.orderDetailsModel),
+      ),
+    ),
+  );
+  }
+
+
+    testWidgets('track order screen with no internet error state delivery', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1080, 1920));
+    
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
+    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
+    
+    when(mockedViewModel.state).thenReturn(TrackOrderStates(
+        orderState: BaseState(data: 1,error: Exception("no internet")),
+        getDriverDataState: BaseState(isLoading: false, error: null), // 👈 THIS IS THE FIX
+      ));
+    when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.fromIterable([
+        TrackOrderStates(
+          orderState: BaseState(data: 1,error: Exception(AppLocale.noInternet.tr())),
+          getDriverDataState: BaseState(isLoading: false, error: null), // 👈 AND HERE
+        ),
+    ]).asBroadcastStream());
+    await tester.pumpWidget(buildTrackOrderScreen());
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester.pumpAndSettle();
+    
+    var allText = tester.widgetList<Text>(find.byType(Text));
+    for (var t in allText) {
+    print('TEXT FOUND: "${t.data}"');
+    }
+    TrackOrderScreenTestSetup.findConstatntWidgets();
+    expect(find.byType(Text),findsNWidgets(23));
+    expect(find.byWidgetPredicate((widget) { 
+      return widget is TrackOrderIndecatorWidget && widget.orderState == 1;
+    },),findsNWidgets(1));
+    expect(
+      find.descendant(
+        of: find.byType(TrackOrderIndecatorWidget),
+        matching: find.byWidgetPredicate((widget) {
+          return widget is Container && widget.decoration is BoxDecoration && (widget.decoration as BoxDecoration).color == AppColors.successColor; 
+        }),
+      ),
+      findsNWidgets(1),
+    );
+    expect(
+      find.descendant(
+        of: find.byType(OrderDetailsCard),
+        matching: find.byWidgetPredicate((widget) {
+          return widget is Text && widget.data == "${AppLocale.status.tr()} : ${AppLocale.accepted}" && widget.style!.color == AppColors.successColor;
+        }),
+      ),
+      findsOneWidget,
+    );
+    
+    expect(find.byWidgetPredicate((widget) { 
+      return widget is OrderDetailsCard && widget.state == AppLocale.accepted;
+    },),findsNWidgets(1));
+
+    expect(find.byWidgetPredicate((widget) {
+      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickuppoint;
+      
+    },),findsNWidgets(1));
+    
+    expect(find.byWidgetPredicate((widget) {
+      return widget is AlertDialog && widget.content is Text && (widget.content as Text).data == "Exception: ${AppLocale.noInternet.tr()}";
+      
+    },),findsNWidgets(1));
+    await getItInstance.reset();
+    await tester.pump(const Duration(seconds: 11)); 
+  });
+
+
+  
+}
+
+
+// "${AppLocale.status.tr()} : ${AppLocale.accepted}"
+//"Exception: no internet"

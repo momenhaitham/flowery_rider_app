@@ -1,19 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:flowery_rider_app/app/config/local_storage_processes/domain/storage_data_source_contract.dart';
-import 'package:flowery_rider_app/app/core/consts/app_consts.dart';
+import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
+
 
 class TokenInterceptor extends Interceptor {
-  final StorageDataSourceContract secureStorageService;
+  final ReadAndWriteTokinUsecase readAndWriteTokinUsecase;
 
-  TokenInterceptor(this.secureStorageService);
+  TokenInterceptor(this.readAndWriteTokinUsecase);
 
   @override
   void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    final result = await secureStorageService.getToken();
-    options.headers['Authorization'] = 'Bearer ${AppConsts.driverToken}';
+    String? token = await readAndWriteTokinUsecase.invokeGetToken();
+
+    if (token != null && token.isNotEmpty) {
+      options.headers["Authorization"] = "Bearer $token";
+    }
     return handler.next(options);
   }
 }
