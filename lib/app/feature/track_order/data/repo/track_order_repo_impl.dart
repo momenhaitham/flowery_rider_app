@@ -8,14 +8,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: TrackOrderRepoContract)
 class TrackOrderRepoImpl extends TrackOrderRepoContract{
-  TrackOrderRemoteDataSourceContract orderDetailsRemoteDataSourceContract;
-  TrackOrderRepoImpl(this.orderDetailsRemoteDataSourceContract);
+  TrackOrderRemoteDataSourceContract _orderDetailsRemoteDataSourceContract;
+  TrackOrderRepoImpl(this._orderDetailsRemoteDataSourceContract);
 
   
 
   @override
   Future<BaseResponse<UpdateOrderStateModel>> updateOrderState({Map<String, dynamic>? body, String? orderId})async {
-    var response =await orderDetailsRemoteDataSourceContract.updateOrderState(body: body, orderId: orderId);
+    var response =await _orderDetailsRemoteDataSourceContract.updateOrderState(body: body, orderId: orderId);
     switch(response){
       case SuccessResponse<UpdateOrderStateDto>():
         return SuccessResponse<UpdateOrderStateModel>(data: response.data.toModel());
@@ -27,7 +27,7 @@ class TrackOrderRepoImpl extends TrackOrderRepoContract{
 
   @override
   Future<BaseResponse<String>> addNewOrderDocumentToFirebase({Map<String, dynamic>? body, String? orderId})async {
-    var response =await orderDetailsRemoteDataSourceContract.addNewOrderDocumentToFirebase(body: body, orderId: orderId);
+    var response =await _orderDetailsRemoteDataSourceContract.addNewOrderDocumentToFirebase(body: body, orderId: orderId);
     switch(response){
       case SuccessResponse<String>():
         return SuccessResponse<String>(data: response.data);
@@ -38,7 +38,7 @@ class TrackOrderRepoImpl extends TrackOrderRepoContract{
 
   @override
   Future<BaseResponse<String>> updateOrderStateOnFirebase({Map<String, dynamic>? body, String? orderId})async {
-    var response =await orderDetailsRemoteDataSourceContract.updateOrderStateOnFirebase(body: body, orderId: orderId);
+    var response =await _orderDetailsRemoteDataSourceContract.updateOrderStateOnFirebase(body: body, orderId: orderId);
     switch(response){
       case SuccessResponse<String>():
         return SuccessResponse<String>(data: response.data);
@@ -49,12 +49,12 @@ class TrackOrderRepoImpl extends TrackOrderRepoContract{
   
   @override
   Future<BaseResponse<String>> updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId}) {
-    return orderDetailsRemoteDataSourceContract.updateDriverLatAndLongOnFireBase(body: body, orderId: orderId);
+    return _orderDetailsRemoteDataSourceContract.updateDriverLatAndLongOnFireBase(body: body, orderId: orderId);
   }
   
   @override
   Future<BaseResponse<String>> cancelOrder({String? orderId}) {
-    return orderDetailsRemoteDataSourceContract.cancelOrder(orderId: orderId);
+    return _orderDetailsRemoteDataSourceContract.cancelOrder(orderId: orderId);
   }
 
 }

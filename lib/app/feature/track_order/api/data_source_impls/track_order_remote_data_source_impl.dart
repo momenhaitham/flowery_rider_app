@@ -12,12 +12,12 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 @Injectable(as: TrackOrderRemoteDataSourceContract)
 class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
-  TrackOrderApiClient trackOrderApiClient;
-  TrackOrderRemoteDataSourceImpl(this.trackOrderApiClient);
+  TrackOrderApiClient _trackOrderApiClient;
+  TrackOrderRemoteDataSourceImpl(this._trackOrderApiClient);
   CollectionReference orderDetailsFireBase = FirebaseFirestore.instance.collection('orderDetails');
   @override
   Future<BaseResponse<UpdateOrderStateDto>> updateOrderState({Map<String, dynamic>? body, String? orderId})async {
-    return await executeApi(() => trackOrderApiClient.updateOrderState(body: body, orderId: orderId));
+    return await executeApi(() => _trackOrderApiClient.updateOrderState(body: body, orderId: orderId));
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flowery_rider_app/app/core/consts/app_consts.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
 import 'package:flowery_rider_app/app/feature/track_order/data/models/update_order_state_dto.dart';
 import 'package:injectable/injectable.dart';
@@ -16,6 +17,6 @@ abstract class TrackOrderApiClient {
 
 
   @PUT(AppEndPoint.updateOrderState)
-  Future<UpdateOrderStateDto> updateOrderState({@Body() Map<String,dynamic>? body,@Path("orderId") String? orderId});
+  Future<UpdateOrderStateDto> updateOrderState({@Body() Map<String,dynamic>? body,@Path(AppConsts.orderIdKey) String? orderId});
 
 }
