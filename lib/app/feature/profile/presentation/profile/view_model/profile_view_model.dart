@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flowery_rider_app/app/config/base_state/custom_cubit.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_intent.dart';

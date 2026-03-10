@@ -1,5 +1,7 @@
 abstract class AppEndPoint {
   static const String baseUrl = "https://flower.elevateegy.com/api/v1";
+  //order details end points
+  static const String updateOrderState = "/orders/state/{orderId}";
   //auth end points
   static const String forgetPassword = '/drivers/forgotPassword';
   static const String verifyOtp = '/drivers/verifyResetCode';
