@@ -1,16 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-03 00:03:09.292071
+// Last generated: 2026-03-10 08:40:48.833059
 
 class AppLocale {
   AppLocale._();
 
   static const String Applynow = 'Applynow';
   static const String Floweryriderapp = 'Floweryriderapp';
+  static const String LocationPermissionsAreDenied = 'LocationPermissionsAreDenied';
   static const String Welcometo = 'Welcometo';
   static const String accepted = 'accepted';
   static const String already_have_account = 'already_have_account';
   static const String arabic = 'arabic';
+  static const String areYouSureCancelOrder = 'areYouSureCancelOrder';
   static const String arrived = 'arrived';
   static const String arrivedAtPickuppoint = 'arrivedAtPickuppoint';
   static const String arrivedTotheuser = 'arrivedTotheuser';
@@ -25,6 +27,7 @@ class AppLocale {
   static const String create_account = 'create_account';
   static const String delivered = 'delivered';
   static const String deliveredToTheUser = 'deliveredToTheUser';
+  static const String done = 'done';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
   static const String email = 'email';
@@ -36,6 +39,8 @@ class AppLocale {
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
   static const String error_invalid_credentials = 'error_invalid_credentials';
+  static const String faildToCancelOrder = 'faildToCancelOrder';
+  static const String failedToGetDriverDataOrDeterminePosition = 'failedToGetDriverDataOrDeterminePosition';
   static const String female = 'female';
   static const String firstName = 'firstName';
   static const String firstNameRequired = 'firstNameRequired';
@@ -44,21 +49,24 @@ class AppLocale {
   static const String forgot_password = 'forgot_password';
   static const String gender = 'gender';
   static const String home = 'home';
-  static const String retry = 'retry';
   static const String invalidOtp = 'invalidOtp';
   static const String language = 'language';
   static const String lastName = 'lastName';
   static const String lastNameRequired = 'lastNameRequired';
   static const String loading = 'loading';
+  static const String locationPermissionsArePermanentlyDenied = 'locationPermissionsArePermanentlyDenied';
+  static const String locationServicesAreDisabled = 'locationServicesAreDisabled';
   static const String login = 'login';
   static const String loginwith_google = 'loginwith_google';
   static const String logout = 'logout';
   static const String male = 'male';
   static const String name = 'name';
+  static const String no = 'no';
   static const String noInternet = 'noInternet';
   static const String noInternetConnection = 'noInternetConnection';
   static const String ok = 'ok';
   static const String or = 'or';
+  static const String orderCancelled = 'orderCancelled';
   static const String orderdetails = 'orderdetails';
   static const String orders = 'orders';
   static const String outfordelivery = 'outfordelivery';
@@ -83,8 +91,12 @@ class AppLocale {
   static const String resetPassword = 'resetPassword';
   static const String resetPasswordQuote = 'resetPasswordQuote';
   static const String reset_password = 'reset_password';
+  static const String retry = 'retry';
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
+  static const String successfully = 'successfully';
+  static const String thankyou = 'thankyou';
+  static const String the_order_delivered = 'the_order_delivered';
   static const String total = 'total';
   static const String update = 'update';
   static const String updateProfile = 'updateProfile';
@@ -96,4 +108,5 @@ class AppLocale {
   static const String vehicleInfo = 'vehicleInfo';
   static const String verfy_email = 'verfy_email';
   static const String welcome = 'welcome';
+  static const String yes = 'yes';
 }

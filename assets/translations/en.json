@@ -93,5 +93,14 @@
   "LocationPermissionsAreDenied": "Location permissions are denied",
   "locationPermissionsArePermanentlyDenied":"Location permissions are permanently denied",
   "failedToGetDriverDataOrDeterminePosition":"Failed to get driver data or determine position",
-  "retry": "Retry"
+  "retry": "Retry",
+  "done":"Done",
+  "thankyou":"Thank you!!",
+  "the_order_delivered":"The order delivered",
+  "successfully":"Successfully",
+  "orderCancelled":"Order cancelled",
+  "areYouSureCancelOrder":"Are you sure you want to cancel the order?",
+  "yes":"Yes",
+  "no":"No",
+  "faildToCancelOrder":"Failed to cancel the order"
 }

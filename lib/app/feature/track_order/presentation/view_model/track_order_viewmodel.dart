@@ -9,6 +9,7 @@ import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/get_driver_data_use_case.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
+import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/cancel_order_use_case.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_driver_loacation_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_on_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_order_state_usecase.dart';
@@ -20,12 +21,13 @@ import 'package:geolocator/geolocator.dart';
 
 @injectable
 class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
-  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._updateDriverLocationOnFireBaseUeecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase,this._getDriverDataUseCase):super(TrackOrderStates());
+  TrackOrderViewmodel(this._addOrderDocumentToFirebaseUsecase,this._cancelOrderUseCase,this._updateDriverLocationOnFireBaseUeecase,this._updateOrderStateOnFirebaseUsecase,this._updateOrderStateUsecase,this._getDriverDataUseCase):super(TrackOrderStates());
   AddOrderDocumentToFirebaseUsecase _addOrderDocumentToFirebaseUsecase;
   UpdateOrderStateOnFirebaseUsecase _updateOrderStateOnFirebaseUsecase;
   UpdateOrderStateUsecase _updateOrderStateUsecase;
   GetDriverDataUseCase _getDriverDataUseCase;
   UpdateDriverLoacationOnFirebaseUsecase? _updateDriverLocationOnFireBaseUeecase;
+  CancelOrderUseCase _cancelOrderUseCase;
   DriverEntity? driverData;
   double? driveLat;
   double? driverLong;
@@ -42,6 +44,8 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
         _addOrderDocumentToFirebase(orderDetailsModel: event.orderDetailsModel);
       case UpdateDriverLatAndLongOnFireBaseEvent():
         _updateDriverLatAndLongOnFireBase(body: event.body, orderId: event.orderId);
+      case CancelOrderEvent():
+        _cancelOrder(orderId: event.orderId);
     }
   }
 
@@ -174,13 +178,21 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
   },).catchError((error) {
     emit(state.copyWith(newGetDriverDataState: BaseState(error: error,isLoading: false)));
   });
-  
 
-  
-  
   return ;
 }
-
+  
+  Future<void> _cancelOrder({String? orderId})async{
+    emit(state.copyWith(newOrderState: BaseState(isLoading: true)));
+    _updateOrderState(body:{"state":"pending"} ,orderId: orderId);
+    var result = await _cancelOrderUseCase.call(orderId: orderId);
+    switch(result){
+      case SuccessResponse<String>():
+        emit(state.copyWith(newOrderState: BaseState(data: 6,isLoading: false))); 
+      case ErrorResponse<String>():
+        emit(state.copyWith(newOrderState: BaseState(error: result.error,isLoading: false))); 
+    }
+  }
 
 
   String? editOrderStateOnFireBase(int? stateNum){

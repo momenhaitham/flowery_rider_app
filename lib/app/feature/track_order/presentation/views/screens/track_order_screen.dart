@@ -4,6 +4,7 @@ import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
 import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/values_manager.dart';
 import 'package:flowery_rider_app/app/core/reusable_widgets/show_dialog_utils.dart';
+import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
@@ -32,7 +33,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   @override
   void initState() {
     
-    //viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
+    
     viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
     super.initState();
   }
@@ -53,6 +54,35 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         title: Text(AppLocale.orderdetails.tr(),style: Theme.of(context).textTheme.headlineLarge,),
+        leading: IconButton(onPressed: (){
+          if(viewmodel.state.orderState?.data==5){
+
+            Navigator.of(context).pushReplacementNamed(Routes.orderDeliveredSuccefullyScreen);
+
+          }else{
+            ShowDialogUtils.showMessage(context,title: AppLocale.areYouSureCancelOrder.tr(),
+            nigActionName: AppLocale.no.tr(),
+            posActionName: AppLocale.yes.tr(),
+            nigAction: (){
+              Navigator.pop(context);
+            },
+            posAction: (){
+              viewmodel.doIntent(CancelOrderEvent(orderId: widget.orderDetailsModel!.orderId));
+              if(viewmodel.state.orderState?.error==null){
+                Navigator.pop(context);
+                Navigator.pop(context);
+              }else if(viewmodel.state.orderState?.data!=6){
+                ShowDialogUtils.showMessage(context,title: AppLocale.faildToCancelOrder.tr(),
+                posActionName: AppLocale.ok.tr(),
+                posAction: (){
+                  Navigator.pop(context);
+                }
+                );
+              }
+            }
+            );
+          }
+        }, icon: Icon(Icons.arrow_back_ios_rounded),)
       ),
       body: SingleChildScrollView(
         child: BlocProvider<TrackOrderViewmodel>(create: (context) => viewmodel,
@@ -87,7 +117,6 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              
               BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
                builder: (context, state) {
                   return TrackOrderIndecatorWidget(orderState: viewmodel.state.orderState?.data??1,);
@@ -176,7 +205,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           return Container();
         }
         }, listener: (context, state) {
-
+          
           if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
             Future.delayed(Duration(seconds: 10)).then((value) {
               viewmodel.doIntent(UpdateDriverLatAndLongOnFireBaseEvent(body: {
@@ -190,6 +219,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           if(state.orderState?.error != null){
                     ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
           }
+
         },) ,
         
        ),

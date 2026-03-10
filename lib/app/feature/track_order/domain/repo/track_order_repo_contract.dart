@@ -8,4 +8,5 @@ abstract class TrackOrderRepoContract {
   Future<BaseResponse<String>> addNewOrderDocumentToFirebase({Map<String,dynamic>? body,String? orderId});
   Future<BaseResponse<String>> updateOrderStateOnFirebase({Map<String,dynamic>? body,String? orderId});
   Future<BaseResponse<String>> updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId});
+  Future<BaseResponse<String>> cancelOrder({String? orderId});
 }

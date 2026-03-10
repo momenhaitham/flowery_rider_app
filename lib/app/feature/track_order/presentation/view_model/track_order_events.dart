@@ -26,3 +26,8 @@ class UpdateDriverLatAndLongOnFireBaseEvent extends TrackOrderEvents {
   final String? orderId;
   UpdateDriverLatAndLongOnFireBaseEvent({required this.body,required this.orderId});
 }
+
+class CancelOrderEvent extends TrackOrderEvents {
+  final String? orderId;
+  CancelOrderEvent({required this.orderId});
+}

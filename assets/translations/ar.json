@@ -93,5 +93,14 @@
   "LocationPermissionsAreDenied": "أذونات الموقع مرفوضة",
   "locationPermissionsArePermanentlyDenied":"أذونات الموقع مرفوضة بشكل دائم",
   "failedToGetDriverDataOrDeterminePosition":"فشل في الحصول على بيانات السائق أو تحديد الموقع",
-   "retry": "إعادة المحاولة"
+  "retry": "إعادة المحاولة",
+  "done":"تم",
+  "thankyou":"شكرا لك!!",
+  "the_order_delivered":"الطلب تم توصيله",
+  "successfully":"بنجاح",
+  "orderCancelled":"الطلب تم الغاءه",
+  "areYouSureCancelOrder":"هل تريد الغاء الطلب؟",
+  "yes":"نعم",
+  "no":"لا",
+  "faildToCancelOrder":"فشل في الغاء الطلب"
 }

@@ -55,7 +55,8 @@ class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
     }
     
   }
-
+  
+  @override
   Future<BaseResponse<String>> updateDriverLatAndLongOnFireBase({Map<String, dynamic>? body, String? orderId})async {
     final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
     if(connectivityResult.contains(ConnectivityResult.mobile) || connectivityResult.contains(ConnectivityResult.wifi)){
@@ -70,6 +71,22 @@ class TrackOrderRemoteDataSourceImpl extends TrackOrderRemoteDataSourceContract{
       return ErrorResponse<String>(error: Exception(AppLocale.noInternetConnection.tr()));
     }
     
+  }
+  
+  @override
+  Future<BaseResponse<String>> cancelOrder({String? orderId})async {
+    final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+    if(connectivityResult.contains(ConnectivityResult.mobile) || connectivityResult.contains(ConnectivityResult.wifi)){
+      try{
+     var response = await orderDetailsFireBase.doc(orderId).delete()
+     .then((value) => SuccessResponse<String>(data: AppLocale.orderCancelled.tr()));
+      return response;
+    }catch(error){
+      return ErrorResponse<String>(error: error as Exception);
+    }
+    } else {
+      return ErrorResponse<String>(error: Exception(AppLocale.noInternetConnection.tr()));
+    }
   }
 
   
