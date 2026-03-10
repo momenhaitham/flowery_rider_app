@@ -7,9 +7,7 @@ import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_state/base_state.dart';
 import '../../../../../config/base_state/custom_cubit.dart';
 import '../../../../apply_driver/domain/request/apply_driver_request.dart';
-import '../../../../vehicles/domain/model/vehicle_entity.dart';
-import '../../../../vehicles/vehicle_util.dart';
-import '../../../domain/request/update_profile_request.dart';
+import '../../../../vehicles/domain/get_all_vehicles_use_case.dart';
 import '../../../domain/use_case/update_profile_use_case.dart';
 import '../../../domain/use_case/upload_profile_photo_use_case.dart';
 
@@ -18,8 +16,10 @@ class UpdateProfileViewModel
     extends CustomCubit<UpdateProfileEvent, UpdateProfileState> {
   final UpdateProfileUseCase _updateProfileUseCase;
   final UploadProfilePhotoUseCase _profilePhotoUseCase;
+  final GetAllVehiclesUseCase _allVehiclesUseCase;
 
-  UpdateProfileViewModel(this._updateProfileUseCase, this._profilePhotoUseCase)
+
+  UpdateProfileViewModel(this._updateProfileUseCase, this._profilePhotoUseCase,this._allVehiclesUseCase)
     : super(
         UpdateProfileState(
           profileState: BaseState(),
@@ -75,7 +75,11 @@ class UpdateProfileViewModel
         break;
     }
   }
-
+ Future<void> _getAllVehicles()async{
+    emit(state.copyWith(vehiclesState: BaseState(isLoading: true)));
+    final result=await _allVehiclesUseCase.invoke();
+    emit(state.copyWith(vehiclesState:result.toBaseState()));
+ }
 
   void doIntent(UpdateProfileIntent intent) {
     switch (intent) {
@@ -92,9 +96,7 @@ class UpdateProfileViewModel
         streamController.add(NavigateToChangePasswordEvent());
         break;
       case UpdateVehicleInitIntent():
-        getAllVehicles<List<VehicleEntity>,Exception>(onLoading: () => emit(state.copyWith(vehiclesState: BaseState(isLoading: true))),
-            onSuccess: (data) => emit(state.copyWith(vehiclesState: BaseState(isLoading: false, data: data))),
-            onError: (error) => emit(state.copyWith(vehiclesState: BaseState(isLoading: false, error: error))));
+        _getAllVehicles();
         break;
     }
   }
