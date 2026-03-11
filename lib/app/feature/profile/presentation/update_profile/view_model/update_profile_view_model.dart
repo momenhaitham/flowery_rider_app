@@ -6,7 +6,8 @@ import 'package:injectable/injectable.dart';
 import '../../../../../config/base_response/base_response.dart';
 import '../../../../../config/base_state/base_state.dart';
 import '../../../../../config/base_state/custom_cubit.dart';
-import '../../../domain/request/update_profile_request.dart';
+import '../../../../apply_driver/domain/request/apply_driver_request.dart';
+import '../../../../vehicles/domain/get_all_vehicles_use_case.dart';
 import '../../../domain/use_case/update_profile_use_case.dart';
 import '../../../domain/use_case/upload_profile_photo_use_case.dart';
 
@@ -15,18 +16,21 @@ class UpdateProfileViewModel
     extends CustomCubit<UpdateProfileEvent, UpdateProfileState> {
   final UpdateProfileUseCase _updateProfileUseCase;
   final UploadProfilePhotoUseCase _profilePhotoUseCase;
+  final GetAllVehiclesUseCase _allVehiclesUseCase;
 
-  UpdateProfileViewModel(this._updateProfileUseCase, this._profilePhotoUseCase)
+
+  UpdateProfileViewModel(this._updateProfileUseCase, this._profilePhotoUseCase,this._allVehiclesUseCase)
     : super(
         UpdateProfileState(
           profileState: BaseState(),
           profilePhotoState: BaseState(),
+          vehiclesState: BaseState()
         ),
       );
 
-  Future<void> _updateProfile(UpdateProfileRequest request) async {
+  Future<void> _updateProfile(ApplyDriverRequest request,{bool isFormData=false}) async {
     emit(state.copyWith(profileState: BaseState(isLoading: true)));
-    final response = await _updateProfileUseCase.invoke(request);
+    final response = await _updateProfileUseCase.invoke(request,isFormData: isFormData);
     switch (response) {
       case SuccessResponse<String>():
         emit(
@@ -71,11 +75,16 @@ class UpdateProfileViewModel
         break;
     }
   }
+ Future<void> _getAllVehicles()async{
+    emit(state.copyWith(vehiclesState: BaseState(isLoading: true)));
+    final result=await _allVehiclesUseCase.invoke();
+    emit(state.copyWith(vehiclesState:result.toBaseState()));
+ }
 
   void doIntent(UpdateProfileIntent intent) {
     switch (intent) {
       case UpdateProfileAction():
-        _updateProfile(intent.request);
+        _updateProfile(intent.request,isFormData: intent.isFormData);
         break;
       case UploadProfilePhotoAction():
         _uploadProfilePhoto(intent.file);
@@ -85,6 +94,9 @@ class UpdateProfileViewModel
         break;
       case NavigateToChangePasswordAction():
         streamController.add(NavigateToChangePasswordEvent());
+        break;
+      case UpdateVehicleInitIntent():
+        _getAllVehicles();
         break;
     }
   }

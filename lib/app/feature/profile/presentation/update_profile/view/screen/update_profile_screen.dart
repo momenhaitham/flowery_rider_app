@@ -6,33 +6,34 @@ import 'package:flowery_rider_app/app/feature/profile/presentation/update_profil
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../config/di/di.dart';
-import '../../../../../core/app_locale/app_locale.dart';
-import '../../../../../core/resources/app_colors.dart';
-import '../../../../../core/routes/app_route.dart';
-import '../../../../../core/utils/helper_function.dart';
-import '../../../../../core/validation/app_validators.dart';
-import '../../../domain/model/driver_entity.dart';
-import '../../../domain/request/update_profile_request.dart';
-import '../../profile/view/widget/notification_widget.dart';
-import '../controller/gender_controller.dart';
-import '../controller/photo_controller.dart';
-import '../controller/update_controller.dart';
-import '../view_model/update_profile_event.dart';
-import '../view_model/update_profile_intent.dart';
-import '../view_model/update_profile_state.dart';
-import '../view_model/update_profile_view_model.dart';
+import '../../../../../../config/di/di.dart';
+import '../../../../../../core/app_locale/app_locale.dart';
+import '../../../../../../core/resources/app_colors.dart';
+import '../../../../../../core/routes/app_route.dart';
+import '../../../../../../core/utils/helper_function.dart';
+import '../../../../../../core/validation/app_validators.dart';
+import '../../../../../apply_driver/domain/request/apply_driver_request.dart';
+import '../../../../domain/model/driver_entity.dart';
+import '../../../../domain/request/update_profile_request.dart';
+import '../../../profile/view/widget/notification_widget.dart';
+import '../../controller/gender_controller.dart';
+import '../../controller/photo_controller.dart';
+import '../../controller/update_controller.dart';
+import '../../view_model/update_profile_event.dart';
+import '../../view_model/update_profile_intent.dart';
+import '../../view_model/update_profile_state.dart';
+import '../../view_model/update_profile_view_model.dart';
 
-class UpdateProfileWidget extends StatefulWidget {
-  const UpdateProfileWidget({super.key, required this.driver});
+class UpdateProfileScreen extends StatefulWidget {
+  const UpdateProfileScreen({super.key, required this.driver});
 
   final DriverEntity driver;
 
   @override
-  State<UpdateProfileWidget> createState() => _UpdateProfileWidgetState();
+  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
 }
 
-class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
+class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -272,12 +273,11 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                     updateController: updateController,
                     onPressed: () {
                       if (!(formKey.currentState?.validate() ?? false)) return;
-                      final request = UpdateProfileRequest(
+                      final request = ApplyDriverRequest(
                         firstName: firstNameController.text,
                         lastName: lastNameController.text,
                         email: emailController.text,
                         phone: phoneController.text,
-                        gender: genderController.gender,
                       );
                       if (isChangedData()) {
                         updateProfileViewModel.doIntent(

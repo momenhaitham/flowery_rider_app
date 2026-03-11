@@ -10,5 +10,7 @@ abstract class Routes {
   static const String profileScreen = "profileScreen";
   static const String changePasswordScreen = "changePasswordScreen";
   static const String updateProfileScreen = "updateProfileScreen";
+  static const String updateVehicle = "updateVehicle";
+
   static const String orderDeliveredSuccefullyScreen = "orderDeliveredSuccefullyScreen";
 }

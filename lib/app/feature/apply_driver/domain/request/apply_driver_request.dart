@@ -45,6 +45,6 @@ class ApplyDriverRequest {
       "vehicleType": vehicleType,
       "vehicleNumber": vehicleNumber,
       "vehicleLicense": vehicleLicenseImage,
-    };
+    }..removeWhere((key, value) => value==null,);
   }
 }
