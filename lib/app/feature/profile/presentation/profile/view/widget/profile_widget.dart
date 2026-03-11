@@ -115,7 +115,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         const SizedBox(height: 10),
        ProfileCartWidget(
          onTap: () {
-           Navigator.pushNamed(context,Routes.updateVehicle,arguments: driver);
+           profileViewModel?.doIntent(NavigateToEditVehicleIntent(driver));
          },
          title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
       ],

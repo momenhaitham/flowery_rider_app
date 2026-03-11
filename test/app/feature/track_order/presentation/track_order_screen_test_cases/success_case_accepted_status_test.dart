@@ -12,7 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'error_case_no_internet.mocks.dart';
+
+import 'error_case_no_internet_test.mocks.dart';
 import 'track_order_screen_test_setup.dart';
 
 
@@ -70,7 +71,7 @@ void main() {
     });
     
     when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
-    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
+    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickupPoint.tr());
     
     when(mockedViewModel.state).thenReturn(TrackOrderStates(
       orderState: BaseState(data: 1),
@@ -116,7 +117,7 @@ void main() {
       findsOneWidget,
     );
     expect(find.byWidgetPredicate((widget) {
-      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickuppoint;
+      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickupPoint;
     },),findsNWidgets(1));
     expect(find.byWidgetPredicate((widget) { 
       return widget is OrderDetailsCard && widget.state == AppLocale.accepted;

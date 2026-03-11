@@ -6,4 +6,8 @@ class NavigateToEditProfileIntent extends ProfileIntent {
   final DriverEntity driver;
   NavigateToEditProfileIntent(this.driver);
 }
+class NavigateToEditVehicleIntent extends ProfileIntent {
+  final DriverEntity driver;
+  NavigateToEditVehicleIntent(this.driver);
+}
 

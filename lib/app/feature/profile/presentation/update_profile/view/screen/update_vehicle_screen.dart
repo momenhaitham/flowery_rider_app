@@ -110,9 +110,12 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            leading: const Icon(Icons.arrow_back_ios, color: Colors.black),
+            leading: IconButton(onPressed: () {
+              _viewModel.doIntent(NavigateToProfileAction());
+            },
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.black)),
             title: Text(
-              AppLocale.editProfile.tr(),
+              AppLocale.editVehicle.tr(),
               style: Theme.of(
                 context,
               ).textTheme.titleMedium?.copyWith(color: Colors.black),

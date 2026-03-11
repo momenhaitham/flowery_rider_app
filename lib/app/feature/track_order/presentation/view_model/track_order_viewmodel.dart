@@ -201,7 +201,7 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
     }else if(stateNum==2){
       return AppLocale.picked.tr();
     }else if(stateNum==3){
-      return AppLocale.outfordelivery.tr();
+      return AppLocale.outForDelivery.tr();
     }else if(stateNum==4){
       return AppLocale.arrived.tr();
     }else if(stateNum==5){
@@ -212,11 +212,11 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
 
   String? editDeliveryStatus(int? stateNum){
     if(stateNum==1){
-      return AppLocale.arrivedAtPickuppoint.tr();
+      return AppLocale.arrivedAtPickupPoint.tr();
     }else if(stateNum==2){
       return AppLocale.startDeliver.tr();
     }else if(stateNum==3){
-      return AppLocale.arrivedTotheuser.tr();
+      return AppLocale.arrivedToTheUser.tr();
     }else if(stateNum==4){
       return AppLocale.deliveredToTheUser.tr();
     }else if(stateNum==5){

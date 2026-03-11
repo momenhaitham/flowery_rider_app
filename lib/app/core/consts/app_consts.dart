@@ -6,4 +6,5 @@ class AppConsts {
   static const String rememberMeKey = 'remember_me';
   static const String languageKey = 'language';
   static const String orderIdKey ="orderId";
+  static const String driverToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkcml2ZXIiOiI2OTk2ZDUxOGUzNjRlZjYxNDA1YTNlNDEiLCJpYXQiOjE3NzE1MzExNDJ9.bEck__1Cu-OXWFqxgaOR49jIbD36LyuPfeFo9g6c78c';
 }

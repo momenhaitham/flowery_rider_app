@@ -13,15 +13,13 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'error_case_no_internet.mocks.dart';
+
+import 'error_case_no_internet_test.mocks.dart';
 import 'track_order_screen_test_setup.dart';
-
-
 
 @GenerateNiceMocks([MockSpec<TrackOrderViewmodel>()])
 void main() {
-  
-    TestWidgetsFlutterBinding.ensureInitialized();
+  TestWidgetsFlutterBinding.ensureInitialized();
 
   late MockTrackOrderViewmodel mockedViewModel;
   final getItInstance = GetIt.instance;
@@ -34,70 +32,92 @@ void main() {
 
     mockedViewModel = MockTrackOrderViewmodel();
 
-    getItInstance.registerFactory<TrackOrderViewmodel>(
-      () => mockedViewModel,
-    );
+    getItInstance.registerFactory<TrackOrderViewmodel>(() => mockedViewModel);
   });
 
   tearDown(() async {
     await getItInstance.reset();
   });
 
-
-  Widget buildTrackOrderScreen(){
-    
+  Widget buildTrackOrderScreen() {
     return EasyLocalization(
-    supportedLocales: const [Locale('ar'),Locale('en')],
-    path: 'assets/translations',
-    fallbackLocale: const Locale('en'),
-    child: Builder(
-      builder: (context) => MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: TrackOrderScreen(orderDetailsModel: TrackOrderScreenTestSetup.orderDetailsModel),
+      supportedLocales: const [Locale('ar'), Locale('en')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: Builder(
+        builder: (context) => MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: TrackOrderScreen(
+            orderDetailsModel: TrackOrderScreenTestSetup.orderDetailsModel,
+          ),
+        ),
       ),
-    ),
-  );
+    );
   }
 
-
-    testWidgets('track order screen with no internet error state delivery', (tester) async {
+  testWidgets('track order screen with no internet error state delivery', (
+    tester,
+  ) async {
     await tester.binding.setSurfaceSize(const Size(1080, 1920));
-    
+
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
-    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
-    
-    when(mockedViewModel.state).thenReturn(TrackOrderStates(
-        orderState: BaseState(data: 1,error: Exception("no internet")),
-        getDriverDataState: BaseState(isLoading: false, error: null), // 👈 THIS IS THE FIX
-      ));
-    when(mockedViewModel.stream).thenAnswer((_) => Stream<TrackOrderStates>.fromIterable([
+    when(
+      mockedViewModel.editOrderStateOnFireBase(1),
+    ).thenReturn(AppLocale.accepted.tr());
+    when(
+      mockedViewModel.editDeliveryStatus(1),
+    ).thenReturn(AppLocale.arrivedAtPickupPoint.tr());
+
+    when(mockedViewModel.state).thenReturn(
+      TrackOrderStates(
+        orderState: BaseState(data: 1, error: Exception("no internet")),
+        getDriverDataState: BaseState(
+          isLoading: false,
+          error: null,
+        ), // 👈 THIS IS THE FIX
+      ),
+    );
+    when(mockedViewModel.stream).thenAnswer(
+      (_) => Stream<TrackOrderStates>.fromIterable([
         TrackOrderStates(
-          orderState: BaseState(data: 1,error: Exception(AppLocale.noInternet.tr())),
-          getDriverDataState: BaseState(isLoading: false, error: null), // 👈 AND HERE
+          orderState: BaseState(
+            data: 1,
+            error: Exception(AppLocale.noInternet.tr()),
+          ),
+          getDriverDataState: BaseState(
+            isLoading: false,
+            error: null,
+          ), // 👈 AND HERE
         ),
-    ]).asBroadcastStream());
+      ]).asBroadcastStream(),
+    );
     await tester.pumpWidget(buildTrackOrderScreen());
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
     await tester.pumpAndSettle();
-    
+
     var allText = tester.widgetList<Text>(find.byType(Text));
     for (var t in allText) {
-    print('TEXT FOUND: "${t.data}"');
+      print('TEXT FOUND: "${t.data}"');
     }
     TrackOrderScreenTestSetup.findConstatntWidgets();
-    expect(find.byType(Text),findsNWidgets(23));
-    expect(find.byWidgetPredicate((widget) { 
-      return widget is TrackOrderIndecatorWidget && widget.orderState == 1;
-    },),findsNWidgets(1));
+    expect(find.byType(Text), findsNWidgets(23));
+    expect(
+      find.byWidgetPredicate((widget) {
+        return widget is TrackOrderIndecatorWidget && widget.orderState == 1;
+      }),
+      findsNWidgets(1),
+    );
     expect(
       find.descendant(
         of: find.byType(TrackOrderIndecatorWidget),
         matching: find.byWidgetPredicate((widget) {
-          return widget is Container && widget.decoration is BoxDecoration && (widget.decoration as BoxDecoration).color == AppColors.successColor; 
+          return widget is Container &&
+              widget.decoration is BoxDecoration &&
+              (widget.decoration as BoxDecoration).color ==
+                  AppColors.successColor;
         }),
       ),
       findsNWidgets(1),
@@ -106,33 +126,44 @@ void main() {
       find.descendant(
         of: find.byType(OrderDetailsCard),
         matching: find.byWidgetPredicate((widget) {
-          return widget is Text && widget.data == "${AppLocale.status.tr()} : ${AppLocale.accepted}" && widget.style!.color == AppColors.successColor;
+          return widget is Text &&
+              widget.data ==
+                  "${AppLocale.status.tr()} : ${AppLocale.accepted}" &&
+              widget.style!.color == AppColors.successColor;
         }),
       ),
       findsOneWidget,
     );
-    
-    expect(find.byWidgetPredicate((widget) { 
-      return widget is OrderDetailsCard && widget.state == AppLocale.accepted;
-    },),findsNWidgets(1));
 
-    expect(find.byWidgetPredicate((widget) {
-      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickuppoint;
-      
-    },),findsNWidgets(1));
-    
-    expect(find.byWidgetPredicate((widget) {
-      return widget is AlertDialog && widget.content is Text && (widget.content as Text).data == "Exception: ${AppLocale.noInternet.tr()}";
-      
-    },),findsNWidgets(1));
+    expect(
+      find.byWidgetPredicate((widget) {
+        return widget is OrderDetailsCard && widget.state == AppLocale.accepted;
+      }),
+      findsNWidgets(1),
+    );
+
+    expect(
+      find.byWidgetPredicate((widget) {
+        return widget is ElevatedButton &&
+            widget.child is Text &&
+            (widget.child as Text).data == AppLocale.arrivedAtPickupPoint;
+      }),
+      findsNWidgets(1),
+    );
+
+    expect(
+      find.byWidgetPredicate((widget) {
+        return widget is AlertDialog &&
+            widget.content is Text &&
+            (widget.content as Text).data ==
+                "Exception: ${AppLocale.noInternet.tr()}";
+      }),
+      findsNWidgets(1),
+    );
     await getItInstance.reset();
-    await tester.pump(const Duration(seconds: 11)); 
+    await tester.pump(const Duration(seconds: 11));
   });
-
-
-  
 }
-
 
 // "${AppLocale.status.tr()} : ${AppLocale.accepted}"
 //"Exception: no internet"
