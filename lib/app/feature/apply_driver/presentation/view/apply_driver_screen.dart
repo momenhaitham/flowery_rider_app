@@ -1,3 +1,5 @@
+// ignore_for_file: strict_top_level_inference
+
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/di/di.dart';
@@ -70,7 +72,7 @@ class _ApplyDriverScreenState extends State<ApplyDriverScreen> {
         ShowDialogUtils.showMessage(
           context,
           title: AppLocale.error.tr(),
-          content: getException(context, event.errorMessage),
+          content: getException(event.errorMessage),
         );
         break;
       case NavigateToLoginEvent():

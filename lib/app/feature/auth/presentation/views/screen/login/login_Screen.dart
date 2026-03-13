@@ -236,7 +236,7 @@ class LoginScreen extends StatelessWidget {
               builder: (context) {
                 return AlertDialog(
                   content: Text(
-                    getException(context, state.loginState?.error),
+                    getException(state.loginState?.error),
                     style: AppTheme.lightTheme.textTheme.bodyMedium,
                   ),
                   backgroundColor: AppTheme.lightTheme.colorScheme.onPrimary,
