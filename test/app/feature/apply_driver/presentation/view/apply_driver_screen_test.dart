@@ -21,7 +21,6 @@ class MockStreamController extends Mock
 
 void main() {
   late MockApplyDriverViewModel mockViewModel;
-  late MockStreamController mockStreamController;
   late StreamController<ApplyDriverEvent> actualStreamController;
 
   setUpAll(() {
@@ -31,7 +30,6 @@ void main() {
 
   setUp(() {
     mockViewModel = MockApplyDriverViewModel();
-    mockStreamController = MockStreamController();
     actualStreamController = StreamController<ApplyDriverEvent>();
 
     // Setup default stubs

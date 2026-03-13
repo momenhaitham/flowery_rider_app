@@ -1,109 +1,42 @@
-// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
-
-// ignore_for_file: constant_identifier_names
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// Generated from translation files
+// Last generated: 2026-03-13 23:48:25.449673
 
 class AppLocale {
   AppLocale._();
-  static const login = 'login';
-  static const logout = 'logout';
-  static const welcome = 'welcome';
-  static const email = 'email';
-  static const password = 'password';
-  static const error_invalid_credentials = 'error_invalid_credentials';
-  static const confirmpassword = 'confirmpassword';
-  static const name = 'name';
-  static const regster = 'regster';
-  static const create_account = 'create_account';
-  static const forgot_password = 'forgot_password';
-  static const phonnumber = 'phonnumber';
-  static const reset_password = 'reset_password';
-  static const loginwith_google = 'loginwith_google';
-  static const already_have_account = 'already_have_account';
-  static const dont_have_account = 'dont_have_account';
-  static const verfy_email = 'verfy_email';
-  static const or = 'or';
-  static const loading = 'loading';
-  static const connectionFailed = 'connectionFailed';
-  static const emailRequired = 'emailRequired';
-  static const emailInvalid = 'emailInvalid';
-  static const passwordRequired = 'passwordRequired';
-  static const passwordMinLength = 'passwordMinLength';
-  static const passwordUpperCase = 'passwordUpperCase';
-  static const passwordLowerCase = 'passwordLowerCase';
-  static const passwordNumber = 'passwordNumber';
-  static const passwordSpecialChar = 'passwordSpecialChar';
-  static const confirmPasswordRequired = 'confirmPasswordRequired';
-  static const passwordNotMatch = 'passwordNotMatch';
-  static const userNameRequired = 'userNameRequired';
-  static const phoneNumberRequired = 'phoneNumberRequired';
-  static const firstNameRequired = 'firstNameRequired';
-  static const lastNameRequired = 'lastNameRequired';
-  static const Welcometo = 'Welcometo';
-  static const Floweryriderapp = 'Floweryriderapp';
-  static const Applynow = 'Applynow';
-  static const apply = 'apply';
-  static const welcome_apply = 'welcome_apply';
-  static const delivery_man_join = 'delivery_man_join';
-  static const country = 'country';
-  static const select_country = 'select_country';
-  static const first_legal_name = 'first_legal_name';
-  static const enter_first_legal_name = 'enter_first_legal_name';
-  static const second_legal_name = 'second_legal_name';
-  static const enter_second_legal_name = 'enter_second_legal_name';
-  static const vehicle_type = 'vehicle_type';
-  static const vehicle_number = 'vehicle_number';
-  static const enter_vehicle_number = 'enter_vehicle_number';
-  static const vehicle_license = 'vehicle_license';
-  static const upload_license_photo = 'upload_license_photo';
-  static const enter_you_email = 'enter_you_email';
-  static const phone_number = 'phone_number';
-  static const enter_phone_number = 'enter_phone_number';
-  static const id_number = 'id_number';
-  static const enter_national_id_number = 'enter_national_id_number';
-  static const id_image = 'id_image';
-  static const upload_id_image = 'upload_id_image';
-  static const confirm_password = 'confirm_password';
-  static const gender = 'gender';
-  static const continue_btn = 'continue_btn';
-  static const vehicle_number_required = 'vehicle_number_required';
-  static const id_number_required = 'id_number_required';
-  static const country_required = 'country_required';
-  static const vehicle_type_required = 'vehicle_type_required';
-  static const gender_required = 'gender_required';
-  static const vehicle_license_required = 'vehicle_license_required';
-  static const id_image_required = 'id_image_required';
-  static const car = 'car';
-  static const motorcycle = 'motorcycle';
-  static const bicycle = 'bicycle';
-  static const application_submitted = 'application_submitted';
-  static const application_submitted_description =
-      'application_submitted_description';
-  static const error = 'error';
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// Generated from translation files
-// Last generated: 2026-03-10 08:40:48.833059
+
   static const String Applynow = 'Applynow';
   static const String Floweryriderapp = 'Floweryriderapp';
   static const String LocationPermissionsAreDenied = 'LocationPermissionsAreDenied';
   static const String Welcometo = 'Welcometo';
   static const String accepted = 'accepted';
   static const String already_have_account = 'already_have_account';
+  static const String application_submitted = 'application_submitted';
+  static const String application_submitted_description = 'application_submitted_description';
+  static const String apply = 'apply';
   static const String arabic = 'arabic';
   static const String areYouSureCancelOrder = 'areYouSureCancelOrder';
   static const String arrived = 'arrived';
   static const String arrivedAtPickuppoint = 'arrivedAtPickuppoint';
   static const String arrivedTotheuser = 'arrivedTotheuser';
+  static const String bicycle = 'bicycle';
   static const String cancel = 'cancel';
+  static const String car = 'car';
   static const String change = 'change';
   static const String confirm = 'confirm';
   static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
+  static const String confirm_password = 'confirm_password';
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
   static const String continueTxt = 'continueTxt';
+  static const String continue_btn = 'continue_btn';
+  static const String country = 'country';
+  static const String country_required = 'country_required';
   static const String create_account = 'create_account';
   static const String delivered = 'delivered';
   static const String deliveredToTheUser = 'deliveredToTheUser';
+  static const String delivery_man_join = 'delivery_man_join';
   static const String done = 'done';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
@@ -115,17 +48,30 @@ class AppLocale {
   static const String enterOtp = 'enterOtp';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
+  static const String enter_first_legal_name = 'enter_first_legal_name';
+  static const String enter_national_id_number = 'enter_national_id_number';
+  static const String enter_phone_number = 'enter_phone_number';
+  static const String enter_second_legal_name = 'enter_second_legal_name';
+  static const String enter_vehicle_number = 'enter_vehicle_number';
+  static const String enter_you_email = 'enter_you_email';
+  static const String error = 'error';
   static const String error_invalid_credentials = 'error_invalid_credentials';
   static const String faildToCancelOrder = 'faildToCancelOrder';
   static const String failedToGetDriverDataOrDeterminePosition = 'failedToGetDriverDataOrDeterminePosition';
   static const String female = 'female';
   static const String firstName = 'firstName';
   static const String firstNameRequired = 'firstNameRequired';
+  static const String first_legal_name = 'first_legal_name';
   static const String forgetPassword = 'forgetPassword';
   static const String forgetPasswordQuote = 'forgetPasswordQuote';
   static const String forgot_password = 'forgot_password';
   static const String gender = 'gender';
+  static const String gender_required = 'gender_required';
   static const String home = 'home';
+  static const String id_image = 'id_image';
+  static const String id_image_required = 'id_image_required';
+  static const String id_number = 'id_number';
+  static const String id_number_required = 'id_number_required';
   static const String invalidOtp = 'invalidOtp';
   static const String language = 'language';
   static const String lastName = 'lastName';
@@ -137,6 +83,7 @@ class AppLocale {
   static const String loginwith_google = 'loginwith_google';
   static const String logout = 'logout';
   static const String male = 'male';
+  static const String motorcycle = 'motorcycle';
   static const String name = 'name';
   static const String no = 'no';
   static const String noInternet = 'noInternet';
@@ -158,6 +105,7 @@ class AppLocale {
   static const String paymentmethod = 'paymentmethod';
   static const String phoneNumber = 'phoneNumber';
   static const String phoneNumberRequired = 'phoneNumberRequired';
+  static const String phone_number = 'phone_number';
   static const String phonnumber = 'phonnumber';
   static const String picked = 'picked';
   static const String pickupaddress = 'pickupaddress';
@@ -169,6 +117,8 @@ class AppLocale {
   static const String resetPasswordQuote = 'resetPasswordQuote';
   static const String reset_password = 'reset_password';
   static const String retry = 'retry';
+  static const String second_legal_name = 'second_legal_name';
+  static const String select_country = 'select_country';
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
   static const String successfully = 'successfully';
@@ -178,12 +128,21 @@ class AppLocale {
   static const String update = 'update';
   static const String updateProfile = 'updateProfile';
   static const String update_profile_error = 'update_profile_error';
+  static const String upload_id_image = 'upload_id_image';
+  static const String upload_license_photo = 'upload_license_photo';
   static const String uploading_photo = 'uploading_photo';
   static const String uploading_photo_error = 'uploading_photo_error';
   static const String userNameRequired = 'userNameRequired';
   static const String useraddress = 'useraddress';
   static const String vehicleInfo = 'vehicleInfo';
+  static const String vehicle_license = 'vehicle_license';
+  static const String vehicle_license_required = 'vehicle_license_required';
+  static const String vehicle_number = 'vehicle_number';
+  static const String vehicle_number_required = 'vehicle_number_required';
+  static const String vehicle_type = 'vehicle_type';
+  static const String vehicle_type_required = 'vehicle_type_required';
   static const String verfy_email = 'verfy_email';
   static const String welcome = 'welcome';
+  static const String welcome_apply = 'welcome_apply';
   static const String yes = 'yes';
 }
