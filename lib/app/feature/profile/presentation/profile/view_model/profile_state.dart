@@ -6,20 +6,18 @@ import '../../../domain/model/driver_entity.dart';
 
 class ProfileState extends Equatable {
   final BaseState<DriverEntity> profileState;
-  const ProfileState({required this.profileState});
+  final bool? isLogout;
+  const ProfileState({required this.profileState,this.isLogout});
 
-  ProfileState copyWith({BaseState<DriverEntity>? profileState}) {
+  ProfileState copyWith({BaseState<DriverEntity>? profileState,bool? isLogout}) {
     return ProfileState(
       profileState: profileState ?? this.profileState,
-      // BaseState(
-      //   isLoading: profileState?.isLoading ?? this.profileState.isLoading,
-      //   data: profileState?.data ?? this.profileState.data,
-      //   error: profileState?.error ?? this.profileState.error,
-      // ),
+      isLogout: isLogout??this.isLogout
+
     );
   }
 
   @override
-  List<Object?> get props => [profileState];
+  List<Object?> get props => [profileState,isLogout];
 }
 

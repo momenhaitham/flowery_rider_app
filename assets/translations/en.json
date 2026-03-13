@@ -95,6 +95,7 @@
   "firstName": "First Name",
   "lastName": "Last Name",
   "vehicleInfo": "vehicle info",
+  "confirmLogout": "confirm Logout!!",
   "locationServicesAreDisabled": "Location services are disabled.",
   "LocationPermissionsAreDenied": "Location permissions are denied",
   "locationPermissionsArePermanentlyDenied":"Location permissions are permanently denied",

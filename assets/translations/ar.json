@@ -95,6 +95,8 @@
   "firstName": "الاسم الاول",
   "lastName": "الاسم الاخير",
   "vehicleInfo": "بيانات المركبة",
+  "confirmLogout": "تأكيد تسجيل الخروج"
+,
   "locationServicesAreDisabled": "خدمات الموقع معطلة.",
   "LocationPermissionsAreDenied": "أذونات الموقع مرفوضة",
   "locationPermissionsArePermanentlyDenied":"أذونات الموقع مرفوضة بشكل دائم",

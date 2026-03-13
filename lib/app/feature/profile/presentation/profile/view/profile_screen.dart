@@ -1,4 +1,5 @@
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/logout_dialog.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           if(mounted) {
             Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
           }
+          case ShowLogoutDialogEvent():
+            if(mounted) {
+              showDialog(context: context, builder:(context) {
+                return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: LogoutDialog(),
+                );
+              },);
+            }
+            break;
       }
     },);
   }
