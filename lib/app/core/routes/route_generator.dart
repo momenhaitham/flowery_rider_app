@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 
 import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/application_success_screen.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/apply_driver_screen.dart';
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
@@ -28,7 +30,7 @@ class RouteGenerator {
 
     /// Onboarding
       case Routes.onboarding:
-        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+        return MaterialPageRoute(builder: (_) =>  OnboardingScreen());
 
     /// Login
       case Routes.login:
@@ -85,6 +87,11 @@ class RouteGenerator {
 
       case Routes.orderDeliveredSuccefullyScreen:
         return MaterialPageRoute(builder: (_) =>  OrderDeliveredSuccefullyScreen());  
+      
+      case Routes.applicationSuccess:
+        return MaterialPageRoute(builder: (_) => ApplicationSuccessScreen());
+      case Routes.applyDriver:
+        return MaterialPageRoute(builder: (_) => ApplyDriverScreen());
       default:
         return unDefinedRoute();
     }
