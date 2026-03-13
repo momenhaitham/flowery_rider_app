@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-13 23:48:25.449673
+// Last generated: 2026-03-14 00:32:33.411135
 
 class AppLocale {
   AppLocale._();
@@ -24,11 +24,13 @@ class AppLocale {
   static const String car = 'car';
   static const String change = 'change';
   static const String confirm = 'confirm';
+  static const String confirmLogout = 'confirmLogout';
   static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
   static const String confirm_password = 'confirm_password';
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
+  static const String continueAsGuest = 'continueAsGuest';
   static const String continueTxt = 'continueTxt';
   static const String continue_btn = 'continue_btn';
   static const String country = 'country';
@@ -38,6 +40,7 @@ class AppLocale {
   static const String deliveredToTheUser = 'deliveredToTheUser';
   static const String delivery_man_join = 'delivery_man_join';
   static const String done = 'done';
+  static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
   static const String email = 'email';
@@ -45,7 +48,9 @@ class AppLocale {
   static const String emailRequired = 'emailRequired';
   static const String emailVerification = 'emailVerification';
   static const String english = 'english';
+  static const String enterEmail = 'enterEmail';
   static const String enterOtp = 'enterOtp';
+  static const String enterPassword = 'enterPassword';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
   static const String enter_first_legal_name = 'enter_first_legal_name';
@@ -112,6 +117,7 @@ class AppLocale {
   static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
+  static const String rememberMe = 'rememberMe';
   static const String resend = 'resend';
   static const String resetPassword = 'resetPassword';
   static const String resetPasswordQuote = 'resetPasswordQuote';
@@ -119,6 +125,7 @@ class AppLocale {
   static const String retry = 'retry';
   static const String second_legal_name = 'second_legal_name';
   static const String select_country = 'select_country';
+  static const String signup = 'signup';
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
   static const String successfully = 'successfully';
