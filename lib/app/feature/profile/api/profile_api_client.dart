@@ -8,7 +8,6 @@ import '../../apply_driver/domain/request/apply_driver_request.dart';
 import '../data/model/change_password_response.dart';
 import '../data/model/profile_photo_response.dart';
 import '../domain/request/change_password_request.dart';
-import '../domain/request/update_profile_request.dart';
 part 'profile_api_client.g.dart';
 @RestApi(baseUrl: AppEndPoint.baseUrl)
 abstract class ProfileApiClient {

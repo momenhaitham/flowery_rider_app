@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-14 17:15:50.634757
+// Last generated: 2026-03-14 18:58:00.085828
 
 class AppLocale {
   AppLocale._();
 
-  static const String Applynow = 'Applynow';
-  static const String Floweryriderapp = 'Floweryriderapp';
+  static const String ApplyNow = 'ApplyNow';
   static const String LocationPermissionsAreDenied = 'LocationPermissionsAreDenied';
-  static const String Welcometo = 'Welcometo';
+  static const String WelcomeTo = 'WelcomeTo';
   static const String accept = 'accept';
   static const String accepted = 'accepted';
   static const String already_have_account = 'already_have_account';
@@ -18,8 +17,8 @@ class AppLocale {
   static const String arabic = 'arabic';
   static const String areYouSureCancelOrder = 'areYouSureCancelOrder';
   static const String arrived = 'arrived';
-  static const String arrivedAtPickuppoint = 'arrivedAtPickuppoint';
-  static const String arrivedTotheuser = 'arrivedTotheuser';
+  static const String arrivedAtPickupPoint = 'arrivedAtPickupPoint';
+  static const String arrivedToTheUser = 'arrivedToTheUser';
   static const String bicycle = 'bicycle';
   static const String cancel = 'cancel';
   static const String cancelled = 'cancelled';
@@ -32,7 +31,6 @@ class AppLocale {
   static const String confirmPassword = 'confirmPassword';
   static const String confirmPasswordRequired = 'confirmPasswordRequired';
   static const String confirm_password = 'confirm_password';
-  static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
   static const String continueAsGuest = 'continueAsGuest';
   static const String continueTxt = 'continueTxt';
@@ -48,6 +46,7 @@ class AppLocale {
   static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
+  static const String editVehicle = 'editVehicle';
   static const String egp = 'egp';
   static const String email = 'email';
   static const String emailInvalid = 'emailInvalid';
@@ -68,12 +67,14 @@ class AppLocale {
   static const String error = 'error';
   static const String error_invalid_credentials = 'error_invalid_credentials';
   static const String faildToCancelOrder = 'faildToCancelOrder';
+  static const String failedToCancelOrder = 'failedToCancelOrder';
   static const String failedToGetDriverDataOrDeterminePosition = 'failedToGetDriverDataOrDeterminePosition';
   static const String female = 'female';
   static const String firstName = 'firstName';
   static const String firstNameRequired = 'firstNameRequired';
   static const String first_legal_name = 'first_legal_name';
   static const String flower_order = 'flower_order';
+  static const String floweryRiderApp = 'floweryRiderApp';
   static const String flowery_rider = 'flowery_rider';
   static const String forgetPassword = 'forgetPassword';
   static const String forgetPasswordQuote = 'forgetPasswordQuote';
@@ -93,7 +94,7 @@ class AppLocale {
   static const String locationPermissionsArePermanentlyDenied = 'locationPermissionsArePermanentlyDenied';
   static const String locationServicesAreDisabled = 'locationServicesAreDisabled';
   static const String login = 'login';
-  static const String loginwith_google = 'loginwith_google';
+  static const String loginWithGoogle = 'loginWithGoogle';
   static const String logout = 'logout';
   static const String male = 'male';
   static const String motorcycle = 'motorcycle';
@@ -108,10 +109,10 @@ class AppLocale {
   static const String ok = 'ok';
   static const String or = 'or';
   static const String orderCancelled = 'orderCancelled';
+  static const String orderDetails = 'orderDetails';
   static const String orderRejected = 'orderRejected';
-  static const String orderdetails = 'orderdetails';
   static const String orders = 'orders';
-  static const String outfordelivery = 'outfordelivery';
+  static const String outForDelivery = 'outForDelivery';
   static const String password = 'password';
   static const String passwordChanged = 'passwordChanged';
   static const String passwordChangedSuccessfully = 'passwordChangedSuccessfully';
@@ -122,19 +123,18 @@ class AppLocale {
   static const String passwordRequired = 'passwordRequired';
   static const String passwordSpecialChar = 'passwordSpecialChar';
   static const String passwordUpperCase = 'passwordUpperCase';
-  static const String paymentmethod = 'paymentmethod';
+  static const String paymentMethod = 'paymentMethod';
   static const String phoneNumber = 'phoneNumber';
   static const String phoneNumberRequired = 'phoneNumberRequired';
   static const String phone_number = 'phone_number';
-  static const String phonnumber = 'phonnumber';
   static const String pick_up_address = 'pick_up_address';
   static const String picked = 'picked';
+  static const String pickupAddress = 'pickupAddress';
   static const String pickup_address = 'pickup_address';
-  static const String pickupaddress = 'pickupaddress';
   static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String recent_orders = 'recent_orders';
-  static const String regster = 'regster';
+  static const String register = 'register';
   static const String reject = 'reject';
   static const String rememberMe = 'rememberMe';
   static const String resend = 'resend';
@@ -149,7 +149,7 @@ class AppLocale {
   static const String status = 'status';
   static const String storeInfoUnavailable = 'storeInfoUnavailable';
   static const String successfully = 'successfully';
-  static const String thankyou = 'thankyou';
+  static const String thankYou = 'thankYou';
   static const String the_order_delivered = 'the_order_delivered';
   static const String total = 'total';
   static const String update = 'update';
@@ -163,15 +163,17 @@ class AppLocale {
   static const String userInfoUnavailable = 'userInfoUnavailable';
   static const String userNameRequired = 'userNameRequired';
   static const String user_address = 'user_address';
-  static const String useraddress = 'useraddress';
   static const String vehicleInfo = 'vehicleInfo';
+  static const String vehicleLicense = 'vehicleLicense';
+  static const String vehicleNumber = 'vehicleNumber';
+  static const String vehicleType = 'vehicleType';
   static const String vehicle_license = 'vehicle_license';
   static const String vehicle_license_required = 'vehicle_license_required';
   static const String vehicle_number = 'vehicle_number';
   static const String vehicle_number_required = 'vehicle_number_required';
   static const String vehicle_type = 'vehicle_type';
   static const String vehicle_type_required = 'vehicle_type_required';
-  static const String verfy_email = 'verfy_email';
+  static const String verifyEmail = 'verifyEmail';
   static const String welcome = 'welcome';
   static const String welcome_apply = 'welcome_apply';
   static const String yes = 'yes';

@@ -72,7 +72,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 Navigator.pop(context);
                 Navigator.pop(context);
               }else if(viewmodel.state.orderState?.data!=6){
-                ShowDialogUtils.showMessage(context,title: AppLocale.failedToCancelOrder.tr(),
+                ShowDialogUtils.showMessage(context,title: AppLocale.faildToCancelOrder.tr(),
                 posActionName: AppLocale.ok.tr(),
                 posAction: (){
                   Navigator.pop(context);
@@ -127,7 +127,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 return OrderDetailsCard(orderCreatedTime:widget.orderDetailsModel?.createdAt,orderId: widget.orderDetailsModel?.orderNumber,state: viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),);
               },),
               SizedBox(height: height*0.04,),
-              Text(AppLocale.pickupAddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+              Text(AppLocale.pick_up_address.tr(),style:Theme.of(context).textTheme.headlineLarge,),
               SizedBox(height: height*0.02,),
               UserAddressCard(
                 usePhoneNumber: widget.orderDetailsModel?.store?.storePhone,
@@ -188,7 +188,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel?.orderId??""));
                     } 
 
-                    }else if(currentOrderState == 5){
+                    }
+                    if(currentOrderState == 4){
                       viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel?.orderId??""));
                     }  
                     

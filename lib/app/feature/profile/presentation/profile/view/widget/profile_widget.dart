@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/app_locale/app_locale.dart';
 import '../../../../../../core/consts/app_consts.dart';
 import '../../../../../../core/resources/app_colors.dart';
-import '../../../../../../core/routes/app_route.dart';
 import '../../../../../../core/utils/helper_function.dart';
 import '../../view_model/profile_intent.dart';
 import '../../view_model/profile_state.dart';
@@ -122,7 +121,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         const SizedBox(height: 10),
        ProfileCartWidget(
          onTap: () {
-           profileViewModel?.doIntent(NavigateToEditVehicleIntent(driver));
+           widget.profileViewModel.doIntent(NavigateToEditVehicleIntent(driver));
          },
          title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
       ],

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/dio_model/token_interceptors.dart';
-import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
 import 'package:flowery_rider_app/app/feature/orders/api/orders_api_client.dart';

@@ -8,7 +8,6 @@ import '../../apply_driver/domain/request/apply_driver_request.dart';
 import '../domain/model/driver_entity.dart';
 import '../domain/profile_repo_contract.dart';
 import '../domain/request/change_password_request.dart';
-import '../domain/request/update_profile_request.dart';
 import 'model/change_password_response.dart';
 import 'model/profile_photo_response.dart';
 

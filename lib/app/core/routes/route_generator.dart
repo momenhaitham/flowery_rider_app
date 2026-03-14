@@ -3,6 +3,7 @@ import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/log
 import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/orders/presentation/view/orders_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/screen/update_profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/order_delivered_succefully_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/screen/update_vehicle_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,6 @@ import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
 
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
-import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
-import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {

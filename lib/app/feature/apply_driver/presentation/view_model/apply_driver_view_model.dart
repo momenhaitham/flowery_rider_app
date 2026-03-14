@@ -9,7 +9,6 @@ import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view_mod
 import 'package:flowery_rider_app/app/feature/countries/domain/get_all_countries_use_case.dart';
 import 'package:flowery_rider_app/app/feature/countries/domain/model/country_entity.dart';
 import 'package:flowery_rider_app/app/feature/vehicles/domain/get_all_vehicles_use_case.dart';
-import 'package:flowery_rider_app/app/feature/vehicles/domain/model/vehicle_entity.dart';
 import 'package:injectable/injectable.dart';
 @injectable
 class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverState>{

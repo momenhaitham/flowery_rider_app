@@ -26,11 +26,11 @@ class OnboardingScreen extends StatelessWidget{
               height: height * 0.43,
             ),
             Text(
-              AppLocale.Welcometo.tr(),
+              AppLocale.welcome.tr(),
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             Text(
-              AppLocale.Floweryriderapp.tr(),
+              AppLocale.floweryRiderApp.tr(),
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             SizedBox(height: height * 0.05),
@@ -54,7 +54,7 @@ class OnboardingScreen extends StatelessWidget{
                 backgroundColor: AppColors.lightPinkColor,
               ),
               child: Text(
-                AppLocale.Applynow.tr(),
+                AppLocale.ApplyNow.tr(),
                 style: Theme.of(
                   context,
                 ).textTheme.labelMedium!.copyWith(fontSize: FontSize.s20),

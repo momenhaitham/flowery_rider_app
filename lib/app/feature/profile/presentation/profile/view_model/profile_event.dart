@@ -5,4 +5,9 @@ class NavigateToEditProfileOrVehicleScreen extends ProfileEvent {
   final DriverEntity driverEntity;
   final bool isProfile;
   NavigateToEditProfileOrVehicleScreen(this.driverEntity,{this.isProfile=true});
+  
 }
+
+class ShowLogoutDialogEvent extends ProfileEvent {}
+
+class ShowLanguageDialogEvent extends ProfileEvent {}

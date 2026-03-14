@@ -14,7 +14,6 @@ import '../../../../../../core/utils/helper_function.dart';
 import '../../../../../../core/validation/app_validators.dart';
 import '../../../../../apply_driver/domain/request/apply_driver_request.dart';
 import '../../../../domain/model/driver_entity.dart';
-import '../../../../domain/request/update_profile_request.dart';
 import '../../../profile/view/widget/notification_widget.dart';
 import '../../controller/gender_controller.dart';
 import '../../controller/photo_controller.dart';
