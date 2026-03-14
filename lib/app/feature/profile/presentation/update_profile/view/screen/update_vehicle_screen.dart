@@ -210,6 +210,7 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
                         :widget.driver.vehicleLicense?.substring(75) ?? ''
                         ,
                         style: TextStyle(fontSize: 16),
+                        overflow: TextOverflow.clip,
                       ),
                       PhotoWidget(photoController:photoController ,
                           photoUrl: widget.driver.photo??'',isProfile: false,
@@ -251,6 +252,7 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
   Widget _buildCustomField({required String label, required Widget child}) {
     return InputDecorator(
       decoration: InputDecoration(
+        
         labelText: label,
         labelStyle: const TextStyle(color: Colors.grey, fontSize: 18),
         enabledBorder: OutlineInputBorder(

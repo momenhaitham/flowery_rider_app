@@ -29,16 +29,15 @@ abstract class DiModule {
   ProfileApiClient provideProfileApiClient(Dio dio) =>
       ProfileApiClient(dio, baseUrl: AppEndPoint.baseUrl);
 
-  @lazySingleton
+   @lazySingleton
   Dio provideDio(
-    BaseOptions baseOptions,
-    PrettyDioLogger logger,
-    TokenInterceptor tokenInterceptor,
+      BaseOptions baseOptions,
+      PrettyDioLogger logger,
+      TokenInterceptor tokenInterceptor,
       ) {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
-    dio.interceptors.add(logger);
     dio.interceptors.add(tokenInterceptor);
-
+    dio.interceptors.add(logger);
     return dio;
   }
 
