@@ -6,6 +6,7 @@
   "enterEmail": "Enter your email",
   "enterPassword": "Enter your password",
   "password": "Password",
+  "forgetPassword": "Forget Password ?",
   "rememberMe": "Remember me",
   "continueAsGuest": "Continue as Guest",
   "dontHaveAnAccount": "Don't have an account?",
@@ -93,12 +94,9 @@
   "editProfile": "Edit Profile",
   "firstName": "First Name",
   "lastName": "Last Name",
-  "cancel": "cancel",
   "passwordChanged": "Password changed successfully",
-  "resetPassword": "Reset Password",
   "currentPassword": "Current Password",
   "newPassword": "New Password",
-  "confirmPassword": "Confirm Password",
   "vehicleInfo": "vehicle info",
   "confirmLogout": "confirm Logout!",
   "locationServicesAreDisabled": "Location services are disabled.",
@@ -161,5 +159,6 @@
   "egp":"EGP",
   "orderRejected":"Order rejected",
   "storeInfoUnavailable":"Store information unavailable",
-  "userInfoUnavailable":"User information unavailable"
+  "userInfoUnavailable":"User information unavailable",
+  "passwordChangedSuccessfully":"Password Changed Successfully"
 }

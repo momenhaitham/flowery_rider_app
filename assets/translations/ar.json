@@ -67,11 +67,8 @@
   "forgetPasswordQuote": "يرجى إدخال البريد الإلكتروني المرتبط بحسابك",
   "continueTxt": "متابعة",
   "enterYourEmail": "أدخل بريدك الإلكتروني",
-  "resetPassword": "إعادة تعيين كلمة المرور",
   "resetPasswordQuote": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل، تتضمن حرفًا كبيرًا ورقمًا واحدًا على الأقل",
   "enterYourPassword": "أدخل كلمة المرور الخاصة بك",
-  "confirmPassword": "تأكيد كلمة المرور",
-  "cancel": "إلغاء",
   "ok": "موافق",
   "confirm": "تأكيد",
   "invalidOtp": "كود غير صحيح",
@@ -162,5 +159,6 @@
   "egp": "ج.م",
   "orderRejected": "تم رفض الطلب",
   "storeInfoUnavailable": "معلومات المتجر غير متوفرة",
-  "userInfoUnavailable": "معلومات المستخدم غير متوفرة"
+  "userInfoUnavailable": "معلومات المستخدم غير متوفرة",
+  "passwordChangedSuccessfully":"تم تغيير كلمة المرور بنجاح"
 }

@@ -1,5 +1,7 @@
 
 import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/reset_password/view/change_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/order_delivered_succefully_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
@@ -15,9 +17,7 @@ import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/
 import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
-import 'package:flutter/material.dart';
 
-import '../../feature/profile/presentation/profile/view/profile_screen.dart';
 
 // TODO: Uncomment imports when screens are ready:
 // import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
@@ -77,9 +77,11 @@ class RouteGenerator {
       /// Profile
       case Routes.profileScreen:
         return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        
       case Routes.changePasswordScreen:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+
+    
 
       /// Update Profile
       case Routes.updateProfileScreen:
@@ -91,7 +93,7 @@ class RouteGenerator {
           );
         }
         return unDefinedRoute();
-    /// Track Order  
+     /// Track Order  
       case Routes.trackOrder:
          final OrderDetailsModel orderDetailsModel = settings.arguments as OrderDetailsModel;
          

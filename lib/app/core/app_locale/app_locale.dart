@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-14 04:23:41.835332
+// Last generated: 2026-03-14 10:11:11.106152
 
 class AppLocale {
   AppLocale._();
@@ -37,6 +37,7 @@ class AppLocale {
   static const String country = 'country';
   static const String country_required = 'country_required';
   static const String create_account = 'create_account';
+  static const String currentPassword = 'currentPassword';
   static const String delivered = 'delivered';
   static const String deliveredToTheUser = 'deliveredToTheUser';
   static const String delivery_man_join = 'delivery_man_join';
@@ -94,6 +95,7 @@ class AppLocale {
   static const String male = 'male';
   static const String motorcycle = 'motorcycle';
   static const String name = 'name';
+  static const String newPassword = 'newPassword';
   static const String no = 'no';
   static const String noInternet = 'noInternet';
   static const String noInternetConnection = 'noInternetConnection';
@@ -106,6 +108,8 @@ class AppLocale {
   static const String orders = 'orders';
   static const String outfordelivery = 'outfordelivery';
   static const String password = 'password';
+  static const String passwordChanged = 'passwordChanged';
+  static const String passwordChangedSuccessfully = 'passwordChangedSuccessfully';
   static const String passwordLowerCase = 'passwordLowerCase';
   static const String passwordMinLength = 'passwordMinLength';
   static const String passwordNotMatch = 'passwordNotMatch';
