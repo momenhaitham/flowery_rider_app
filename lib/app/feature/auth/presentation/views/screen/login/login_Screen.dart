@@ -8,6 +8,7 @@ import 'package:flowery_rider_app/app/core/theme/app_theme.dart';
 import 'package:flowery_rider_app/app/core/utils/app_text_field.dart';
 import 'package:flowery_rider_app/app/core/utils/helper_function.dart';
 import 'package:flowery_rider_app/app/core/validation/app_validators.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/apply_driver_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/presentation/view_model/login_events.dart';
 import 'package:flowery_rider_app/app/feature/auth/presentation/view_model/login_states.dart';
 import 'package:flowery_rider_app/app/feature/auth/presentation/view_model/login_view_model.dart';
@@ -187,7 +188,7 @@ class LoginScreen extends StatelessWidget {
                           SizedBox(width: AppSize.s4),
                           InkWell(
                             onTap: () =>
-                                Navigator.pushNamed(context, Routes.register),
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => ApplyDriverScreen())),
                             child: Text(
                               'signup'.tr(),
                               style: AppTheme.lightTheme.textTheme.bodyMedium!
