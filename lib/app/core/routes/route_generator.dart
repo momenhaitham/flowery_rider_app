@@ -13,6 +13,14 @@ import 'package:flowery_rider_app/app/feature/auth/login/presentation/view/scree
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/forget_password/view/forget_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
+import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/home_screen.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
+import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
+import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
@@ -92,7 +100,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ApplyDriverScreen());
       /// Register (placeholder - uses LoginScreen for now)
       case Routes.register:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) =>  LoginScreen());
 
       default:
         return unDefinedRoute();

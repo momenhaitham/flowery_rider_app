@@ -7,7 +7,7 @@ import 'package:retrofit/retrofit.dart';
 part 'api_auth.g.dart';
 
 @injectable
-@RestApi(baseUrl: AppEndPoint.baseUrl)
+@RestApi()
 abstract class AuthApiClient {
   @factoryMethod
   factory AuthApiClient(Dio dio) = _AuthApiClient;

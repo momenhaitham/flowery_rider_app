@@ -10,6 +10,7 @@ class AppLocale {
   static const String LocationPermissionsAreDenied = 'LocationPermissionsAreDenied';
   static const String Welcometo = 'Welcometo';
   static const String accepted = 'accepted';
+  static const String accept = 'accept';
   static const String already_have_account = 'already_have_account';
   static const String application_submitted = 'application_submitted';
   static const String application_submitted_description = 'application_submitted_description';
@@ -31,6 +32,7 @@ class AppLocale {
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
   static const String continueAsGuest = 'continueAsGuest';
+  static const String continueAsGuest = 'continueAsGuest';
   static const String continueTxt = 'continueTxt';
   static const String continue_btn = 'continue_btn';
   static const String country = 'country';
@@ -41,8 +43,10 @@ class AppLocale {
   static const String delivery_man_join = 'delivery_man_join';
   static const String done = 'done';
   static const String dontHaveAnAccount = 'dontHaveAnAccount';
+  static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
+  static const String egp = 'egp';
   static const String email = 'email';
   static const String emailInvalid = 'emailInvalid';
   static const String emailRequired = 'emailRequired';
@@ -50,6 +54,7 @@ class AppLocale {
   static const String english = 'english';
   static const String enterEmail = 'enterEmail';
   static const String enterOtp = 'enterOtp';
+  static const String enterPassword = 'enterPassword';
   static const String enterPassword = 'enterPassword';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
@@ -67,6 +72,8 @@ class AppLocale {
   static const String firstName = 'firstName';
   static const String firstNameRequired = 'firstNameRequired';
   static const String first_legal_name = 'first_legal_name';
+  static const String flower_order = 'flower_order';
+  static const String flowery_rider = 'flowery_rider';
   static const String forgetPassword = 'forgetPassword';
   static const String forgetPasswordQuote = 'forgetPasswordQuote';
   static const String forgot_password = 'forgot_password';
@@ -93,10 +100,12 @@ class AppLocale {
   static const String no = 'no';
   static const String noInternet = 'noInternet';
   static const String noInternetConnection = 'noInternetConnection';
+  static const String noPendingOrders = 'noPendingOrders';
   static const String ok = 'ok';
   static const String or = 'or';
   static const String orderCancelled = 'orderCancelled';
   static const String orderdetails = 'orderdetails';
+  static const String orderRejected = 'orderRejected';
   static const String orders = 'orders';
   static const String outfordelivery = 'outfordelivery';
   static const String password = 'password';
@@ -114,9 +123,12 @@ class AppLocale {
   static const String phonnumber = 'phonnumber';
   static const String picked = 'picked';
   static const String pickupaddress = 'pickupaddress';
+  static const String pick_up_address = 'pick_up_address';
   static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
+  static const String rememberMe = 'rememberMe';
+  static const String reject = 'reject';
   static const String rememberMe = 'rememberMe';
   static const String resend = 'resend';
   static const String resetPassword = 'resetPassword';
@@ -139,6 +151,10 @@ class AppLocale {
   static const String upload_license_photo = 'upload_license_photo';
   static const String uploading_photo = 'uploading_photo';
   static const String uploading_photo_error = 'uploading_photo_error';
+  static const String signup = 'signup';
+  static const String storeInfoUnavailable = 'storeInfoUnavailable';
+  static const String userAddress = 'userAddress';
+  static const String userInfoUnavailable = 'userInfoUnavailable';
   static const String userNameRequired = 'userNameRequired';
   static const String useraddress = 'useraddress';
   static const String vehicleInfo = 'vehicleInfo';

@@ -6,4 +6,6 @@ class AppConsts {
   static const String rememberMeKey = 'remember_me';
   static const String languageKey = 'language';
   static const String orderIdKey ="orderId";
+  static const String currPageKey="currentPage";
+  static const String limitKey="limit";
 }

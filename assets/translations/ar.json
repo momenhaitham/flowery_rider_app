@@ -147,4 +147,16 @@
   "application_submitted": "تم تقديم طلبك!",
   "application_submitted_description": "شكراً لتقديم طلبك، سنقوم بمراجعة طلبك وسنعود إليك قريباً.",
   "error": "خطأ"
+  "profile": "الملف الشخصي",
+  "flowery_rider": "سائق فلاوري",
+  "flower_order": "طلب زهور",
+  "pick_up_address": "عنوان الاستلام",
+  "userAddress": "عنوان المستخدم",
+  "accept": "قبول",
+  "reject": "رفض",
+  "noPendingOrders": "لا توجد طلبات معلقة",
+  "egp": "ج.م",
+  "orderRejected": "تم رفض الطلب",
+  "storeInfoUnavailable": "معلومات المتجر غير متوفرة",
+  "userInfoUnavailable": "معلومات المستخدم غير متوفرة"
 }

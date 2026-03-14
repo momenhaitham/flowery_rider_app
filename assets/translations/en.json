@@ -63,7 +63,6 @@
   "enterOtp": "Please enter your code that was sent to your email address",
   "receiveCodeQuestion": "Didn't receive code?",
   "resend": "Resend",
-  "forgetPassword": "Forgot Password",
   "forgetPasswordQuote": "Please enter your email associated with your account",
   "continueTxt": "Continue",
   "enterYourEmail": "Enter your email",
@@ -146,4 +145,16 @@
   "application_submitted": "Your application has been submitted!",
   "application_submitted_description": "Thank you for providing your application, we will review your application and will get back to you soon.",
   "error": "Error"
+  "profile":"Profile",
+  "flowery_rider":"Flowery rider",
+  "flower_order":"Flower Order",
+  "pick_up_address":"Pickup address",
+  "userAddress":"User address",
+  "accept":"Accept",
+  "reject":"Reject",
+  "noPendingOrders":"No pending orders found",
+  "egp":"EGP",
+  "orderRejected":"Order rejected",
+  "storeInfoUnavailable":"Store information unavailable",
+  "userInfoUnavailable":"User information unavailable"
 }
