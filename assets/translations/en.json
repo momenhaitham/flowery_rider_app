@@ -169,5 +169,6 @@
   "orderRejected":"Order rejected",
   "storeInfoUnavailable":"Store information unavailable",
   "userInfoUnavailable":"User information unavailable",
-  "passwordChangedSuccessfully":"Password Changed Successfully"
+  "passwordChangedSuccessfully":"Password Changed Successfully",
+  "changeLanguage":"change language"
 }

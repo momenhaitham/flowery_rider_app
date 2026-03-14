@@ -169,5 +169,6 @@
   "orderRejected": "تم رفض الطلب",
   "storeInfoUnavailable": "معلومات المتجر غير متوفرة",
   "userInfoUnavailable": "معلومات المستخدم غير متوفرة",
-  "passwordChangedSuccessfully":"تم تغيير كلمة المرور بنجاح"
+  "passwordChangedSuccessfully":"تم تغيير كلمة المرور بنجاح",
+  "changeLanguage":"تغيير اللغة"
 }

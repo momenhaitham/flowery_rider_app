@@ -39,10 +39,10 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   }
 
   @override
-  void dispose() {
-    viewmodel.timer?.cancel();
-    super.dispose();
-  }
+  //void dispose() {
+  //  viewmodel.timer?.cancel();
+  //  super.dispose();
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               Navigator.pop(context);
             },
             posAction: (){
-              viewmodel.doIntent(CancelOrderEvent(orderId: widget.orderDetailsModel!.orderId));
+              viewmodel.doIntent(CancelOrderEvent(orderId: widget.orderDetailsModel?.orderId));
               if(viewmodel.state.orderState?.error==null){
                 Navigator.pop(context);
                 Navigator.pop(context);
@@ -182,14 +182,14 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                             "orderId":widget.orderDetailsModel?.orderId,
                             "orderState":viewmodel.editOrderStateOnFireBase(newOrderState),
                           } ,
-                    orderId:widget.orderDetailsModel!.orderId! 
+                    orderId:widget.orderDetailsModel?.orderId??"" 
                      ));
                     if(viewmodel.state.orderState!.data ==1){
-                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
+                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel?.orderId??""));
                     } 
 
-                    }else{
-                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel!.orderId!));
+                    }else if(currentOrderState == 5){
+                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel?.orderId??""));
                     }  
                     
                   }, child: Text(viewmodel.editDeliveryStatus(viewmodel.state.orderState?.data)??"")

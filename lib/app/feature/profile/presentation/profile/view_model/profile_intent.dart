@@ -8,4 +8,5 @@ class NavigateToEditProfileIntent extends ProfileIntent {
 }
 class LogoutAction extends ProfileIntent {}
 class ShowLogoutDialogAction extends ProfileIntent {}
+class ShowLanguageDialogAction extends ProfileIntent {}
 

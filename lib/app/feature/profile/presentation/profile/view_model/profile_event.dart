@@ -7,3 +7,5 @@ class NavigateToEditProfileScreen extends ProfileEvent {
 }
 
 class ShowLogoutDialogEvent extends ProfileEvent {}
+
+class ShowLanguageDialogEvent extends ProfileEvent {}

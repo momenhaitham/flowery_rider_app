@@ -112,7 +112,7 @@ class _HomeTabState extends State<HomeTab> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => TrackOrderScreen(
-                                  // orderDetailsModel: visibleOrders[index],
+                                  orderDetailsModel: visibleOrders[index],
                                 ),
                               ),
                             );

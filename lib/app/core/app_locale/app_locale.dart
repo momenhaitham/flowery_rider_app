@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-14 10:11:11.106152
+// Last generated: 2026-03-14 17:15:50.634757
 
 class AppLocale {
   AppLocale._();
@@ -22,8 +22,11 @@ class AppLocale {
   static const String arrivedTotheuser = 'arrivedTotheuser';
   static const String bicycle = 'bicycle';
   static const String cancel = 'cancel';
+  static const String cancelled = 'cancelled';
   static const String car = 'car';
   static const String change = 'change';
+  static const String changeLanguage = 'changeLanguage';
+  static const String completed = 'completed';
   static const String confirm = 'confirm';
   static const String confirmLogout = 'confirmLogout';
   static const String confirmPassword = 'confirmPassword';
@@ -94,12 +97,14 @@ class AppLocale {
   static const String logout = 'logout';
   static const String male = 'male';
   static const String motorcycle = 'motorcycle';
+  static const String my_orders = 'my_orders';
   static const String name = 'name';
   static const String newPassword = 'newPassword';
   static const String no = 'no';
   static const String noInternet = 'noInternet';
   static const String noInternetConnection = 'noInternetConnection';
   static const String noPendingOrders = 'noPendingOrders';
+  static const String no_orders_yet = 'no_orders_yet';
   static const String ok = 'ok';
   static const String or = 'or';
   static const String orderCancelled = 'orderCancelled';
@@ -124,9 +129,11 @@ class AppLocale {
   static const String phonnumber = 'phonnumber';
   static const String pick_up_address = 'pick_up_address';
   static const String picked = 'picked';
+  static const String pickup_address = 'pickup_address';
   static const String pickupaddress = 'pickupaddress';
   static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
+  static const String recent_orders = 'recent_orders';
   static const String regster = 'regster';
   static const String reject = 'reject';
   static const String rememberMe = 'rememberMe';
@@ -155,6 +162,7 @@ class AppLocale {
   static const String userAddress = 'userAddress';
   static const String userInfoUnavailable = 'userInfoUnavailable';
   static const String userNameRequired = 'userNameRequired';
+  static const String user_address = 'user_address';
   static const String useraddress = 'useraddress';
   static const String vehicleInfo = 'vehicleInfo';
   static const String vehicle_license = 'vehicle_license';
@@ -167,13 +175,4 @@ class AppLocale {
   static const String welcome = 'welcome';
   static const String welcome_apply = 'welcome_apply';
   static const String yes = 'yes';
-  static const String myOrders = 'my_orders';
-  static const String recentOrders = 'recent_orders';
-  static const String cancelled = 'cancelled';
-  static const String completed = 'completed';
-  static const String flowerOrder = 'flower_order';
-  static const String pickupAddress = 'pickup_address';
-  static const String userAddress = 'user_address';
-  static const String noOrdersYet = 'no_orders_yet';
-  static const String egp = 'egp';
 }

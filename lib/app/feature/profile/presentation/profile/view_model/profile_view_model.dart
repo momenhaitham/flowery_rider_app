@@ -61,6 +61,9 @@ class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
       case ShowLogoutDialogAction():
         streamController.add(ShowLogoutDialogEvent());
         break;
+      
+      case ShowLanguageDialogAction():
+        streamController.add(ShowLanguageDialogEvent());
     }
   }
 }

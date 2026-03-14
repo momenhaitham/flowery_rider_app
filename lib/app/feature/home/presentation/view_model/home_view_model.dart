@@ -3,7 +3,7 @@ import 'package:flowery_rider_app/app/feature/home/presentation/view_model/app_t
 import 'package:flowery_rider_app/app/feature/home/presentation/view_model/home_events.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/view_model/home_states.dart';
 import 'package:flowery_rider_app/app/feature/home_tab/presentation/views/screen/home_tab.dart';
-import 'package:flowery_rider_app/app/feature/orders/presentation/views/screen/orders_screen.dart';
+import 'package:flowery_rider_app/app/feature/orders/presentation/view/orders_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

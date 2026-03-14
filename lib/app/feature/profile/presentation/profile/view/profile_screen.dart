@@ -1,4 +1,6 @@
+import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/language_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/logout_dialog.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
@@ -40,6 +42,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },);
             }
             break;
+        case ShowLanguageDialogEvent():
+          if (mounted) {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              enableDrag: true,
+              showDragHandle: true,
+              backgroundColor: AppColors.whiteColor,
+              context: context,
+              builder: (context) {
+                return LanguageWidget();
+              },
+            );
+          }
       }
     },);
   }

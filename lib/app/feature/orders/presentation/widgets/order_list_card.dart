@@ -43,7 +43,7 @@ class OrderListCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppLocale.flowerOrder.tr(),
+              AppLocale.flower_order.tr(),
               style: TextStyle(
                 fontFamily: FontsFamily.inter,
                 fontSize: FontSize.s14.sp,
@@ -69,7 +69,7 @@ class OrderListCard extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              AppLocale.pickupAddress.tr(),
+              AppLocale.pick_up_address.tr(),
               style: TextStyle(
                 fontFamily: FontsFamily.inter,
                 fontSize: FontSize.s12.sp,

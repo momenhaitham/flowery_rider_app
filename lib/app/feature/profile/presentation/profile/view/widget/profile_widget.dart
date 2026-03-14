@@ -67,6 +67,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ProfileItemsWidget(//3
                         data: AppLocale.language.tr(),
                         leading: Icon(Icons.translate),
+                        onTap: (){
+                          widget.profileViewModel.doIntent(ShowLanguageDialogAction());
+                        },
                         trailing: Text(//4
                             AppLocale.english.tr() ,
                             style: Theme

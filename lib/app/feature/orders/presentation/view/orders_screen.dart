@@ -85,7 +85,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 12.h),
                         child: Text(
-                          AppLocale.recentOrders.tr(),
+                          AppLocale.recent_orders.tr(),
                           style: TextStyle(
                             fontFamily: FontsFamily.inter,
                             fontSize: FontSize.s18.sp,
@@ -151,7 +151,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
           SizedBox(width: 8.w),
           Text(
-            AppLocale.myOrders.tr(),
+            AppLocale.my_orders.tr(),
             style: TextStyle(
               fontFamily: FontsFamily.inter,
               fontSize: FontSize.s20.sp,
@@ -243,7 +243,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
           SizedBox(height: 16.h),
           Text(
-            AppLocale.noOrdersYet.tr(),
+            AppLocale.no_orders_yet.tr(),
             style: TextStyle(
               fontFamily: FontsFamily.inter,
               fontSize: FontSize.s16.sp,
