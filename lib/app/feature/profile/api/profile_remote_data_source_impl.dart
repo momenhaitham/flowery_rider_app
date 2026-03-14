@@ -5,8 +5,10 @@ import 'package:injectable/injectable.dart';
 import '../../../config/api_utils/api_utils.dart';
 import '../../../config/base_response/base_response.dart';
 import '../../apply_driver/data/model/driver_auth_response.dart';
+import '../data/model/change_password_response.dart';
 import '../data/model/profile_photo_response.dart';
 import '../data/profile_data_source_contract.dart';
+import '../domain/request/change_password_request.dart';
 import '../domain/request/update_profile_request.dart';
 
 @Injectable(as: ProfileDataSourceContract)
@@ -25,5 +27,10 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSourceContract {
   @override
   Future<BaseResponse<DriverAuthResponse>> updateProfile(UpdateProfileRequest request) =>
       executeApi(() => _profileApiClient.updateProfile(request),);
-
+  @override
+  Future<BaseResponse<ChangePasswordResponse>> changePassword(
+      ChangePasswordRequest request,
+      ) {
+    return executeApi(() => _profileApiClient.changePassword(request));
+  }
 }

@@ -26,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     viewModel.cubitStream.listen((event) {
       switch(event) {
         case NavigateToEditProfileScreen():
+          print('navigate to edit profile');
           if(mounted) {
             Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
           }

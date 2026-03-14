@@ -1,16 +1,15 @@
-
 import 'dart:io';
-
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
+import 'package:flowery_rider_app/app/feature/profile/data/model/change_password_response.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/model/profile_photo_response.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/profile_data_source_contract.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/profile_repo_impl.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/request/change_password_request.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/request/update_profile_request.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import 'profile_repo_impl_test.mocks.dart';
 
 
@@ -22,6 +21,8 @@ void main() {
   late UpdateProfileRequest updateProfileRequest;
   late ProfilePhotoResponse profilePhotoResponse;
   late File file;
+  late ChangePasswordRequest changePasswordRequest;
+  late ChangePasswordResponse changePasswordResponse;
   setUpAll(() {
     profileDataSourceContract = MockProfileDataSourceContract();
     profileRepo = ProfileRepoImpl(profileDataSourceContract);
@@ -36,6 +37,11 @@ void main() {
     updateProfileRequest = UpdateProfileRequest(email: 's@yahoo.com');
     profilePhotoResponse = ProfilePhotoResponse(message: 'success');
     file = File('test/resources/fake_image.png');
+    changePasswordRequest = ChangePasswordRequest(
+      newPassword: 'password',
+      password: '123',
+    );
+    changePasswordResponse = ChangePasswordResponse();
   });
 
 
@@ -68,4 +74,19 @@ void main() {
     await profileRepo.uploadPhoto(file);
     verify(profileDataSourceContract.uploadPhoto(file));
   });
+  test(
+    'when calling change password it should get data from datasource',
+        () async {
+      provideDummy<BaseResponse<ChangePasswordResponse>>(
+        SuccessResponse(data: changePasswordResponse),
+      );
+      when(
+        profileDataSourceContract.changePassword(changePasswordRequest),
+      ).thenAnswer(
+            (_) => Future.value(SuccessResponse(data: changePasswordResponse)),
+      );
+      await profileRepo.changePassword(changePasswordRequest);
+      verify(profileDataSourceContract.changePassword(changePasswordRequest));
+    },
+  );
 }
