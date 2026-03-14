@@ -6,6 +6,7 @@ import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_error/server_error_response.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
+import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_api_client.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_remote_data_source_impl.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/model/change_password_response.dart';
@@ -25,7 +26,7 @@ void main() {
   late ProfileApiClient profileApiClient;
   late ProfileRemoteDataSourceImpl profileRemoteDataSourceImpl;
   late DriverAuthResponse driverAuth;
-  late UpdateProfileRequest updateProfileRequest;
+  late ApplyDriverRequest updateProfileRequest;
   late ProfilePhotoResponse profilePhotoResponse;
   late File file;
   late ChangePasswordRequest changePasswordRequest;
@@ -41,7 +42,7 @@ void main() {
         email: 's@yahoo.com',
       )
     );
-    updateProfileRequest = UpdateProfileRequest(email: 's@yahoo.com');
+    updateProfileRequest = ApplyDriverRequest(email: 's@yahoo.com');
     profilePhotoResponse = ProfilePhotoResponse(message: 'success');
     file = File('test/resources/fake_image.png');
     changePasswordRequest = ChangePasswordRequest(

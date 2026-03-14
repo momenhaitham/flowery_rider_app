@@ -19,7 +19,7 @@ class OrderDeliveredSuccefullyScreen  extends StatelessWidget{
             SizedBox(height: height*AppSize.s0_15,),
             SvgPicture.asset(AssetsImage.successfulImage),
             SizedBox(height: height*AppSize.s0_05,),
-            Center(child: Text(AppLocale.thankyou.tr(),style: Theme.of(context).textTheme.headlineLarge?.copyWith(color:AppColors.successColor ),)),
+            Center(child: Text(AppLocale.thankYou.tr(),style: Theme.of(context).textTheme.headlineLarge?.copyWith(color:AppColors.successColor ),)),
             Center(child: Text(AppLocale.the_order_delivered.tr(),style: Theme.of(context).textTheme.headlineLarge,)),
             Center(child: Text(AppLocale.successfully.tr(),style: Theme.of(context).textTheme.headlineLarge,)),
             SizedBox(height: height*AppSize.s0_05,),

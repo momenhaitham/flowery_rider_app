@@ -9,11 +9,14 @@ class PhotoWidget extends StatefulWidget {
     required this.photoController,
     required this.photoUrl,
     this.onChanged,
+    this.isProfile=true,
   });
 
   final PhotoController photoController;
   final String photoUrl;
   final void Function()? onChanged;
+  final bool isProfile;
+
 
   @override
   State<PhotoWidget> createState() => _PhotoWidgetState();
@@ -33,16 +36,26 @@ class _PhotoWidgetState extends State<PhotoWidget> {
     return Stack(
       alignment: AlignmentGeometry.bottomRight,
       children: [
-        ProfilePhotoWidget(
+       widget.isProfile? ProfilePhotoWidget(
           photoUrl: widget.photoUrl,
           photoFile: widget.photoController.photoFile,
-        ),
+         ):SizedBox.shrink()
+      // Text(
+        //   widget.photoController.photoFile!=null?
+        //   widget.photoController.photoFile?.path.substring(86)??''
+        //       :widget.photoUrl.substring(75)
+        //   ,
+        //   style: TextStyle(fontSize: 16),
+        // )
+        ,
         IconButton(
           onPressed: () async {
             await widget.photoController.changePhoto();
             widget.onChanged?.call();
           },
-          icon: Icon(Icons.camera_alt_outlined),
+          icon:widget.isProfile? Icon(Icons.camera_alt_outlined):
+          Icon(Icons.file_upload_outlined, color: Colors.black),
+
         ),
       ],
     );

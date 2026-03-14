@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/feature/profile/api/profile_api_client.dart';
 import 'package:injectable/injectable.dart';
 import '../../../config/api_utils/api_utils.dart';
 import '../../../config/base_response/base_response.dart';
 import '../../apply_driver/data/model/driver_auth_response.dart';
-import '../data/model/change_password_response.dart';
+import '../../apply_driver/domain/request/apply_driver_request.dart';
 import '../data/model/profile_photo_response.dart';
 import '../data/profile_data_source_contract.dart';
 import '../domain/request/change_password_request.dart';
@@ -25,12 +26,8 @@ class ProfileRemoteDataSourceImpl extends ProfileDataSourceContract {
       executeApi(() => _profileApiClient.uploadPhoto(file),);
 
   @override
-  Future<BaseResponse<DriverAuthResponse>> updateProfile(UpdateProfileRequest request) =>
-      executeApi(() => _profileApiClient.updateProfile(request),);
-  @override
-  Future<BaseResponse<ChangePasswordResponse>> changePassword(
-      ChangePasswordRequest request,
-      ) {
-    return executeApi(() => _profileApiClient.changePassword(request));
-  }
+  Future<BaseResponse<DriverAuthResponse>> updateProfile(ApplyDriverRequest request,{bool isFormData=false}) =>
+      executeApi(() =>isFormData?_profileApiClient.updateProfileFormData(FormData.fromMap(request.toJson())):
+      _profileApiClient.updateProfile(request));
+
 }

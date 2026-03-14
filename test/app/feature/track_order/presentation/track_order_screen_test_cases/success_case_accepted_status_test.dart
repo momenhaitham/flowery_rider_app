@@ -70,7 +70,7 @@ void main() {
     });
     
     when(mockedViewModel.editOrderStateOnFireBase(1)).thenReturn(AppLocale.accepted.tr());
-    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickuppoint.tr());
+    when(mockedViewModel.editDeliveryStatus(1)).thenReturn(AppLocale.arrivedAtPickupPoint.tr());
     
     when(mockedViewModel.state).thenReturn(TrackOrderStates(
       orderState: BaseState(data: 1),
@@ -116,7 +116,7 @@ void main() {
       findsOneWidget,
     );
     expect(find.byWidgetPredicate((widget) {
-      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickuppoint;
+      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedAtPickupPoint;
     },),findsNWidgets(1));
     expect(find.byWidgetPredicate((widget) { 
       return widget is OrderDetailsCard && widget.state == AppLocale.accepted;

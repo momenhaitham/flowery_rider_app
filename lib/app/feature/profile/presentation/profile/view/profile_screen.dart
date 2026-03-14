@@ -27,10 +27,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     viewModel.doIntent(GetProfileAction());
     viewModel.cubitStream.listen((event) {
       switch(event) {
-        case NavigateToEditProfileScreen():
-          print('navigate to edit profile');
+        case NavigateToEditProfileOrVehicleScreen():
           if(mounted) {
-            Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
+            Navigator.pushNamed(context,event.isProfile?
+            Routes.updateProfileScreen:Routes.updateVehicle,arguments: event.driverEntity)
+                .then((value) {
+                  viewModel.doIntent(GetProfileAction());
+                });
           }
           case ShowLogoutDialogEvent():
             if(mounted) {

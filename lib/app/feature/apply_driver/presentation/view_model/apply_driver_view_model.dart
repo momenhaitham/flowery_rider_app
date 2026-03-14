@@ -22,18 +22,8 @@ class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverStat
       vehiclesState: BaseState(isLoading: true)
     ));
     final result=await _allVehiclesUseCase.invoke();
-    switch(result) {
-      case SuccessResponse<List<VehicleEntity>>():
-        emit(state.copyWith(
-            vehiclesState: BaseState(isLoading:false,data: result.data)
-        ));
-        break;
-      case ErrorResponse<List<VehicleEntity>>():
-        emit(state.copyWith(
-            vehiclesState: BaseState(isLoading:false,error: result.error)
-        ));
-        break;
-    }
+    emit(state.copyWith(vehiclesState: result.toBaseState()));
+
   }
   Future<void> _getAllCountries()async{
     emit(state.copyWith(

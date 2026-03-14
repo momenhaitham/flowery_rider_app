@@ -68,8 +68,8 @@ void main() {
       await tester.pumpWidget(const SizedBox());
     });
 
-    when(mockedViewModel.editOrderStateOnFireBase(3)).thenReturn(AppLocale.outfordelivery.tr());
-    when(mockedViewModel.editDeliveryStatus(3)).thenReturn(AppLocale.arrivedTotheuser.tr());
+    when(mockedViewModel.editOrderStateOnFireBase(3)).thenReturn(AppLocale.outForDelivery.tr());
+    when(mockedViewModel.editDeliveryStatus(3)).thenReturn(AppLocale.arrivedToTheUser.tr());
     when(mockedViewModel.state).thenReturn(TrackOrderStates(
       orderState: BaseState(data: 3),
       getDriverDataState: BaseState(isLoading: false, error: null), // 👈 THIS IS THE FIX
@@ -107,18 +107,18 @@ void main() {
       find.descendant(
         of: find.byType(OrderDetailsCard),
         matching: find.byWidgetPredicate((widget) {
-          return widget is Text && widget.data == "${AppLocale.status.tr()} : ${AppLocale.outfordelivery}" && widget.style!.color == AppColors.successColor;
+          return widget is Text && widget.data == "${AppLocale.status.tr()} : ${AppLocale.outForDelivery}" && widget.style!.color == AppColors.successColor;
         }),
       ),
       findsOneWidget,
     );
     
     expect(find.byWidgetPredicate((widget) { 
-      return widget is OrderDetailsCard && widget.state == AppLocale.outfordelivery;
+      return widget is OrderDetailsCard && widget.state == AppLocale.outForDelivery;
     },),findsNWidgets(1));
 
     expect(find.byWidgetPredicate((widget) {
-      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedTotheuser;
+      return widget is ElevatedButton && widget.child is Text && (widget.child as Text).data == AppLocale.arrivedToTheUser;
     },),findsNWidgets(1));
     await getItInstance.reset();
     await tester.pump(const Duration(seconds: 11)); 

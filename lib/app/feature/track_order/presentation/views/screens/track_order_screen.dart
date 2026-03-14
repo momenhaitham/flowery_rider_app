@@ -53,7 +53,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        title: Text(AppLocale.orderdetails.tr(),style: Theme.of(context).textTheme.headlineLarge,),
+        title: Text(AppLocale.orderDetails.tr(),style: Theme.of(context).textTheme.headlineLarge,),
         leading: IconButton(onPressed: (){
           if(viewmodel.state.orderState?.data==5){
 
@@ -72,7 +72,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 Navigator.pop(context);
                 Navigator.pop(context);
               }else if(viewmodel.state.orderState?.data!=6){
-                ShowDialogUtils.showMessage(context,title: AppLocale.faildToCancelOrder.tr(),
+                ShowDialogUtils.showMessage(context,title: AppLocale.failedToCancelOrder.tr(),
                 posActionName: AppLocale.ok.tr(),
                 posAction: (){
                   Navigator.pop(context);
@@ -127,7 +127,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 return OrderDetailsCard(orderCreatedTime:widget.orderDetailsModel?.createdAt,orderId: widget.orderDetailsModel?.orderNumber,state: viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),);
               },),
               SizedBox(height: height*0.04,),
-              Text(AppLocale.pickupaddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+              Text(AppLocale.pickupAddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
               SizedBox(height: height*0.02,),
               UserAddressCard(
                 usePhoneNumber: widget.orderDetailsModel?.store?.storePhone,
@@ -136,7 +136,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 userName: "${widget.orderDetailsModel?.store?.storeName}",
               ),
               SizedBox(height: height*0.02,),
-              Text(AppLocale.useraddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+              Text(AppLocale.userAddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
               SizedBox(height: height*0.02,),
               UserAddressCard(
                 usePhoneNumber: widget.orderDetailsModel?.user?.phone,
@@ -145,7 +145,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                 userName: "${widget.orderDetailsModel?.user?.firstName} ${widget.orderDetailsModel?.user?.lastName}",
               ),
               SizedBox(height: height*0.02,),
-              Text(AppLocale.orderdetails.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+              Text(AppLocale.orderDetails.tr(),style:Theme.of(context).textTheme.headlineLarge,),
               SizedBox(height: height*0.02,),
               ListView.builder(itemBuilder:(context, index) {
                 return OrderItemCard(
@@ -162,7 +162,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               SizedBox(height: height*0.02,),
               TotalAndPaymentMethodCard(title: AppLocale.total.tr(),value: widget.orderDetailsModel?.totalPrice.toString(),),
               SizedBox(height: height*0.02,),
-              TotalAndPaymentMethodCard(title: AppLocale.paymentmethod.tr(),value: widget.orderDetailsModel?.paymentMethod,),
+              TotalAndPaymentMethodCard(title: AppLocale.paymentMethod.tr(),value: widget.orderDetailsModel?.paymentMethod,),
               SizedBox(height: height*0.02,),
               BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
                builder: (context, state) {

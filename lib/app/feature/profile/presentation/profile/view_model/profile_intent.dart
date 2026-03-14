@@ -9,4 +9,8 @@ class NavigateToEditProfileIntent extends ProfileIntent {
 class LogoutAction extends ProfileIntent {}
 class ShowLogoutDialogAction extends ProfileIntent {}
 class ShowLanguageDialogAction extends ProfileIntent {}
+class NavigateToEditVehicleIntent extends ProfileIntent {
+  final DriverEntity driver;
+  NavigateToEditVehicleIntent(this.driver);
+}
 

@@ -58,7 +58,7 @@ class _MainAppState extends State<MainApp> {
         theme: AppTheme.lightTheme,
         onGenerateRoute: RouteGenerator.getRoutes,
         locale: context.locale,
-        initialRoute: Routes.splash,
+        initialRoute: Routes.home,
       ),
     );
   }
