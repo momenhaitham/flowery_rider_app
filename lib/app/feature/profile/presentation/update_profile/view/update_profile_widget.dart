@@ -248,10 +248,15 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                             NavigateToChangePasswordAction(),
                           );
                         },
-                        child: Text(
-                          AppLocale.change.tr(),
-                          style: Theme.of(context).textTheme.titleMedium
-                              ?.copyWith(color: AppColors.primaryColor),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.resetPasswordScreen,arguments: widget.driver.email);
+                          },
+                          child: Text(
+                            AppLocale.change.tr(),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(color: AppColors.primaryColor),
+                          ),
                         ),
                       ),
                       prefix: Row(children: stars),
