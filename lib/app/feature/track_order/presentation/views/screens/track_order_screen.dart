@@ -5,7 +5,7 @@ import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/values_manager.dart';
 import 'package:flowery_rider_app/app/core/reusable_widgets/show_dialog_utils.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
-import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_viewmodel.dart';

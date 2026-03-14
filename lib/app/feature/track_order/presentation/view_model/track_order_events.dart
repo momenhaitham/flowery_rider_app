@@ -1,4 +1,4 @@
-import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
 
 sealed class TrackOrderEvents {}
 
