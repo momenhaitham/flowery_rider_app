@@ -78,7 +78,7 @@ class _HomeTabState extends State<HomeTab> {
                         ordersState?.data == null) {
                       return Center(
                         child: Text(
-                          getException(context, ordersState!.error!),
+                          getException(ordersState!.error!),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       );
@@ -112,7 +112,7 @@ class _HomeTabState extends State<HomeTab> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => TrackOrderScreen(
-                                  orderDetailsModel: visibleOrders[index],
+                                  // orderDetailsModel: visibleOrders[index],
                                 ),
                               ),
                             );

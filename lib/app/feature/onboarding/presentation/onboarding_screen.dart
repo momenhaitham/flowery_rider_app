@@ -5,7 +5,6 @@ import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/assets_manager.dart';
 import 'package:flowery_rider_app/app/core/resources/font_manager.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
-import 'package:flowery_rider_app/app/core/routes/app_route.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget{

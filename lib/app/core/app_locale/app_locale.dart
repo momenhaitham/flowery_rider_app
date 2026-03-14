@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-14 00:32:33.411135
+// Last generated: 2026-03-14 04:23:41.835332
 
 class AppLocale {
   AppLocale._();
@@ -9,8 +9,8 @@ class AppLocale {
   static const String Floweryriderapp = 'Floweryriderapp';
   static const String LocationPermissionsAreDenied = 'LocationPermissionsAreDenied';
   static const String Welcometo = 'Welcometo';
-  static const String accepted = 'accepted';
   static const String accept = 'accept';
+  static const String accepted = 'accepted';
   static const String already_have_account = 'already_have_account';
   static const String application_submitted = 'application_submitted';
   static const String application_submitted_description = 'application_submitted_description';
@@ -32,7 +32,6 @@ class AppLocale {
   static const String confirmpassword = 'confirmpassword';
   static const String connectionFailed = 'connectionFailed';
   static const String continueAsGuest = 'continueAsGuest';
-  static const String continueAsGuest = 'continueAsGuest';
   static const String continueTxt = 'continueTxt';
   static const String continue_btn = 'continue_btn';
   static const String country = 'country';
@@ -42,7 +41,6 @@ class AppLocale {
   static const String deliveredToTheUser = 'deliveredToTheUser';
   static const String delivery_man_join = 'delivery_man_join';
   static const String done = 'done';
-  static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String dont_have_account = 'dont_have_account';
   static const String editProfile = 'editProfile';
@@ -54,7 +52,6 @@ class AppLocale {
   static const String english = 'english';
   static const String enterEmail = 'enterEmail';
   static const String enterOtp = 'enterOtp';
-  static const String enterPassword = 'enterPassword';
   static const String enterPassword = 'enterPassword';
   static const String enterYourEmail = 'enterYourEmail';
   static const String enterYourPassword = 'enterYourPassword';
@@ -104,8 +101,8 @@ class AppLocale {
   static const String ok = 'ok';
   static const String or = 'or';
   static const String orderCancelled = 'orderCancelled';
-  static const String orderdetails = 'orderdetails';
   static const String orderRejected = 'orderRejected';
+  static const String orderdetails = 'orderdetails';
   static const String orders = 'orders';
   static const String outfordelivery = 'outfordelivery';
   static const String password = 'password';
@@ -121,13 +118,12 @@ class AppLocale {
   static const String phoneNumberRequired = 'phoneNumberRequired';
   static const String phone_number = 'phone_number';
   static const String phonnumber = 'phonnumber';
+  static const String pick_up_address = 'pick_up_address';
   static const String picked = 'picked';
   static const String pickupaddress = 'pickupaddress';
-  static const String pick_up_address = 'pick_up_address';
   static const String profile = 'profile';
   static const String receiveCodeQuestion = 'receiveCodeQuestion';
   static const String regster = 'regster';
-  static const String rememberMe = 'rememberMe';
   static const String reject = 'reject';
   static const String rememberMe = 'rememberMe';
   static const String resend = 'resend';
@@ -140,6 +136,7 @@ class AppLocale {
   static const String signup = 'signup';
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
+  static const String storeInfoUnavailable = 'storeInfoUnavailable';
   static const String successfully = 'successfully';
   static const String thankyou = 'thankyou';
   static const String the_order_delivered = 'the_order_delivered';
@@ -151,8 +148,6 @@ class AppLocale {
   static const String upload_license_photo = 'upload_license_photo';
   static const String uploading_photo = 'uploading_photo';
   static const String uploading_photo_error = 'uploading_photo_error';
-  static const String signup = 'signup';
-  static const String storeInfoUnavailable = 'storeInfoUnavailable';
   static const String userAddress = 'userAddress';
   static const String userInfoUnavailable = 'userInfoUnavailable';
   static const String userNameRequired = 'userNameRequired';
