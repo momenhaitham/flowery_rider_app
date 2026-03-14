@@ -18,4 +18,6 @@ abstract class Routes {
   static const String applicationSuccess = "applicationSuccessScreen";
   static const String applyDriver = "applyDriverScreen";
   static const String updateVehicle = "updateVehicle";
+  static const String mapTracking = "mapTrackingScreen";
+
 }

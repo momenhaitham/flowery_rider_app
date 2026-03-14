@@ -35,7 +35,7 @@ class AppTheme {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
         ),
         padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(horizontal: 16.h, vertical: 15.h),
+          EdgeInsets.symmetric(horizontal:14.h),
         ),
       ),
     ),

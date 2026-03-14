@@ -13,9 +13,8 @@ String getException(Exception? exception) {
       error = exception.message ?? '';
       break;
       case UnexpectedError():
-      error = 'some thing went error';
+      error = exception.message;
       break;
-
   }
   return error;
 }

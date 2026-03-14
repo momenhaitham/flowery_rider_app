@@ -19,6 +19,29 @@ import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
 
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// Generated at: 2026-03-06 00:16:45.200467
+
+import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flutter/material.dart';
+
+import '../../feature/map_tracking/presentation/map_tracking_argument.dart';
+import '../../feature/map_tracking/presentation/view/map_tracking_screen.dart';
+import '../../feature/onboarding/presentation/onboarding_screen.dart';
+import '../../feature/splash/presentation/views/splash_screen.dart';
+
+// TODO: Uncomment imports when screens are ready:
+// import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
+// import 'package:flowery_rider_app/app/feature/login/presentation/views/login_screen.dart';
+// import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
+// import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
+// import 'package:flowery_rider_app/app/feature/forget_password_screen/presentation/views/forget_password_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/verify_otp_screen/presentation/views/verify_otp_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/reset_password_screen/presentation/views/reset_password_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/profile_screen/presentation/views/profile_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/change_password_screen/presentation/views/change_password_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/update_profile_screen/presentation/views/update_profile_screen_screen.dart';
+// import 'package:flowery_rider_app/app/feature/map_tracking/presentation/views/map_tracking_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
@@ -121,6 +144,13 @@ class RouteGenerator {
       /// Register (placeholder - uses LoginScreen for now)
       case Routes.register:
         return MaterialPageRoute(builder: (_) =>  LoginScreen());
+           case Routes.mapTracking:
+            MapTrackingArgument? trackingArgument=settings.arguments as MapTrackingArgument?;
+            trackingArgument ??= MapTrackingArgument(orderId: '696abaf4e364ef6140470e8d');
+              return MaterialPageRoute(builder: (_) =>  MapTrackingScreen(
+                trackingId: trackingArgument?.orderId??'696abaf4e364ef6140470e8d',
+                choosableEnum: trackingArgument?.choosableEnum??ChoosableEnum.isStore,
+              ));  
 
       default:
         return unDefinedRoute();

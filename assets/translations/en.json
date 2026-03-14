@@ -175,6 +175,11 @@
   "vehicleType": "Vehicle Type",
   "vehicleNumber": "Vehicle Number",
   "vehicleLicense": "Vehicle License",
-  "editVehicle":"edit vehicle"
+  "editVehicle":"edit vehicle",
+  "vehicleInfo": "vehicle info",
+  "tryAgain":"try again",
+  "userAddress": "user address",
+  "pickupAddress": "pickup address",
+  "someThingWrong":"some thing wrong"
 
 }

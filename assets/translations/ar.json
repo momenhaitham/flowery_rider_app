@@ -175,6 +175,10 @@
   "vehicleType": "نوع المركبة",
   "vehicleNumber": "رقم المركبة",
   "vehicleLicense": "رخصة المركبة",
-  "editVehicle":"تحديث بيانات المركبة"
-
+  "editVehicle":"تحديث بيانات المركبة",
+  "vehicleInfo": "بيانات المركبة",
+  "tryAgain":"حاول مرة اخرى",
+  "userAddress": "عنوان العميل",
+  "pickupAddress": "عنوان المحل",
+  "someThingWrong":"هناك خطأ ما"
 }
