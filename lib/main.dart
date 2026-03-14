@@ -15,15 +15,15 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   configureDependencies();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  
   AppProvider appProvider = getIt<AppProvider>();
   runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale('ar'), Locale('en')],
+    ChangeNotifierProvider(
+      create: (context) => appProvider..getCurrentLocale(context),
+      child: EasyLocalization(
+      supportedLocales: [Locale('ar'),Locale('en')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
-      child: ChangeNotifierProvider(
-        create: (context) => appProvider,
-        child: const MainApp(),
+      child: MainApp()
       ),
     ),
   );

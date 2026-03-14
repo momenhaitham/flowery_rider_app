@@ -167,4 +167,13 @@ class AppLocale {
   static const String welcome = 'welcome';
   static const String welcome_apply = 'welcome_apply';
   static const String yes = 'yes';
+  static const String myOrders = 'my_orders';
+  static const String recentOrders = 'recent_orders';
+  static const String cancelled = 'cancelled';
+  static const String completed = 'completed';
+  static const String flowerOrder = 'flower_order';
+  static const String pickupAddress = 'pickup_address';
+  static const String userAddress = 'user_address';
+  static const String noOrdersYet = 'no_orders_yet';
+  static const String egp = 'egp';
 }

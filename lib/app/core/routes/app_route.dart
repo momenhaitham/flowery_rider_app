@@ -5,6 +5,8 @@ abstract class Routes {
   static const String onboarding = "onboardingScreen";
   static const String trackOrder = "trackOrderScreen";
   static const String forgetPassword = "forgetPasswordScreen";
+  static const String orders = '/orders';
+  static const String orderDetails = '/order-details';
   static const String forgetPasswordScreen = 'Forget_Password';
   static const String verifyOtpScreen = 'Verify_Otp';
   static const String resetPasswordScreen = 'Reset_Password';  

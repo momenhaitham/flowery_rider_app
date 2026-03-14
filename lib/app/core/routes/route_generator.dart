@@ -11,22 +11,15 @@ import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view/app
 import 'package:flowery_rider_app/app/feature/onboarding/presentation/onboarding_screen.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/views/screens/track_order_screen.dart';
 import 'package:flowery_rider_app/app/feature/home/presentation/views/screens/home_screen.dart';
+
+import 'package:flowery_rider_app/app/feature/auth/login/presentation/view/screens/login_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/forget_password/view/forget_password_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/verify_otp/view/verify_otp_screen.dart';
 import 'package:flowery_rider_app/app/feature/auth/forget_password/presentation/reset_password/view/reset_password_screen.dart';
-import 'package:flowery_rider_app/app/feature/auth/presentation/views/screen/login/login_Screen.dart';
+
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/profile_screen.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/update_profile/view/update_profile_widget.dart';
-
-
-// TODO: Uncomment imports when screens are ready:
-// import 'package:flowery_rider_app/app/feature/splash/presentation/views/splash_screen.dart';
-// import 'package:flowery_rider_app/app/feature/login/presentation/views/login_screen.dart';
-// import 'package:flowery_rider_app/app/feature/home/presentation/views/home_screen.dart';
-// import 'package:flowery_rider_app/app/feature/onboarding/presentation/views/onboarding_screen.dart';
-// import 'package:flowery_rider_app/app/feature/profile_screen/presentation/views/profile_screen_screen.dart';
-// import 'package:flowery_rider_app/app/feature/change_password_screen/presentation/views/change_password_screen_screen.dart';
-// import 'package:flowery_rider_app/app/feature/update_profile_screen/presentation/views/update_profile_screen_screen.dart';
+import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoutes(RouteSettings settings) {
@@ -47,7 +40,24 @@ class RouteGenerator {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
 
-      /// Forget Password (support both route names)
+      /// Orders
+      case Routes.orders:
+        return MaterialPageRoute(builder: (_) => const OrdersScreen());
+
+      /// Order Details
+      case Routes.orderDetails:
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body: Center(
+              child: Text(
+                'Order Details\nComing in next PR',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        );
+
+        /// Forget Password (support both route names)
       case Routes.forgetPassword:
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
@@ -76,12 +86,8 @@ class RouteGenerator {
 
       /// Profile
       case Routes.profileScreen:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
-        
-      case Routes.changePasswordScreen:
-        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
-
-    
+        return MaterialPageRoute(
+            builder: (_) => const ProfileScreen());
 
       /// Update Profile
       case Routes.updateProfileScreen:
