@@ -34,7 +34,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               showDialog(context: context, builder:(context) {
                 return AlertDialog(
                   contentPadding: EdgeInsets.zero,
-                  content: LogoutDialog(),
+                  content: LogoutDialog(
+                    profileViewModel: viewModel,
+                  ),
                 );
               },);
             }

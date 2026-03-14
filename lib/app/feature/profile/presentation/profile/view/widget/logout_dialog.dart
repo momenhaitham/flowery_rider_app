@@ -12,8 +12,8 @@ import '../../view_model/profile_intent.dart';
 import '../../view_model/profile_state.dart';
 
 class LogoutDialog extends StatelessWidget {
-   LogoutDialog({super.key});
-final ProfileViewModel profileViewModel=getIt<ProfileViewModel>();
+   LogoutDialog({super.key,required this.profileViewModel});
+final ProfileViewModel profileViewModel;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileViewModel, ProfileState>(
