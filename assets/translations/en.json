@@ -102,7 +102,7 @@
   "areYouSureCancelOrder":"Are you sure you want to cancel the order?",
   "yes":"Yes",
   "no":"No",
-  "faildToCancelOrder":"Failed to cancel the order"
-  "vehicleInfo": "vehicle info",
+  "faildToCancelOrder":"Failed to cancel the order",
+
   "confirmLogout": "confirm Logout!!"
 }

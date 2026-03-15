@@ -12,7 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'error_case_no_internet.mocks.dart';
+
+import 'error_case_no_internet_test.mocks.dart';
 import 'track_order_screen_test_setup.dart';
 
 
