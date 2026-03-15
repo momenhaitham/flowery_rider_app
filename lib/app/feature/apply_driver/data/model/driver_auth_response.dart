@@ -24,6 +24,7 @@ class DriverAuthResponse {
   }
   DriverEntity toDriverEntity() {
     return DriverEntity(
+      id: driver?.id,
       firstName: driver?.firstName,
       email: driver?.email,
       photo: driver?.photo,

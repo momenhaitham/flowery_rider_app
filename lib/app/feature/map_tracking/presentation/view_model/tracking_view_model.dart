@@ -9,6 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../config/base_state/base_state.dart';
 import '../../domain/use_case/get_tracking_data_use_case.dart';
+
 @injectable
 class TrackingViewModel  extends CustomCubit<TrackingEvent,TrackingState>{
   final GetTrackingDataUseCase _getTrackingDataUseCase;

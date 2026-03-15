@@ -16,6 +16,7 @@ class OrderItemCard extends StatelessWidget{
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Container(
+      margin: EdgeInsets.symmetric(vertical: height*AppSize.s0_01),
       height: height*AppSize.s0_10,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(AppSize.s12),color: AppColors.baseWhiteColor,
       boxShadow: [

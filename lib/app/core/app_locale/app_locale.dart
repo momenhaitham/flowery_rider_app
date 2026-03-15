@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generated from translation files
-// Last generated: 2026-03-14 18:58:00.085828
+// Last generated: 2026-03-14 21:49:11.939386
 
 class AppLocale {
   AppLocale._();
@@ -145,6 +145,7 @@ class AppLocale {
   static const String second_legal_name = 'second_legal_name';
   static const String select_country = 'select_country';
   static const String signup = 'signup';
+  static const String someThingWrong = 'someThingWrong';
   static const String startDeliver = 'startDeliver';
   static const String status = 'status';
   static const String storeInfoUnavailable = 'storeInfoUnavailable';
@@ -152,6 +153,7 @@ class AppLocale {
   static const String thankYou = 'thankYou';
   static const String the_order_delivered = 'the_order_delivered';
   static const String total = 'total';
+  static const String tryAgain = 'tryAgain';
   static const String update = 'update';
   static const String updateProfile = 'updateProfile';
   static const String update_profile_error = 'update_profile_error';
