@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flowery_rider_app/app/config/base_error/custom_exceptions.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
+import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/logout_user_use_case.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/get_driver_data_use_case.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_intent.dart';
@@ -11,13 +12,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'profile_view_model_test.mocks.dart';
-@GenerateMocks([GetDriverDataUseCase])
+@GenerateMocks([GetDriverDataUseCase,LogoutUserUseCase])
 void main() {
   late GetDriverDataUseCase driverUseCase;
+  late LogoutUserUseCase logoutUserUseCase;
   late DriverEntity driverEntity;
   late ProfileViewModel profileViewModel;
   setUpAll(() {
     driverUseCase = MockGetDriverDataUseCase();
+    logoutUserUseCase = MockLogoutUserUseCase();
     driverEntity = DriverEntity(
       firstName: 's',
       lastName: 's',
@@ -25,7 +28,7 @@ void main() {
     );
   });
   setUp(() {
-    profileViewModel = ProfileViewModel(driverUseCase);
+    profileViewModel = ProfileViewModel(driverUseCase, logoutUserUseCase);
   });
 
   blocTest(
@@ -72,5 +75,48 @@ void main() {
       ];
     },
   );
-
+group('logout action', () {
+  blocTest(
+    'when calling dointent with logout action it should emit correct state',
+    setUp: () {
+      provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
+      when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
+        return Future.value(SuccessResponse(data: true));
+      });
+    },
+    build: () => profileViewModel,
+    act: (bloc) {
+      profileViewModel.doIntent(LogoutAction());
+    },
+    expect: () {
+      var state = ProfileState(profileState: BaseState());
+      return [
+        state.copyWith(
+            isLogout: true
+        ),
+      ];
+    },
+  );
+  blocTest(
+    'when calling dointent with logout action with error  it should emit correct state',
+    setUp: () {
+      provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
+      when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
+        return Future.value(ErrorResponse<bool>(error: UnexpectedError()));
+      });
+    },
+    build: () => profileViewModel,
+    act: (bloc) {
+      profileViewModel.doIntent(LogoutAction());
+    },
+    expect: () {
+      var state = ProfileState(profileState: BaseState());
+      return [
+        state.copyWith(
+            isLogout: false
+        ),
+      ];
+    },
+  );
+},);
 }
