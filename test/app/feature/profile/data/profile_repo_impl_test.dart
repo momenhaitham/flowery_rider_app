@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/data/model/driver_auth_response.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/domain/request/apply_driver_request.dart';
+import 'package:flowery_rider_app/app/feature/profile/data/model/change_password_response.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/model/profile_photo_response.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/profile_data_source_contract.dart';
 import 'package:flowery_rider_app/app/feature/profile/data/profile_repo_impl.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'profile_repo_impl_test.mocks.dart';
-
 
 @GenerateMocks([ProfileDataSourceContract])
 void main() {
@@ -28,11 +28,7 @@ void main() {
     profileRepo = ProfileRepoImpl(profileDataSourceContract);
     driverAuth = DriverAuthResponse(
       message: 'success',
-      driver: Driver(
-        firstName: 's',
-        lastName: 's',
-        email: 's@yahoo.com',
-      )
+      driver: Driver(firstName: 's', lastName: 's', email: 's@yahoo.com'),
     );
     updateProfileRequest = ApplyDriverRequest(email: 's@yahoo.com');
     profilePhotoResponse = ProfilePhotoResponse(message: 'success');
@@ -44,9 +40,10 @@ void main() {
     changePasswordResponse = ChangePasswordResponse();
   });
 
-
   test('when calling getProfile it should get data from datasource', () async {
-    provideDummy<BaseResponse<DriverAuthResponse>>(SuccessResponse(data: driverAuth));
+    provideDummy<BaseResponse<DriverAuthResponse>>(
+      SuccessResponse(data: driverAuth),
+    );
     when(
       profileDataSourceContract.getProfile(),
     ).thenAnswer((_) => Future.value(SuccessResponse(data: driverAuth)));
@@ -55,8 +52,10 @@ void main() {
   });
   test(
     'when calling updateProfile it should get data from datasource',
-        () async {
-      provideDummy<BaseResponse<DriverAuthResponse>>(SuccessResponse(data: driverAuth));
+    () async {
+      provideDummy<BaseResponse<DriverAuthResponse>>(
+        SuccessResponse(data: driverAuth),
+      );
       when(
         profileDataSourceContract.updateProfile(updateProfileRequest),
       ).thenAnswer((_) => Future.value(SuccessResponse(data: driverAuth)));
@@ -69,21 +68,21 @@ void main() {
       SuccessResponse(data: profilePhotoResponse),
     );
     when(profileDataSourceContract.uploadPhoto(file)).thenAnswer(
-          (_) => Future.value(SuccessResponse(data: profilePhotoResponse)),
+      (_) => Future.value(SuccessResponse(data: profilePhotoResponse)),
     );
     await profileRepo.uploadPhoto(file);
     verify(profileDataSourceContract.uploadPhoto(file));
   });
   test(
     'when calling change password it should get data from datasource',
-        () async {
+    () async {
       provideDummy<BaseResponse<ChangePasswordResponse>>(
         SuccessResponse(data: changePasswordResponse),
       );
       when(
         profileDataSourceContract.changePassword(changePasswordRequest),
       ).thenAnswer(
-            (_) => Future.value(SuccessResponse(data: changePasswordResponse)),
+        (_) => Future.value(SuccessResponse(data: changePasswordResponse)),
       );
       await profileRepo.changePassword(changePasswordRequest);
       verify(profileDataSourceContract.changePassword(changePasswordRequest));

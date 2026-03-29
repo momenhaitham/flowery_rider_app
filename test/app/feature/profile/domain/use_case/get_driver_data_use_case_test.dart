@@ -20,13 +20,16 @@ void main() {
       firstName: 's',
       lastName: 's',
       email: 's@yahoo.com',
+      id: '',
     );
   });
 
   test(
     'when calling get user data it should get data from repository',
-        () async {
-      provideDummy<BaseResponse<DriverEntity>>(SuccessResponse(data: driverEntity));
+    () async {
+      provideDummy<BaseResponse<DriverEntity>>(
+        SuccessResponse(data: driverEntity),
+      );
       when(
         profileRepo.getProfile(),
       ).thenAnswer((_) => Future.value(SuccessResponse(data: driverEntity)));

@@ -12,7 +12,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'profile_view_model_test.mocks.dart';
-@GenerateMocks([GetDriverDataUseCase,LogoutUserUseCase])
+
+@GenerateMocks([GetDriverDataUseCase, LogoutUserUseCase])
 void main() {
   late GetDriverDataUseCase driverUseCase;
   late LogoutUserUseCase logoutUserUseCase;
@@ -25,6 +26,7 @@ void main() {
       firstName: 's',
       lastName: 's',
       email: 's@yahoo.com',
+      id: '',
     );
   });
   setUp(() {
@@ -34,7 +36,9 @@ void main() {
   blocTest(
     'when calling dointent with get user data  action with success it should emit correct state',
     setUp: () {
-      provideDummy<BaseResponse<DriverEntity>>(SuccessResponse(data: driverEntity));
+      provideDummy<BaseResponse<DriverEntity>>(
+        SuccessResponse(data: driverEntity),
+      );
       when(driverUseCase.invoke()).thenAnswer((realInvocation) {
         return Future.value(SuccessResponse(data: driverEntity));
       });
@@ -75,48 +79,40 @@ void main() {
       ];
     },
   );
-group('logout action', () {
-  blocTest(
-    'when calling dointent with logout action it should emit correct state',
-    setUp: () {
-      provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
-      when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
-        return Future.value(SuccessResponse(data: true));
-      });
-    },
-    build: () => profileViewModel,
-    act: (bloc) {
-      profileViewModel.doIntent(LogoutAction());
-    },
-    expect: () {
-      var state = ProfileState(profileState: BaseState());
-      return [
-        state.copyWith(
-            isLogout: true
-        ),
-      ];
-    },
-  );
-  blocTest(
-    'when calling dointent with logout action with error  it should emit correct state',
-    setUp: () {
-      provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
-      when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
-        return Future.value(ErrorResponse<bool>(error: UnexpectedError()));
-      });
-    },
-    build: () => profileViewModel,
-    act: (bloc) {
-      profileViewModel.doIntent(LogoutAction());
-    },
-    expect: () {
-      var state = ProfileState(profileState: BaseState());
-      return [
-        state.copyWith(
-            isLogout: false
-        ),
-      ];
-    },
-  );
-},);
+  group('logout action', () {
+    blocTest(
+      'when calling dointent with logout action it should emit correct state',
+      setUp: () {
+        provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
+        when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
+          return Future.value(SuccessResponse(data: true));
+        });
+      },
+      build: () => profileViewModel,
+      act: (bloc) {
+        profileViewModel.doIntent(LogoutAction());
+      },
+      expect: () {
+        var state = ProfileState(profileState: BaseState());
+        return [state.copyWith(isLogout: true)];
+      },
+    );
+    blocTest(
+      'when calling dointent with logout action with error  it should emit correct state',
+      setUp: () {
+        provideDummy<BaseResponse<bool>>(SuccessResponse(data: true));
+        when(logoutUserUseCase.invoke()).thenAnswer((realInvocation) {
+          return Future.value(ErrorResponse<bool>(error: UnexpectedError()));
+        });
+      },
+      build: () => profileViewModel,
+      act: (bloc) {
+        profileViewModel.doIntent(LogoutAction());
+      },
+      expect: () {
+        var state = ProfileState(profileState: BaseState());
+        return [state.copyWith(isLogout: false)];
+      },
+    );
+  });
 }
