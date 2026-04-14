@@ -19,7 +19,7 @@ void main() async {
   AppProvider appProvider = getIt<AppProvider>();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => appProvider..getCurrentLocale(context),
+      create: (context) => appProvider,
       child: EasyLocalization(
       supportedLocales: [Locale('ar'),Locale('en')],
       path: 'assets/translations',
@@ -58,7 +58,7 @@ class _MainAppState extends State<MainApp> {
         theme: AppTheme.lightTheme,
         onGenerateRoute: RouteGenerator.getRoutes,
         locale: context.locale,
-        initialRoute: Routes.home,
+        initialRoute: Routes.splash,
       ),
     );
   }

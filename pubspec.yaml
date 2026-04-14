@@ -48,6 +48,7 @@ dependencies:
   geolocator: ^14.0.2
   easy_localization_loader: ^2.0.2
   cloud_firestore: ^6.1.2
+  firebase_messaging: ^16.1.2
 
   
 

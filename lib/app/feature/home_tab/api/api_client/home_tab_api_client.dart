@@ -10,6 +10,7 @@ part 'home_tab_api_client.g.dart';
 abstract class HomeTabApiClient {
   @factoryMethod
   factory HomeTabApiClient(Dio dio)=_HomeTabApiClient;
+  
   @GET(AppEndPoint.ordersPending)
   Future<GetPendingOrdersResponse> getPendingOrders(
     @Query(AppConsts.limitKey) int? limit

@@ -60,7 +60,7 @@ class RouteGenerator {
       /// Orders
       case Routes.orders:
         return MaterialPageRoute(builder: (_) => const OrdersScreen());
-
+    
       /// Order Details
       case Routes.orderDetails:
         return MaterialPageRoute(
