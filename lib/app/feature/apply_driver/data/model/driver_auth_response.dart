@@ -24,6 +24,7 @@ class DriverAuthResponse {
   }
   DriverEntity toDriverEntity() {
     return DriverEntity(
+      id: driver?.id,
       firstName: driver?.firstName,
       email: driver?.email,
       photo: driver?.photo,
@@ -31,6 +32,7 @@ class DriverAuthResponse {
       lastName: driver?.lastName,
       vehicleType: driver?.vehicleType,
       vehicleNumber: driver?.vehicleNumber,
+      vehicleLicense: driver?.vehicleLicense,
       gender: driver?.gender,
     );
   }

@@ -5,7 +5,8 @@ import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/resources/values_manager.dart';
 import 'package:flowery_rider_app/app/core/reusable_widgets/show_dialog_utils.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
-import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
+import 'package:flowery_rider_app/app/feature/map_tracking/presentation/map_tracking_argument.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_events.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_states.dart';
 import 'package:flowery_rider_app/app/feature/track_order/presentation/view_model/track_order_viewmodel.dart';
@@ -39,10 +40,10 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   }
 
   @override
-  void dispose() {
-    viewmodel.timer?.cancel();
-    super.dispose();
-  }
+  //void dispose() {
+  //  viewmodel.timer?.cancel();
+  //  super.dispose();
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
-        title: Text(AppLocale.orderdetails.tr(),style: Theme.of(context).textTheme.headlineLarge,),
+        title: Text(AppLocale.orderDetails.tr(),style: Theme.of(context).textTheme.headlineLarge,),
         leading: IconButton(onPressed: (){
           if(viewmodel.state.orderState?.data==5){
 
@@ -67,7 +68,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               Navigator.pop(context);
             },
             posAction: (){
-              viewmodel.doIntent(CancelOrderEvent(orderId: widget.orderDetailsModel!.orderId));
+              viewmodel.doIntent(CancelOrderEvent(orderId: widget.orderDetailsModel?.orderId));
               if(viewmodel.state.orderState?.error==null){
                 Navigator.pop(context);
                 Navigator.pop(context);
@@ -84,87 +85,107 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           }
         }, icon: Icon(Icons.arrow_back_ios_rounded),)
       ),
-      body: SingleChildScrollView(
-        child: BlocProvider<TrackOrderViewmodel>(create: (context) => viewmodel,
-        
-        child:BlocConsumer<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
-          if  (state.getDriverDataState?.isLoading == true){
-            return Center(child: Column(
+      body: BlocProvider<TrackOrderViewmodel>(create: (context) => viewmodel,
+      
+      child:BlocConsumer<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
+        if  (state.getDriverDataState?.isLoading == true){
+          return Center(child: Column(
+            
+            children: [
+              SizedBox(height: height*AppSize.s0_5,),
+              CircularProgressIndicator(),
               
+            ],
+          ));
+        }else if(state.getDriverDataState?.error != null && state.getDriverDataState?.isLoading == false){
+          return Expanded(
+            child: Center(child: Column(
               children: [
                 SizedBox(height: height*AppSize.s0_5,),
-                CircularProgressIndicator(),
-                
+                Text(state.getDriverDataState?.error.toString()??""),
+                ElevatedButton(onPressed: (){
+                  viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
+                }, child: Text(AppLocale.retry.tr()))
               ],
-            ));
-          }else if(state.getDriverDataState?.error != null && state.getDriverDataState?.isLoading == false){
-            return Expanded(
-              child: Center(child: Column(
-                children: [
-                  SizedBox(height: height*AppSize.s0_5,),
-                  Text(state.getDriverDataState?.error.toString()??""),
-                  ElevatedButton(onPressed: (){
-                    viewmodel.doIntent(AddOrderDocumentToFirebaseEvent(orderDetailsModel: widget.orderDetailsModel,));
-                  }, child: Text(AppLocale.retry.tr()))
-                ],
-              ),),
-            );
-            
-          }else if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
-            
-          return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
-               builder: (context, state) {
-                  return TrackOrderIndecatorWidget(orderState: viewmodel.state.orderState?.data??1,);
-                },
-              ),
-              SizedBox(height: height*0.04,),
-              BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
-                return OrderDetailsCard(orderCreatedTime:widget.orderDetailsModel?.createdAt,orderId: widget.orderDetailsModel?.orderNumber,state: viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),);
-              },),
-              SizedBox(height: height*0.04,),
-              Text(AppLocale.pickupaddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
-              SizedBox(height: height*0.02,),
-              UserAddressCard(
-                usePhoneNumber: widget.orderDetailsModel?.store?.storePhone,
-                userAddress: "${widget.orderDetailsModel?.store?.storeAddress}",
-                userImage: widget.orderDetailsModel?.store?.storeImage,
-                userName: "${widget.orderDetailsModel?.store?.storeName}",
-              ),
-              SizedBox(height: height*0.02,),
-              Text(AppLocale.useraddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
-              SizedBox(height: height*0.02,),
-              UserAddressCard(
-                usePhoneNumber: widget.orderDetailsModel?.user?.phone,
-                userAddress: "${widget.orderDetailsModel?.shippingAddressModel?.street},${widget.orderDetailsModel?.shippingAddressModel?.city}",
-                userImage: widget.orderDetailsModel?.user?.profileImage,
-                userName: "${widget.orderDetailsModel?.user?.firstName} ${widget.orderDetailsModel?.user?.lastName}",
-              ),
-              SizedBox(height: height*0.02,),
-              Text(AppLocale.orderdetails.tr(),style:Theme.of(context).textTheme.headlineLarge,),
-              SizedBox(height: height*0.02,),
-              ListView.builder(itemBuilder:(context, index) {
-                return OrderItemCard(
-                  orderItemImage:widget.orderDetailsModel?.orderItems?[index].product?.productImage,
-                  orderItemPrice: widget.orderDetailsModel?.orderItems?[index].product?.productPrice.toString(),
-                  orderItemQuantity:widget.orderDetailsModel?.orderItems?[index].quantity.toString(),
-                  orderItemTitle: widget.orderDetailsModel?.orderItems?[index].product?.productName,
-                );
+            ),),
+          );
+          
+        }else if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
+          
+        return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: height*0.02,),
+            BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
+             builder: (context, state) {
+                return TrackOrderIndecatorWidget(orderState: viewmodel.state.orderState?.data??1,);
               },
-              itemCount: widget.orderDetailsModel?.orderItems?.length,
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+            ),
+            SizedBox(height: height*0.04,),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(children: [
+                      BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(builder: (context, state) {
+                        return OrderDetailsCard(orderCreatedTime:widget.orderDetailsModel?.createdAt,orderId: widget.orderDetailsModel?.orderNumber,state: viewmodel.editOrderStateOnFireBase(viewmodel.state.orderState?.data),);
+                      },),
+                      SizedBox(height: height*0.04,),
+                      Text(AppLocale.pick_up_address.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+                      SizedBox(height: height*0.02,),
+                      InkWell(
+                          onTap: (){
+                            var arg =MapTrackingArgument(orderId: widget.orderDetailsModel?.orderId??"",choosableEnum:  ChoosableEnum.isStore);
+                            Navigator.pushNamed(context, Routes.mapTracking,arguments: arg);
+                          },
+                          child: UserAddressCard(
+                            usePhoneNumber: widget.orderDetailsModel?.store?.storePhone,
+                            userAddress: "${widget.orderDetailsModel?.store?.storeAddress}",
+                            userImage: widget.orderDetailsModel?.store?.storeImage,
+                            userName: "${widget.orderDetailsModel?.store?.storeName}",
+                          ),
+                                ),
+                      SizedBox(height: height*0.02,),
+                      Text(AppLocale.userAddress.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+                      SizedBox(height: height*0.02,),
+                      InkWell(
+                        onTap: (){
+                          var arg =MapTrackingArgument(orderId: widget.orderDetailsModel?.orderId??"",choosableEnum:  ChoosableEnum.isUser);
+                          Navigator.pushNamed(context, Routes.mapTracking,arguments: arg);
+                        },
+                        child: UserAddressCard(
+                          usePhoneNumber: widget.orderDetailsModel?.user?.phone,
+                          userAddress: "${widget.orderDetailsModel?.shippingAddressModel?.street},${widget.orderDetailsModel?.shippingAddressModel?.city}",
+                          userImage: widget.orderDetailsModel?.user?.profileImage,
+                          userName: "${widget.orderDetailsModel?.user?.firstName} ${widget.orderDetailsModel?.user?.lastName}",
+                        ),),
+                      SizedBox(height: height*0.02,),
+                      Text(AppLocale.orderDetails.tr(),style:Theme.of(context).textTheme.headlineLarge,),
+                      SizedBox(height: height*0.02,),
+                      ListView.builder(itemBuilder:(context, index) {
+                        return OrderItemCard(
+                          orderItemImage:widget.orderDetailsModel?.orderItems?[index].product?.productImage,
+                          orderItemPrice: widget.orderDetailsModel?.orderItems?[index].product?.productPrice.toString(),
+                          orderItemQuantity:widget.orderDetailsModel?.orderItems?[index].quantity.toString(),
+                          orderItemTitle: widget.orderDetailsModel?.orderItems?[index].product?.productName,
+                        );
+                                },
+                                itemCount: widget.orderDetailsModel?.orderItems?.length,
+                                shrinkWrap: true,
+                                
+                                physics: NeverScrollableScrollPhysics(),
+                                ),
+                      SizedBox(height: height*0.02,),
+                      TotalAndPaymentMethodCard(title: AppLocale.total.tr(),value: widget.orderDetailsModel?.totalPrice.toString(),),
+                      SizedBox(height: height*0.02,),
+                      TotalAndPaymentMethodCard(title: AppLocale.paymentMethod.tr(),value: widget.orderDetailsModel?.paymentMethod,),
+                      SizedBox(height: height*0.02,),
+                ],),
               ),
-              SizedBox(height: height*0.02,),
-              TotalAndPaymentMethodCard(title: AppLocale.total.tr(),value: widget.orderDetailsModel?.totalPrice.toString(),),
-              SizedBox(height: height*0.02,),
-              TotalAndPaymentMethodCard(title: AppLocale.paymentmethod.tr(),value: widget.orderDetailsModel?.paymentMethod,),
-              SizedBox(height: height*0.02,),
-              BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
+            ),
+            Container(
+              height: height*AppSize.s0_08,
+              child: BlocBuilder<TrackOrderViewmodel,TrackOrderStates>(
                builder: (context, state) {
                   int currentOrderState = viewmodel.state.orderState?.data??1;
                   return ElevatedButton(
@@ -173,7 +194,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                     int newOrderState = viewmodel.state.orderState?.data??1 ;
                     newOrderState++;
                     if(currentOrderState < 5){
-
+                    
                       viewmodel.doIntent(UpdateOrderStateOnFirebaseEvent(
                      currentOrderState:viewmodel.state.orderState!.data! , 
                      body:{
@@ -182,14 +203,15 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                             "orderId":widget.orderDetailsModel?.orderId,
                             "orderState":viewmodel.editOrderStateOnFireBase(newOrderState),
                           } ,
-                    orderId:widget.orderDetailsModel!.orderId! 
+                    orderId:widget.orderDetailsModel?.orderId??"" 
                      ));
                     if(viewmodel.state.orderState!.data ==1){
-                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel!.orderId!));
+                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"inProgress"},orderId:widget.orderDetailsModel?.orderId??""));
                     } 
-
-                    }else{
-                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel!.orderId!));
+                    
+                    }
+                    if(currentOrderState == 4){
+                      viewmodel.doIntent(UpdateOrderStateEvent(body:{"state":"completed"},orderId:widget.orderDetailsModel?.orderId??""));
                     }  
                     
                   }, child: Text(viewmodel.editDeliveryStatus(viewmodel.state.orderState?.data)??"")
@@ -197,33 +219,33 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   );
                 },
               ),
-              SizedBox(height: height*0.04,),
-            ],
-          ),
-        );
-        }else{
-          return Container();
-        }
-        }, listener: (context, state) {
-          
-          if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
-            Future.delayed(Duration(seconds: 10)).then((value) {
-              viewmodel.doIntent(UpdateDriverLatAndLongOnFireBaseEvent(body: {
-              "driverLat":viewmodel.driveLat,
-              "driverLong":viewmodel.driverLong
-            }, orderId: widget.orderDetailsModel?.orderId));
-          },);
-            
-          }
-
-          if(state.orderState?.error != null){
-                    ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
-          }
-
-        },) ,
+            ),
+            SizedBox(height: height*0.04,),
+          ],
+        ),
+      );
+      }else{
+        return Container();
+      }
+      }, listener: (context, state) {
         
-       ),
-      ),
+        if(state.getDriverDataState?.error == null && state.getDriverDataState?.isLoading == false){
+          Future.delayed(Duration(seconds: 10)).then((value) {
+            viewmodel.doIntent(UpdateDriverLatAndLongOnFireBaseEvent(body: {
+            "driverLat":viewmodel.driveLat,
+            "driverLong":viewmodel.driverLong
+          }, orderId: widget.orderDetailsModel?.orderId));
+        },);
+          
+        }
+      
+        if(state.orderState?.error != null){
+                  ShowDialogUtils.showMessage(context,content: state.orderState?.error.toString(),nigActionName: "ok");
+        }
+      
+      },) ,
+      
+             ),
     );
     
     

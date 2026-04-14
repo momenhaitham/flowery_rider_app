@@ -5,9 +5,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flowery_rider_app/app/config/base_response/base_response.dart';
 import 'package:flowery_rider_app/app/config/base_state/base_state.dart';
 import 'package:flowery_rider_app/app/core/app_locale/app_locale.dart';
+import 'package:flowery_rider_app/app/feature/home_tab/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/model/driver_entity.dart';
 import 'package:flowery_rider_app/app/feature/profile/domain/use_case/get_driver_data_use_case.dart';
-import 'package:flowery_rider_app/app/feature/track_order/domain/models/order_details_model.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/add_order_document_to_firebase_usecase.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/cancel_order_use_case.dart';
 import 'package:flowery_rider_app/app/feature/track_order/domain/use_cases/update_driver_loacation_on_firebase_usecase.dart';
@@ -201,7 +201,7 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
     }else if(stateNum==2){
       return AppLocale.picked.tr();
     }else if(stateNum==3){
-      return AppLocale.outfordelivery.tr();
+      return AppLocale.outForDelivery.tr();
     }else if(stateNum==4){
       return AppLocale.arrived.tr();
     }else if(stateNum==5){
@@ -212,11 +212,11 @@ class TrackOrderViewmodel extends Cubit<TrackOrderStates>{
 
   String? editDeliveryStatus(int? stateNum){
     if(stateNum==1){
-      return AppLocale.arrivedAtPickuppoint.tr();
+      return AppLocale.arrivedAtPickupPoint.tr();
     }else if(stateNum==2){
       return AppLocale.startDeliver.tr();
     }else if(stateNum==3){
-      return AppLocale.arrivedTotheuser.tr();
+      return AppLocale.arrivedToTheUser.tr();
     }else if(stateNum==4){
       return AppLocale.deliveredToTheUser.tr();
     }else if(stateNum==5){

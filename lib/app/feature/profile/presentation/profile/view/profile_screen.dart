@@ -1,4 +1,6 @@
+import 'package:flowery_rider_app/app/core/resources/app_colors.dart';
 import 'package:flowery_rider_app/app/core/routes/app_route.dart';
+import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/language_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/logout_dialog.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view/widget/profile_widget.dart';
 import 'package:flowery_rider_app/app/feature/profile/presentation/profile/view_model/profile_event.dart';
@@ -25,9 +27,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
     viewModel.doIntent(GetProfileAction());
     viewModel.cubitStream.listen((event) {
       switch(event) {
-        case NavigateToEditProfileScreen():
+        case NavigateToEditProfileOrVehicleScreen():
           if(mounted) {
-            Navigator.pushNamed(context,Routes.updateProfileScreen,arguments: event.driverEntity);
+            Navigator.pushNamed(context,event.isProfile?
+            Routes.updateProfileScreen:Routes.updateVehicle,arguments: event.driverEntity)
+                .then((value) {
+                  viewModel.doIntent(GetProfileAction());
+                });
+          }
+          case ShowLogoutDialogEvent():
+            if(mounted) {
+              showDialog(context: context, builder:(context) {
+                return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: LogoutDialog(),
+                );
+              },);
+            }
+            break;
+        case ShowLanguageDialogEvent():
+          if (mounted) {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              enableDrag: true,
+              showDragHandle: true,
+              backgroundColor: AppColors.whiteColor,
+              context: context,
+              builder: (context) {
+                return LanguageWidget();
+              },
+            );
           }
           case ShowLogoutDialogEvent():
             if(mounted) {

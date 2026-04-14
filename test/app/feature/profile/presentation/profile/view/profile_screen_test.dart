@@ -42,7 +42,7 @@ late   DriverEntity driverEntity;
   testWidgets('test profile init state with loading',(widgetTester)async {
     when(viewModel.state).thenReturn(ProfileState(profileState: BaseState(isLoading: true)));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState: BaseState(isLoading: true))));
-    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileOrVehicleScreen(
       driverEntity
     )));
    await widgetTester.pumpWidget(buildWidget());
@@ -65,7 +65,7 @@ late   DriverEntity driverEntity;
     ))));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState:
     BaseState(isLoading:false,error:ConnectionError()))));
-    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileOrVehicleScreen(
         driverEntity
     )));
     await widgetTester.pumpWidget(buildWidget());
@@ -88,7 +88,7 @@ late   DriverEntity driverEntity;
     when(viewModel.state).thenReturn(ProfileState(profileState: BaseState(isLoading:false,data:driverEntity )));
     when(viewModel.stream).thenAnswer((_)=>Stream<ProfileState>.value(ProfileState(profileState:
     BaseState(isLoading:false,data: driverEntity))));
-    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileScreen(
+    when(viewModel.cubitStream).thenAnswer((_)=>Stream<ProfileEvent>.value(NavigateToEditProfileOrVehicleScreen(
         driverEntity
     )));
     await widgetTester.pumpWidget(buildWidget());

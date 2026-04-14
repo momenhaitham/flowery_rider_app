@@ -9,7 +9,6 @@ import 'package:flowery_rider_app/app/feature/apply_driver/presentation/view_mod
 import 'package:flowery_rider_app/app/feature/countries/domain/get_all_countries_use_case.dart';
 import 'package:flowery_rider_app/app/feature/countries/domain/model/country_entity.dart';
 import 'package:flowery_rider_app/app/feature/vehicles/domain/get_all_vehicles_use_case.dart';
-import 'package:flowery_rider_app/app/feature/vehicles/domain/model/vehicle_entity.dart';
 import 'package:injectable/injectable.dart';
 @injectable
 class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverState>{
@@ -22,18 +21,8 @@ class ApplyDriverViewModel  extends CustomCubit<ApplyDriverEvent,ApplyDriverStat
       vehiclesState: BaseState(isLoading: true)
     ));
     final result=await _allVehiclesUseCase.invoke();
-    switch(result) {
-      case SuccessResponse<List<VehicleEntity>>():
-        emit(state.copyWith(
-            vehiclesState: BaseState(isLoading:false,data: result.data)
-        ));
-        break;
-      case ErrorResponse<List<VehicleEntity>>():
-        emit(state.copyWith(
-            vehiclesState: BaseState(isLoading:false,error: result.error)
-        ));
-        break;
-    }
+    emit(state.copyWith(vehiclesState: result.toBaseState()));
+
   }
   Future<void> _getAllCountries()async{
     emit(state.copyWith(

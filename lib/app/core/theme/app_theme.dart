@@ -16,6 +16,7 @@ class AppTheme {
 
     // appBarTheme
     appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.whiteColor,
       iconTheme: IconThemeData(color: AppColors.blackColor),
       leadingWidth: 20.w,
       titleTextStyle: TextStyle(
@@ -34,7 +35,7 @@ class AppTheme {
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.r)),
         ),
         padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(horizontal: 16.h, vertical: 15.h),
+          EdgeInsets.symmetric(horizontal:14.h),
         ),
       ),
     ),
@@ -76,6 +77,11 @@ class AppTheme {
             fontSize: FontSize.s16,
             fontWeight: FontWeight.normal,
             color: AppColors.blackColor
+      ),
+      titleLarge: GoogleFonts.imFellEnglish(
+        fontSize: FontSize.s20,
+        fontWeight: FontWeights.regular,
+        color: AppColors.primaryColor
       )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(

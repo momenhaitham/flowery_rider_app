@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (state.splashState.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(getException( state.splashState.error)),
+              content: Text(getException(state.splashState.error)),
             ),
           );
         }
@@ -62,7 +62,6 @@ class _SplashScreenState extends State<SplashScreen> {
               .scale(
                 delay: Duration(milliseconds: 700),
                 duration: Duration(milliseconds: 300),
-                
               ),
         ),
       ),

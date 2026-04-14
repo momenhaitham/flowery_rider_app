@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flowery_rider_app/app/config/dio_model/token_interceptors.dart';
-import 'package:flowery_rider_app/app/config/local_storage_processes/domain/use_case/read_and_write_tokin_usecase.dart';
 import 'package:flowery_rider_app/app/core/endpoint/app_endpoint.dart';
 import 'package:flowery_rider_app/app/feature/apply_driver/api/apply_api_client.dart';
+import 'package:flowery_rider_app/app/feature/orders/api/orders_api_client.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
@@ -10,38 +10,43 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../feature/profile/api/profile_api_client.dart';
 import '../../feature/vehicles/api/vehicle_api_client.dart';
+import '../local_storage_processes/domain/storage_data_source_contract.dart';
 
 @module
 abstract class DiModule {
   @lazySingleton
+  OrdersApiClient ordersApiClient(Dio dio) => OrdersApiClient(dio);
+
+  @lazySingleton
   ApplyApiClient provideApplyApiClient(Dio dio) =>
       ApplyApiClient(dio, baseUrl: AppEndPoint.baseUrl);
+
   @lazySingleton
   VehicleApiClient provideVehicleApiClient(Dio dio) =>
       VehicleApiClient(dio, baseUrl: AppEndPoint.baseUrl);
+
   @lazySingleton
   ProfileApiClient provideProfileApiClient(Dio dio) =>
       ProfileApiClient(dio, baseUrl: AppEndPoint.baseUrl);
-  @lazySingleton
+
+   @lazySingleton
   Dio provideDio(
-    BaseOptions baseOptions,
-    PrettyDioLogger logger,
-    TokenInterceptor tokenInterceptor,
-    ReadAndWriteTokinUsecase readAndWriteTokinUsecase,
-  ) {
+      BaseOptions baseOptions,
+      PrettyDioLogger logger,
+      TokenInterceptor tokenInterceptor,
+      ) {
     final Dio dio = Dio(BaseOptions(baseUrl: AppEndPoint.baseUrl));
-    dio.interceptors.add(logger);
     dio.interceptors.add(tokenInterceptor);
-    
+    dio.interceptors.add(logger);
     return dio;
   }
 
   @lazySingleton
   BaseOptions provideBaseOptions() => BaseOptions(
     baseUrl: AppEndPoint.baseUrl,
-    sendTimeout: Duration(seconds: 60),
-    receiveTimeout: Duration(seconds: 60),
-    connectTimeout: Duration(seconds: 60),
+    sendTimeout: const Duration(seconds: 60),
+    receiveTimeout: const Duration(seconds: 60),
+    connectTimeout: const Duration(seconds: 60),
   );
 
   @lazySingleton
@@ -53,12 +58,13 @@ abstract class DiModule {
   );
 
   @lazySingleton
-  FlutterSecureStorage provideFlutterSecureStorage() => FlutterSecureStorage();
+  FlutterSecureStorage provideFlutterSecureStorage() =>
+      const FlutterSecureStorage();
 
   @lazySingleton
   TokenInterceptor provideTokenInterceptor(
-    ReadAndWriteTokinUsecase readAndWriteTokinUsecase
-  ) => TokenInterceptor(readAndWriteTokinUsecase);
+      StorageDataSourceContract storageDataSourceContract,
+      ) => TokenInterceptor(storageDataSourceContract);
 
   @preResolve
   Future<SharedPreferences> provideSharedPreferences() =>

@@ -15,7 +15,7 @@ class OrderDetailsCard extends StatelessWidget{
   Widget build(BuildContext context) {
     //var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    var formatedDateTime = DateTime.parse(orderCreatedTime??"");
+    //var formatedDateTime = DateTime.parse(orderCreatedTime??"");
     
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20,vertical: AppPadding.p20),
@@ -30,7 +30,7 @@ class OrderDetailsCard extends StatelessWidget{
           SizedBox(height: height*0.01,),
           Text("Order ID : $orderId",style: Theme.of(context).textTheme.headlineMedium),
           SizedBox(height: height*0.01,),
-          Text("${DateFormat("EEE, dd MMM yyyy, hh:mm a").format(formatedDateTime)}")
+          //Text("${DateFormat("EEE, dd MMM yyyy, hh:mm a").format(formatedDateTime)}")
         ],
       ),
     );

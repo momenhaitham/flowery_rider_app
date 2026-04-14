@@ -53,7 +53,10 @@ class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
         _getDriverData();
         break;
       case NavigateToEditProfileIntent():
-        streamController.add(NavigateToEditProfileScreen(intent.driver));
+        streamController.add(NavigateToEditProfileOrVehicleScreen(intent.driver));
+        break;
+      case NavigateToEditVehicleIntent():
+        streamController.add(NavigateToEditProfileOrVehicleScreen(intent.driver,isProfile: false));
         break;
       case LogoutAction():
        _logoutUser();
@@ -61,6 +64,9 @@ class ProfileViewModel extends CustomCubit<ProfileEvent, ProfileState> {
       case ShowLogoutDialogAction():
         streamController.add(ShowLogoutDialogEvent());
         break;
+      
+      case ShowLanguageDialogAction():
+        streamController.add(ShowLanguageDialogEvent());
     }
   }
 }

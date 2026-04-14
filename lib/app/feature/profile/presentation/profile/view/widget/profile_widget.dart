@@ -56,8 +56,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           key:Key('loading_center'),
                           child: CircularProgressIndicator())
                           : widget.profileState.profileState.data != null
-                          ? _buildProfileSection(widget.profileState.profileState.data!,
-                          profileViewModel: widget.profileViewModel)
+                          ? _buildProfileSection(widget.profileState.profileState.data!,onTap: () {
+                            widget.profileViewModel.doIntent(NavigateToEditProfileIntent(widget.profileState.profileState.data!));
+                          },)
                           : widget.profileState.profileState.error != null
                           ? Text(
                           getException(widget.profileState.profileState.error))
@@ -66,6 +67,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ProfileItemsWidget(//3
                         data: AppLocale.language.tr(),
                         leading: Icon(Icons.translate),
+                        onTap: (){
+                          widget.profileViewModel.doIntent(ShowLanguageDialogAction());
+                        },
                         trailing: Text(//4
                             AppLocale.english.tr() ,
                             style: Theme
@@ -107,15 +111,19 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     );
   }
 
-  Widget _buildProfileSection( DriverEntity driver,{ProfileViewModel? profileViewModel}) {
+  Widget _buildProfileSection( DriverEntity driver,{void Function()? onTap}) {
     return Column(
       children: [
        ProfileCartWidget(
-         onTap: () => profileViewModel?.doIntent(NavigateToEditProfileIntent(driver)),
+         onTap: onTap,
          photoUrl:driver.photo??'' , title:'${driver.firstName??''} ${driver.lastName??''}',
            subtitle: driver.email??'', subSubTitle: driver.phone??'',),
         const SizedBox(height: 10),
-       ProfileCartWidget(title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
+       ProfileCartWidget(
+         onTap: () {
+           widget.profileViewModel.doIntent(NavigateToEditVehicleIntent(driver));
+         },
+         title: AppLocale.vehicleInfo.tr(), subtitle: driver.vehicleType??'', subSubTitle: driver.vehicleNumber??'',)
       ],
     );
   }

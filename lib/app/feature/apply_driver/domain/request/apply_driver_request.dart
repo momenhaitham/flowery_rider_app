@@ -37,14 +37,14 @@ class ApplyDriverRequest {
       "email": email,
       "phone": phone,
       "password": password,
-      "rePassword": rePassword,
+      "rePassword": rePassword??password,
       "gender": gender,
       "country": country,
       "NID": nationalIdNumber,
       "NIDImg": nationalIdImage,
-      "vehicleType": vehicleType,
+      "vehicleType": vehicleType??"Car",
       "vehicleNumber": vehicleNumber,
       "vehicleLicense": vehicleLicenseImage,
-    };
+    }..removeWhere((key, value) => value==null,);
   }
 }
