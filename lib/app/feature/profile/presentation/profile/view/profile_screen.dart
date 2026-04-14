@@ -58,6 +58,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
             );
           }
+          case ShowLogoutDialogEvent():
+            if(mounted) {
+              showDialog(context: context, builder:(context) {
+                return AlertDialog(
+                  contentPadding: EdgeInsets.zero,
+                  content: LogoutDialog(
+                    profileViewModel: viewModel,
+                  ),
+                );
+              },);
+            }
+            break;
       }
     },);
   }

@@ -180,5 +180,8 @@
   "tryAgain":"حاول مرة اخرى",
   "userAddress": "عنوان العميل",
   "pickupAddress": "عنوان المحل",
-  "someThingWrong":"هناك خطأ ما"
+  "someThingWrong":"هناك خطأ ما",
+  "confirmLogout": "تأكيد تسجيل الخروج"
+
+
 }

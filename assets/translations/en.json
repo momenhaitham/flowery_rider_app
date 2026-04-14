@@ -180,6 +180,6 @@
   "tryAgain":"try again",
   "userAddress": "user address",
   "pickupAddress": "pickup address",
-  "someThingWrong":"some thing wrong"
-
+  "someThingWrong":"some thing wrong",
+  "confirmLogout": "confirm Logout!!"
 }
